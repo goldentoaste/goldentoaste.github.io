@@ -16,8 +16,7 @@ const config = {
 				fallback: null
 			}
 		),
-		target: '#svelte',
-
+		
 	}
 };
 

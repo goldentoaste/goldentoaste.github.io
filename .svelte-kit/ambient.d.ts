@@ -27,8 +27,11 @@
  */
 declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
+	export const ANDROID_SDK_HOME: string;
 	export const APPDATA: string;
 	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
+	export const ChocolateyInstall: string;
+	export const ChocolateyLastPathUpdate: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
@@ -36,7 +39,6 @@ declare module '$env/static/private' {
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
-	export const CONDA_EXE: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
@@ -45,6 +47,7 @@ declare module '$env/static/private' {
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
+	export const INCLUDE: string;
 	export const INIT_CWD: string;
 	export const JAVA_HOME: string;
 	export const LANG: string;
@@ -77,7 +80,9 @@ declare module '$env/static/private' {
 	export const npm_package_version: string;
 	export const NPM_PREFIX_NPM_CLI_JS: string;
 	export const NUMBER_OF_PROCESSORS: string;
+	export const NVTOOLSEXT_PATH: string;
 	export const OneDrive: string;
+	export const OPENCLINCLUDEPATH: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const OS: string;
 	export const Path: string;
@@ -92,6 +97,7 @@ declare module '$env/static/private' {
 	export const PROMPT: string;
 	export const PSModulePath: string;
 	export const PUBLIC: string;
+	export const PYTHONPATH: string;
 	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
@@ -104,14 +110,14 @@ declare module '$env/static/private' {
 	export const USERNAME: string;
 	export const USERPROFILE: string;
 	export const VBOX_MSI_INSTALL_PATH: string;
+	export const VS110COMNTOOLS: string;
+	export const VS120COMNTOOLS: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const VSCODE_GIT_ASKPASS_MAIN: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const windir: string;
 	export const ZES_ENABLE_SYSMAN: string;
-	export const _CONDA_EXE: string;
-	export const _CONDA_ROOT: string;
 }
 
 /**
@@ -142,8 +148,11 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		ALLUSERSPROFILE: string;
+		ANDROID_SDK_HOME: string;
 		APPDATA: string;
 		APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
+		ChocolateyInstall: string;
+		ChocolateyLastPathUpdate: string;
 		CHROME_CRASHPAD_PIPE_NAME: string;
 		COLOR: string;
 		COLORTERM: string;
@@ -151,7 +160,6 @@ declare module '$env/dynamic/private' {
 		CommonProgramW6432: string;
 		COMPUTERNAME: string;
 		ComSpec: string;
-		CONDA_EXE: string;
 		DriverData: string;
 		EDITOR: string;
 		FPS_BROWSER_APP_PROFILE_STRING: string;
@@ -160,6 +168,7 @@ declare module '$env/dynamic/private' {
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
+		INCLUDE: string;
 		INIT_CWD: string;
 		JAVA_HOME: string;
 		LANG: string;
@@ -192,7 +201,9 @@ declare module '$env/dynamic/private' {
 		npm_package_version: string;
 		NPM_PREFIX_NPM_CLI_JS: string;
 		NUMBER_OF_PROCESSORS: string;
+		NVTOOLSEXT_PATH: string;
 		OneDrive: string;
+		OPENCLINCLUDEPATH: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;
 		OS: string;
 		Path: string;
@@ -207,6 +218,7 @@ declare module '$env/dynamic/private' {
 		PROMPT: string;
 		PSModulePath: string;
 		PUBLIC: string;
+		PYTHONPATH: string;
 		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
@@ -219,14 +231,14 @@ declare module '$env/dynamic/private' {
 		USERNAME: string;
 		USERPROFILE: string;
 		VBOX_MSI_INSTALL_PATH: string;
+		VS110COMNTOOLS: string;
+		VS120COMNTOOLS: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		VSCODE_GIT_ASKPASS_MAIN: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
 		VSCODE_GIT_IPC_HANDLE: string;
 		windir: string;
 		ZES_ENABLE_SYSMAN: string;
-		_CONDA_EXE: string;
-		_CONDA_ROOT: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: string]: string | undefined;
 	}

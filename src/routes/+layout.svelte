@@ -1,18 +1,29 @@
 
+<script>
+    import NavBar from "./NavBar.svelte";
+    import '../global.css';
 
-<nav>
+    let items = [
+        {
+            name: "Home",
+            dest:"/"
+        },
+        {
+            name:"Projects",
+            dest:"/projects"
+        },
+        {
+            name:"Others",
+            dest:"Others"
+        }
+    ]
+</script>
 
-    <a href="/">Home</a>
-    <a href="projects">Projects</a>
-    <a href="others">Others</a>
-</nav>
+
+<NavBar {items}></NavBar>
 
 <slot/>
 
 <style>
 
-
-    nav {
-        background-color: #dddddd;
-    }
 </style>
