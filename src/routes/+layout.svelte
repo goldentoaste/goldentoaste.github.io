@@ -1,20 +1,21 @@
 
 <script>
+    
     import NavBar from "./NavBar.svelte";
     import '../global.css';
 
     let items = [
         {
             name: "Home",
-            dest:"/"
+            dest:"./"
         },
         {
             name:"Projects",
-            dest:"/projects"
+            dest:"./"
         },
         {
             name:"Others",
-            dest:"Others"
+            dest:"./"
         }
     ]
 </script>
