@@ -3,6 +3,6 @@
     import NavBar from "./NavBar.svelte";
 
 </script>
-<h1>Under construction!</h1>
+<h1>Ray Gong's website</h1>
 
 <Intro></Intro>
