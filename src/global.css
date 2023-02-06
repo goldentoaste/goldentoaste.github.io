@@ -35,6 +35,6 @@ body {
 
 h1 {
     font-weight: lighter;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.2rem;
     text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
 }
