@@ -30,5 +30,24 @@
 
 <slot />
 
+<div></div>
 <style>
+
+    div{
+        content: '';
+        position: fixed;
+        z-index: 100;
+        pointer-events: none;
+        touch-action: none;
+
+        top: 0;
+        left: 0;
+        bottom:0;
+        right: 0;
+        box-shadow: inset 0 0 200px rgba(0, 0, 0, 1);
+        background-image: linear-gradient(to right, var(--bg-alt) 1px, rgba(204, 200, 177, 0) 1px), linear-gradient(to bottom, var(--bg-alt) 1px, rgba(204, 200, 177, 0) 1px);
+        background-size: 0.4rem 0.4rem;
+        filter: opacity(40%) blur(0.6px);
+  
+  }
 </style>

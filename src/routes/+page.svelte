@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <p>Resume <a href="https://github.com/goldentoaste/portfolio/raw/main/FileStorage/RayGongResumeFeb2-2023.pdf">https://github.com/goldentoaste/portfolio/raw/main/FileStorage/RayGongResumeFeb2-2023.pdf</a></p>
+    <p>Resume <a href="/resume">here</a></p>
     <p>Github <a href="https://github.com/goldentoaste">https://github.com/goldentoaste</a></p>
     <p>Email: {emailContnet}</p>
 </div>

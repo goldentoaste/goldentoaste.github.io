@@ -60,13 +60,13 @@
     button:not(:disabled):hover::before {
         content: "";
         position: absolute;
-        top: -0.43rem;
+        top: -0.45rem;
         left: 0;
         height: calc(100% + 0.6rem);
         width: 100%;
         z-index: -1;
-        border-top: var(--fg-alt) 0.12rem solid;
-        border-bottom: var(--fg-alt) 0.12rem solid;
+        border-top: var(--fg-alt) 0.15rem solid;
+        border-bottom: var(--fg-alt) 0.15rem solid;
     }
 
     button:not(:disabled)::after {
@@ -97,9 +97,10 @@
         display: flex;
         align-items: center;
 
-        margin: 0.5rem;
+        margin: 1rem;
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0.5rem 2rem 0.5rem 0.5rem;
+       
         font-size: 1rem;
         border: none;
         appearance: none;
