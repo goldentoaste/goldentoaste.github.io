@@ -1,5 +1,5 @@
 # Deployment
-Deployed at [https://goldentoaste.github.io/portfolio/](https://goldentoaste.github.io/portfolio/)
+Deployed at [https://goldentoaste.github.io/](https://goldentoaste.github.io/)
 
 # create-svelte
 
