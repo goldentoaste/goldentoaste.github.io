@@ -1,9 +1,10 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import Button from "$lib/Button.svelte";
-    type NavItem = {
+     type NavItem = {
         name: string;
         dest: string;
+        iconPath: string;
     };
 
     export let items: NavItem[] = [];
@@ -14,7 +15,7 @@
 <nav>
     {#each items as item}
 
-    <Button src="/bread.svg" href={item.dest}> {item.name}</Button>
+    <Button on:click={(e)=>console.log(`${item.name} is clicked`)} path={item.iconPath} href={item.dest}> {item.name}</Button>
 
     {/each}
 

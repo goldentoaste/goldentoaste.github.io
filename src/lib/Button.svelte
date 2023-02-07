@@ -1,11 +1,9 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { createEventDispatcher } from "svelte";
-    import '/bread.svg'
 
     export let href: string = "";
-    export let src: string = "";
-    export let color: string = "#666666";
+    export let path: string = "";
     export let selected: boolean = false;
 
     const dispatch = createEventDispatcher();
@@ -19,23 +17,30 @@
     }
 </script>
 
+<svg width=0 height=0 xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <clipPath id="clip"  clipPathUnits="objectBoundingBox">
+               <path 
+            d={path}
+            fill="black" />
+        </clipPath>
+    </defs>
+</svg>
+
 <button on:click={onclick} class:selected>
 
-    <div></div>
+    {#if path}
+    <div
+    style="clip-path: url('#clip');"
+    ></div>
+    {/if}
+  
     <slot />
 </button>
 
 
-
 <style>
-    div {
-        width: 10rem;
-        height: 10rem;
-        
-        background-color: red !important;
-            
-        clip-path: url('#clip');
-    }
+
 
     button:not(:disabled)::before {
         content: "";
@@ -121,13 +126,22 @@
         padding-bottom: 10rem;
     }
 
-    button > img {
+    button > div {
         height: 1.2rem;
         width: 1.2rem;
         margin-left: 0.2rem;
         margin-right: 0.5rem;
         vertical-align: middle;
+        
+        object-fit: cover;
+        background-color: var(--fg);
 
-        color: #d3869b;
+        transition: background-color 0.2s ease-out;
+    }
+
+    button:hover > div {
+
+
+        background-color: var(--bg-alt);
     }
 </style>
