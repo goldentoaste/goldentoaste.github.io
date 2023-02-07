@@ -1,7 +1,7 @@
 /* color theme based on gruvbox material https://github.com/sainnhe/gruvbox-material */
 /* css referencing https://metakirby5.github.io/yorha/ */
 body.lightmode {
-    --color-primary: #eaeaea;
+    --bg: #d4be98;
 }
 
 body {
@@ -22,19 +22,32 @@ body {
 
     background-color: var(--bg);
     background-size: 0.4rem 0.4rem;
-
     background-image: linear-gradient(to right, var(--bg-alt) 1px, rgba(204, 200, 177, 0) 1px), linear-gradient(to bottom, var(--bg-alt) 1px, rgba(204, 200, 177, 0) 1px);
-
     color: var(--fg);
-    font-family: helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+
+    padding: 1rem;
+    padding-top: 2rem;
 }
 
 ::selection {
-    background-color: var(--bg-alt2);
-  }
+    background-color: var(--bg-alt3);
+    color: var(--fg);
+}
 
 h1 {
+    
     font-weight: lighter;
     letter-spacing: 0.2rem;
     text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
 }
+
+
+
+
+a {
+    color: var(--fg-alt);
+    font-style: italic;
+}
+
+

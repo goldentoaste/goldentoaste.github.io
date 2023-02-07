@@ -15,8 +15,12 @@
         },
         {
             name:"Others",
-            dest:"./"
-        }
+            dest:"./other"
+        },
+        {
+            name:"Google",
+            dest:"https://google.ca"
+        },
     ]
 </script>
 

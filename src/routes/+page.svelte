@@ -1,9 +1,9 @@
 <script>
     import Intro from "./Intro.svelte";
-    import NavBar from "./NavBar.svelte";
+
 
 </script>
-<h1>Ray Gong's website! (Under Construction)</h1>
+<h1>Ray Gong's website (Under Construction)</h1>
 
 <div class="container">
 
