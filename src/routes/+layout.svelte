@@ -7,32 +7,39 @@
     let items  = [
         {
             name: "Home",
-            dest: "./",
+            dest: "/",
             iconPath: breadPath
             
         },
         {
             name: "Projects",
-            dest: "./",  iconPath: breadPath
+            dest: "/projects",  iconPath: breadPath
         },
         {
             name: "Others",
-            dest: "./other",  iconPath: breadPath
+            dest: "/other",  iconPath: breadPath
         },
         {
-            name: "Google",
-            dest: "https://google.ca",  iconPath: breadPath
+            name: "Resume",
+            dest: "/resume",  iconPath: breadPath
         },
+     
     ];
 </script>
 
 <NavBar {items} />
 
-<slot />
+<div class='parent'><slot /></div>
+
 
 <div id="shadow"/>
 <div id="grid"/>
 <style>
+
+div.parent{
+        padding: 4rem;
+        padding-top: 4rem;
+    }
 
     div#grid{
         content: '';
