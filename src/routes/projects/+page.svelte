@@ -2,5 +2,3 @@
 <h1>
     Projects page not done yet! 🔨
 </h1>
-<img src="/bigBread.svg" />
-

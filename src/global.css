@@ -29,6 +29,9 @@ body {
 
 }
 
+h2, h3, h4{
+    font-weight: 100;
+}
 ::selection {
     background-color: var(--bg-alt3);
     color: var(--fg);

@@ -18,7 +18,8 @@
 
 <style>
     .container {
-   
+    
+        margin: 1rem;
        width: fit-content;
        height: fit-content;
     }

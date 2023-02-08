@@ -3,12 +3,12 @@
 <script>
     
     export let path = "";
-
+    export let key = '';
 </script>
 
 <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <clipPath id="clip" clipPathUnits="objectBoundingBox">
+        <clipPath id={key} clipPathUnits="objectBoundingBox">
             <path d={path} fill="black" />
         </clipPath>
     </defs>
@@ -17,21 +17,21 @@
 
 <div>
     {#if path}
-        <div class="imgDiv" style="clip-path: url('#clip');"/>
+        <div class="imgDiv" style="clip-path: url('#{key}');"/>
     {/if}
     <slot/>
 </div>
 
 
 <style>
-
+    div {
+        display: inline-block;
+        margin-right: 0.25rem;
+    }
     .imgDiv {
         background-color: var(--fg-alt);
-        width: 1rem;
-        height: 1rem;
-
-        margin: 0.25rem;
-        margin-right: 0.5rem;
+        width: 1.2rem;
+        height: 1.2rem; 
         vertical-align: middle;
     }
 </style>
