@@ -17,6 +17,6 @@ div#shadow {
         right: 0;
         box-shadow: inset 0 0 300px rgba(0, 0, 0, 1);
 
-        filter: opacity(50%);
+        filter: opacity(50%) blur(1px);
     }
 </style>
