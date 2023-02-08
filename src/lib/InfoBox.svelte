@@ -1,4 +1,3 @@
-
 <script>
     export let title = "";
     export let style = "";
@@ -17,11 +16,25 @@
 </div>
 
 <style>
+
+    .container:hover{
+        transform: scale(1.05);
+        /* filter: brightness(1.05); */
+        box-shadow: 0.5rem 0.5rem 1rem var(--bg-alt3);
+        
+    }
+
     .container {
-    
+        flex-direction: column;
+        display: flex;
         margin: 1rem;
-       width: fit-content;
-       height: fit-content;
+
+        width: fit-content;
+        height: fit-content;
+        
+        transition-property: box-shadow transform filter;
+        transition-duration: 0.2s;
+        transition-timing-function: ease;
     }
 
     .title {
@@ -32,8 +45,12 @@
         /* display: inline-block; */
     }
 
-    .body{
+    .body {
         background-color: var(--bg-alt);
-        padding: 0.5rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        gap: 0.2rem;
     }
 </style>

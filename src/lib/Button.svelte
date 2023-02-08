@@ -43,7 +43,7 @@
         height: 100%;
         width: 100%;
 
-        transition-property: top, height, border;
+        transition-property: top, height, border, paddi;
         transition-duration: 0.2s;
         transition-timing-function: ease-out;
     }

@@ -58,7 +58,7 @@
 
         <InfoBox title="Profile info">
             <img alt="" src="/bigBread.svg" />
-            <div class="list">
+          
                 {#each items as item}
                     <IconListItem key={item.key} path={item.icon}>
                         {#if item.dest}
@@ -68,7 +68,7 @@
                         {/if}
                     </IconListItem>
                 {/each}
-            </div>
+           
         </InfoBox>
     </div>
  
@@ -78,11 +78,7 @@
     .container{
         margin-top: 5rem;
     }
-    .list {
-        display: flex;
-        flex-direction: column;
-        width: fit-content;
-    }
+  
 
     .headContainer {
         display: flex;
@@ -94,13 +90,16 @@
     img {
         position: relative;
         z-index: 50;
-        margin: 0.5rem;
 
-        display: block;
+
         max-width: 25vw;
         max-height: 25vh;
         width: 100%;
-        height: auto;
+        height: 100%;
+        
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
 
         filter: drop-shadow(-1px -1px 0px var(--fg-alt)) drop-shadow(2px -1px 0px var(--fg-alt))
             drop-shadow(2px 2px 0px var(--fg-alt)) drop-shadow(-1px 2px 0px var(--fg-alt));
