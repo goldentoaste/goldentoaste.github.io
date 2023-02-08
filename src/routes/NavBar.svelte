@@ -1,8 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
-
-
+    import RelativeGrid from '$lib/RelativeGrid.svelte';
     import Button from '$lib/Button.svelte';
     type NavItem = {
         name: string;
@@ -18,10 +17,16 @@
 <div>
     <nav>
         {#each items as item}
-            <Button selected={$page.url.pathname === item.dest} on:click={(e) => console.log($page.url.pathname , item.dest)} path={item.iconPath} href={item.dest}>
+            <Button
+                selected={$page.url.pathname === item.dest}
+                on:click={(e) => console.log($page.url.pathname, item.dest)}
+                path={item.iconPath}
+                href={item.dest}
+            >
                 {item.name}</Button
             >
         {/each}
+   
     </nav>
 
     <svg width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,6 +48,8 @@
         </defs>
         <rect x="0" y="0" width="100%" height="11" fill="url(#border)" />
     </svg>
+
+    <!-- <Shadow></Shadow> -->
 </div>
 
 <style>
@@ -54,8 +61,11 @@
         background-color: transparent;
         display: flex;
         flex-direction: column;
+
+        z-index: 100;
     }
     nav {
+        position: relative;
         display: flex;
         align-items: center;
         width: 100%;
@@ -63,11 +73,9 @@
         padding-left: 5rem;
         padding-right: 5rem;
 
-   
-
         border-bottom: var(--fg) 0.2rem solid;
         background-color: var(--bg-alt);
-        z-index: -10;
+
         overflow: hidden;
     }
 
