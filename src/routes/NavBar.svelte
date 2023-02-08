@@ -60,8 +60,10 @@
         align-items: center;
         width: 100%;
 
-        padding-left: 4rem;
-        padding-right: 4rem;
+        padding-left: 5rem;
+        padding-right: 5rem;
+
+        gap: 1rem;
 
         border-bottom: var(--fg) 0.2rem solid;
         background-color: var(--bg-alt);

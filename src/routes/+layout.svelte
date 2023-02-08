@@ -15,13 +15,18 @@
             name: "Projects",
             dest: "/projects",  iconPath: breadPath
         },
-        {
-            name: "Others",
-            dest: "/other",  iconPath: breadPath
-        },
+       
         {
             name: "Resume",
             dest: "/resume",  iconPath: breadPath
+        },
+        {
+            name: 'Experiences',
+            dest: '/experiences',  iconPath: breadPath
+        },
+        {
+            name: "Others",
+            dest: "/other",  iconPath: breadPath
         },
      
     ];
@@ -44,7 +49,7 @@ div.parent{
     div#grid{
         content: '';
         position: fixed;
-        z-index: 100;
+        z-index: 10;
         pointer-events: none;
         touch-action: none;
         top: 0;
@@ -59,7 +64,7 @@ div.parent{
     div#shadow{
         content: '';
         position: fixed;
-        z-index: 100;
+        z-index: 10;
         pointer-events: none;
         touch-action: none;
 
