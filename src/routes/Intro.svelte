@@ -49,11 +49,11 @@
             <h1>Ray Gong</h1>
             <h3>
                 A bread themed Software developer who is specializing in
-                full-stack, desktop applications, and sever systems.
+                full-stack, desktop applications, and server systems.
             </h3>
         </div>
 
-        <InfoBox title="Profile info">
+        <InfoBox title="Profile info" >
             <img alt="" src="/bigBread.svg" />
 
             {#each items as item}
@@ -70,6 +70,15 @@
 </div>
 
 <style>
+
+.description{
+    width: fit-content;
+    flex-grow: 1;
+    max-width: fit-content;
+    
+    flex-basis: 300px;
+}
+
     .container {
         margin-top: 5rem;
     }
@@ -80,14 +89,15 @@
         flex-direction: row;
         justify-content: space-evenly;
         gap: 2rem;
+        flex-wrap: wrap;
     }
 
     img {
         position: relative;
         /* z-index: 50 !important; */
 
-        max-width: 25vw;
-        max-height: 25vh;
+        /* max-width: 25vw;
+        max-height: 25vh; */
         width: 100%;
         height: 100%;
 
@@ -99,11 +109,9 @@
             drop-shadow(2px 2px 0px var(--fg-alt))
             drop-shadow(-1px 2px 0px var(--fg-alt));
     }
-    h1,
-    h2 {
-        white-space: nowrap;
-    }
+   
     h1 {
+        white-space: nowrap;
         font-size: 3rem;
         margin-right: 5%;
     }

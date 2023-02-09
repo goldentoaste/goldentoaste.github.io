@@ -237,6 +237,10 @@
                     url: 'https://user-images.githubusercontent.com/25181517/193427941-9437dbbe-376f-40dc-9573-0ef5c02a26a7.png'
                 }
             ]
+        },
+        {
+            title: "Desktop",
+            items: []
         }
     ];
 </script>

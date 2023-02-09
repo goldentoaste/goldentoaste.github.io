@@ -18,6 +18,7 @@
     h2 {
         margin: 0;
         line-height: 1.42rem;
+        overflow-wrap: break-word;
     }
 
     .parent {
@@ -28,8 +29,8 @@
         border-top: 0.2rem solid var(--fg);
         display: flex;
         flex-direction: row;
-    text-align: center;
-  align-items: center;
+        align-items: center;
+
     }
 
     .decor {
@@ -39,6 +40,7 @@
         background-color: var(--fg-alt);
         transform: rotate(45deg);
         margin: 1rem;
+        flex-shrink: 0;
     }
 
     .content {
@@ -46,6 +48,7 @@
         flex-wrap: wrap;
         border-top: 0.2rem solid var(--fg);
         border-bottom: 0.2rem solid var(--fg);
+        
     }
 
 

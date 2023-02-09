@@ -24,6 +24,7 @@
         /* filter: brightness(1.05); */
         box-shadow: 0.5rem 0.5rem 1rem var(--bg-alt3);
         
+        
     }
 
     .container {
@@ -38,6 +39,7 @@
         transition-property: box-shadow transform filter;
         transition-duration: 0.2s;
         transition-timing-function: ease;
+    
     }
 
     .title {
