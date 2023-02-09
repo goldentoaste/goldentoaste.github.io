@@ -6,7 +6,7 @@
 <style> div#grid {
     content: '';
     position: fixed;
-    z-index: 10;
+    z-index: 1000;
     pointer-events: none;
     touch-action: none;
     top: 0;

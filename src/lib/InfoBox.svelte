@@ -17,6 +17,8 @@
 
 <style>
 
+
+
     .container:hover{
         transform: scale(1.05);
         /* filter: brightness(1.05); */
@@ -30,6 +32,7 @@
         margin: 1rem;
 
         width: fit-content;
+        min-width:12rem;
         height: fit-content;
         
         transition-property: box-shadow transform filter;
@@ -42,6 +45,7 @@
         background-color: var(--bg-alt2);
         white-space: nowrap;
         padding: 0.5rem;
+        font-size: larger;
         /* display: inline-block; */
     }
 
@@ -50,7 +54,9 @@
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        width: fit-content;
+        
         gap: 0.2rem;
     }
+
+   
 </style>

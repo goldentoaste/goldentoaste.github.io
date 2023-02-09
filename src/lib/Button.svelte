@@ -5,6 +5,7 @@
     export let href: string = '';
     export let path: string = '';
     export let selected: boolean = false;
+    export let upper : boolean = true;
 
     const dispatch = createEventDispatcher();
 
@@ -25,7 +26,7 @@
     </defs>
 </svg>
 
-<button on:click={onclick} class:selected>
+<button on:click={onclick} class:selected style={upper?"text-transform: uppercase;":''}>
     {#if path}
         <div class="icon" style="clip-path: url('#clip');" />
     {/if}

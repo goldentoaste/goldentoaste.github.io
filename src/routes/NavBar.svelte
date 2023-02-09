@@ -26,8 +26,7 @@
                 {item.name}</Button
             >
         {/each}
-        <RelativeGrid></RelativeGrid>
-        
+          
     </nav>
 
     <svg width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,10 +72,9 @@
         position: relative;
         display: flex;
         align-items: center;
+        justify-content: center;
         width: 100%;
-
-        padding-left: 5rem;
-        padding-right: 5rem;
+    
 
         border-bottom: var(--fg) 0.2rem solid;
         background-color: var(--bg-alt);
