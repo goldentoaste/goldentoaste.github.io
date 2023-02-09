@@ -239,8 +239,25 @@
             ]
         },
         {
-            title: "Desktop",
-            items: []
+            title: "Desktop Application",
+            items: [
+                {
+                    name: "Qt",
+                    url:'https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg'
+                },
+                {
+                    name:"Electron",
+                    url:'https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg'
+                },
+                {
+                    name:"Tkinter",
+                    url:'https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1fab6.svg'
+                },
+                {
+                    name:'Win32 API',
+                    url:'https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg'
+                }
+            ]
         }
     ];
 </script>
@@ -250,8 +267,9 @@
         <Intro />
 
         <Section title="Languages, Technologies and Tools">
-            {#each groups as group}
-                <InfoBox title={group.title}>
+          
+                {#each groups as group}
+                <InfoBox title={group.title} >
                     {#each group.items as item}
                         <IconListItem
                             src={item.url}
@@ -261,11 +279,16 @@
                     {/each}
                 </InfoBox>
             {/each}
+           
+           
         </Section>
     </div>
 </div>
 
 <style>
+
+ 
+
     div#outer {
         width: 100%;
         display: flex;

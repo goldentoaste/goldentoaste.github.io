@@ -15,13 +15,15 @@
 
 <style>
 
-    h2 {
-        margin: 0;
+    h2 {margin-bottom: 0.3rem;
+        margin-top: 0.3rem;
         line-height: 1.42rem;
         overflow-wrap: break-word;
     }
 
     .parent {
+        display: flex;
+        width: fit-content;
         flex-direction: column;
     }
 
@@ -44,11 +46,14 @@
     }
 
     .content {
+        align-self: center;
+        width: fit-content;
         display: flex;
         flex-wrap: wrap;
         border-top: 0.2rem solid var(--fg);
         border-bottom: 0.2rem solid var(--fg);
         
+     
     }
 
 
