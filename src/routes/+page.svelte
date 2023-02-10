@@ -157,8 +157,8 @@
                     url: "https://user-images.githubusercontent.com/25181517/192108375-268c35e6-ab26-44b2-88bf-e3121a4e5083.png",
                 },
                 {
-                    name: 'Jira',
-                    url: 'https://user-images.githubusercontent.com/25181517/183912952-83784e94-629d-4c34-a961-ae2ae795b662.png'
+                    name: "Jira",
+                    url: "https://user-images.githubusercontent.com/25181517/183912952-83784e94-629d-4c34-a961-ae2ae795b662.png",
                 },
                 {
                     name: "Git",
@@ -172,7 +172,6 @@
                     name: "Bash",
                     url: "https://user-images.githubusercontent.com/25181517/192158606-7c2ef6bd-6e04-47cf-b5bc-da2797cb5bda.png",
                 },
-                
             ],
         },
         {
@@ -208,57 +207,57 @@
                     url: "https://user-images.githubusercontent.com/25181517/186150304-1568ffdf-4c62-4bdc-9cf1-8d8efcea7c5b.png",
                 },
                 {
-                    name:'Android Studio',
-                    url:'https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg'
-                }
+                    name: "Android Studio",
+                    url: "https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg",
+                },
             ],
         },
         {
             title: "Tools/Others",
             items: [
                 {
-                    name: 'VsCode',
-                    url: 'https://user-images.githubusercontent.com/25181517/192108891-d86b6220-e232-423a-bf5f-90903e6887c3.png'
+                    name: "VsCode",
+                    url: "https://user-images.githubusercontent.com/25181517/192108891-d86b6220-e232-423a-bf5f-90903e6887c3.png",
                 },
                 {
-                    name:'PostMan',
-                    url: 'https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png'
+                    name: "PostMan",
+                    url: "https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png",
                 },
                 {
-                    name:'npm',
-                    url: 'https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png'
+                    name: "npm",
+                    url: "https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png",
                 },
                 {
-                    name:'Figma',
-                    url: 'https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png'
+                    name: "Figma",
+                    url: "https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png",
                 },
                 {
-                    name: 'Unity',
-                    url: 'https://user-images.githubusercontent.com/25181517/193427941-9437dbbe-376f-40dc-9573-0ef5c02a26a7.png'
-                }
-            ]
+                    name: "Unity",
+                    url: "https://user-images.githubusercontent.com/25181517/193427941-9437dbbe-376f-40dc-9573-0ef5c02a26a7.png",
+                },
+            ],
         },
         {
             title: "Desktop Application",
             items: [
                 {
                     name: "Qt",
-                    url:'https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg'
+                    url: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg",
                 },
                 {
-                    name:"Electron",
-                    url:'https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg'
+                    name: "Electron",
+                    url: "https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg",
                 },
                 {
-                    name:"Tkinter",
-                    url:'https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1fab6.svg'
+                    name: "Tkinter",
+                    url: "https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1fab6.svg",
                 },
                 {
-                    name:'Win32 API',
-                    url:'https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg'
-                }
-            ]
-        }
+                    name: "Win32 API",
+                    url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg",
+                },
+            ],
+        },
     ];
 </script>
 
@@ -267,9 +266,8 @@
         <Intro />
 
         <Section title="Languages, Technologies and Tools">
-          
-                {#each groups as group}
-                <InfoBox title={group.title} >
+            {#each groups as group}
+                <InfoBox title={group.title}>
                     {#each group.items as item}
                         <IconListItem
                             src={item.url}
@@ -279,16 +277,11 @@
                     {/each}
                 </InfoBox>
             {/each}
-           
-           
         </Section>
     </div>
 </div>
 
 <style>
-
- 
-
     div#outer {
         width: 100%;
         display: flex;
@@ -297,9 +290,10 @@
     }
 
     div#inner {
-        width: fit-content;
         display: flex;
         gap: 4rem;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 </style>

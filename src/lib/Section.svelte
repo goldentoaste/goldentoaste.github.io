@@ -1,21 +1,21 @@
 <script>
-    export let title = '';
+    export let title = "";
 </script>
 
 <div class="parent">
     <div class="title">
-        <div class="decor"/> 
+        <div class="decor" />
         <h2>{title}</h2>
     </div>
-    <div class='content'>
-        <slot/>
+
+    <div class="content">
+        <slot />
     </div>
 </div>
 
-
 <style>
-
-    h2 {margin-bottom: 0.3rem;
+    h2 {
+        margin-bottom: 0.3rem;
         margin-top: 0.3rem;
         line-height: 1.42rem;
         overflow-wrap: break-word;
@@ -23,8 +23,9 @@
 
     .parent {
         display: flex;
-        width: fit-content;
+        width: 100%;
         flex-direction: column;
+        
     }
 
     .title {
@@ -32,7 +33,6 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-
     }
 
     .decor {
@@ -46,15 +46,16 @@
     }
 
     .content {
-        align-self: center;
-        width: fit-content;
-        display: flex;
-        flex-wrap: wrap;
+        
+        width: 100%;
+        display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(14rem, max-content));
+       justify-content: center;
+        /* display: flex;
+        flex-wrap: wrap;   */
+
         border-top: 0.2rem solid var(--fg);
         border-bottom: 0.2rem solid var(--fg);
-        
-     
+
     }
-
-
 </style>

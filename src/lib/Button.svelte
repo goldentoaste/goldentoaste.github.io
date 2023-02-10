@@ -68,7 +68,10 @@
         left: 0;
         width: 0;
         height: 100%;
-        transition: all 0.2s;
+        transition: all 0.5s;
+        transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+        box-shadow: 0.2rem 0.2rem 1rem var(--fg-alt);
+    
 
         background-color: var(--fg);
     }
@@ -77,7 +80,7 @@
         content: '';
         width: 100%;
         height: 100%;
-        transition: all 0.2s;
+  
     }
 
     button:not(:disabled):hover:active:after {

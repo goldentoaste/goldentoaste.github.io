@@ -28,16 +28,21 @@
     }
 
     .container {
+        
+        box-sizing: border-box;
+
         flex-direction: column;
         display: flex;
         margin: 1rem;
 
+        height: fit-content;
         width: fit-content;
         min-width:12rem;
-        height: fit-content;
+        
+
         
         transition-property: box-shadow transform filter;
-        transition-duration: 0.2s;
+        transition-duration: 0.4s;
         transition-timing-function: ease;
     
     }

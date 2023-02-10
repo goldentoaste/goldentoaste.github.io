@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
-    import RelativeGrid from '$lib/RelativeGrid.svelte';
+
     import Button from '$lib/Button.svelte';
     type NavItem = {
         name: string;
@@ -29,7 +29,7 @@
           
     </nav>
 
-    <svg width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg id="top" width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <pattern
                 id="border"
@@ -46,17 +46,27 @@
                 <circle cx="28" cy="14" r="2" fill="currentColor" />
             </pattern>
         </defs>
-        <rect x="0" y="0" width="100%" height="11" fill="url(#border)" />
+        <rect id="rect" x="0" y="0" width="100%" height="11" fill="url(#border)" />
       
     </svg>
 
-    <!-- <Shadow></Shadow> -->
+    
+
+</div>
+
+<div id='botBar'>
+    <nav id="botNav"/>
+    <svg id="bottom" width='100%'>
+        <use xlink:href="#rect">
+            
+        </use>
+    </svg>
 </div>
 
 
 
 <style>
-    
+
     div {
         width: 100%;
         position: fixed;
@@ -82,9 +92,30 @@
         overflow: hidden;
     }
 
-    svg {
+    svg#top {
         color: var(--fg);
         pointer-events: none;
         touch-action: none;
     }
+
+    svg#bottom{
+        position: absolute;
+        top: 0.2rem;
+    }
+    
+    div#botBar{
+        top: auto;
+        bottom: 0;
+        left: 0;
+    }
+    
+
+    nav#botNav{
+        height: 3rem;
+        border: none;
+        border-top: var(--fg) 0.2rem solid;
+        
+    }
+    
+    
 </style>
