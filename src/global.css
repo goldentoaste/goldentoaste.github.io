@@ -21,24 +21,27 @@ body {
     --purple: #d3869b;
 
     background-color: var(--bg);
-   
-    
+
+
     color: var(--fg);
     font-family: 'Open Sans', sans-serif;
-    
+
 
 }
 
-h2, h3, h4{
+h2,
+h3,
+h4 {
     font-weight: 100;
 }
+
 ::selection {
     background-color: var(--bg-alt3);
     color: var(--fg);
 }
 
 h1 {
-    
+
     font-weight: lighter;
     letter-spacing: 0.2rem;
     text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
@@ -51,5 +54,3 @@ a {
     color: var(--fg-alt);
     font-style: italic;
 }
-
-

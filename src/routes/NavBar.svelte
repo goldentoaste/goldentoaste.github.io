@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { page } from '$app/stores';
-
-    import Button from '$lib/Button.svelte';
+    import { onMount } from "svelte";
+    import { page } from "$app/stores";
+    import { afterNavigate } from "$app/navigation";
+    import Button from "$lib/Button.svelte";
     type NavItem = {
         name: string;
         dest: string;
@@ -10,26 +10,37 @@
     };
 
     export let items: NavItem[] = [];
+    let selects : boolean[] = [];
 
-    onMount(() => {});
+    function updateButtons() {
+        items.forEach((item, index) => {
+            selects[index] = $page.url.pathname === item.dest;
+        });
+
+    }
+
+    afterNavigate(updateButtons);
+    onMount(() => {
+        selects = Array(items.length).fill(false);
+    });
 </script>
 
 <div>
-    <nav>
-        {#each items as item}
-            <Button
-                selected={$page.url.pathname === item.dest}
-                on:click={(e) => console.log($page.url.pathname, item.dest)}
-                path={item.iconPath}
-                href={item.dest}
-            >
+    <nav id="navBar">
+        {#each items as item, i}
+            <Button selected={selects[i]} path={item.iconPath} href={item.dest}>
                 {item.name}</Button
             >
         {/each}
-          
     </nav>
 
-    <svg id="top" width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+        id="top"
+        width="100%"
+        height="16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
         <defs>
             <pattern
                 id="border"
@@ -46,27 +57,25 @@
                 <circle cx="28" cy="14" r="2" fill="currentColor" />
             </pattern>
         </defs>
-        <rect id="rect" x="0" y="0" width="100%" height="11" fill="url(#border)" />
-      
-    </svg>
-
-    
-
-</div>
-
-<div id='botBar'>
-    <nav id="botNav"/>
-    <svg id="bottom" width='100%'>
-        <use xlink:href="#rect">
-            
-        </use>
+        <rect
+            id="rect"
+            x="0"
+            y="0"
+            width="100%"
+            height="11"
+            fill="url(#border)"
+        />
     </svg>
 </div>
 
-
+<div id="botBar">
+    <nav id="botNav" />
+    <svg id="bottom" width="100%">
+        <use xlink:href="#rect" />
+    </svg>
+</div>
 
 <style>
-
     div {
         width: 100%;
         position: fixed;
@@ -84,7 +93,6 @@
         align-items: center;
         justify-content: center;
         width: 100%;
-    
 
         border-bottom: var(--fg) 0.2rem solid;
         background-color: var(--bg-alt);
@@ -98,24 +106,20 @@
         touch-action: none;
     }
 
-    svg#bottom{
+    svg#bottom {
         position: absolute;
         top: 0.2rem;
     }
-    
-    div#botBar{
+
+    div#botBar {
         top: auto;
         bottom: 0;
         left: 0;
     }
-    
 
-    nav#botNav{
+    nav#botNav {
         height: 3rem;
         border: none;
         border-top: var(--fg) 0.2rem solid;
-        
     }
-    
-    
 </style>

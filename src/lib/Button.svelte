@@ -44,7 +44,7 @@
         height: 100%;
         width: 100%;
 
-        transition-property: top, height, border, paddi;
+        transition-property: all;
         transition-duration: 0.2s;
         transition-timing-function: ease-out;
     }
@@ -123,11 +123,13 @@
     }
 
     .selected::before {
-        padding-bottom: 10rem;
+        padding-bottom: 2rem;
         background-color: var(--bg-alt3) !important;
+        transition: padding-bottom ease-out 1s;
     }
     .selected::after {
-        padding-bottom: 10rem;
+        padding-bottom: 2rem;
+        transition: padding-bottom ease-out 1s ;
     }
 
     button > div.icon {
