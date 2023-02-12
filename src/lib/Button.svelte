@@ -1,11 +1,24 @@
-<script lang="ts">
-    import { goto } from '$app/navigation';
-    import { createEventDispatcher } from 'svelte';
+<script lang="ts" context="module">
+    export type ButtonParam = {
+        href?: string;
+        path?: string;
+        selected?: boolean;
+        upper?: boolean;
+        text: string;
+        onClick?: (e: CustomEvent) => void;
+    };
+</script>
 
-    export let href: string = '';
-    export let path: string = '';
+<script lang="ts">
+    import { goto } from "$app/navigation";
+    import { createEventDispatcher } from "svelte";
+
+    export let href: string = "";
+    export let path: string = "";
     export let selected: boolean = false;
-    export let upper : boolean = true;
+    export let upper: boolean = true;
+    export let key = "clip";
+    export let style = "";
 
     const dispatch = createEventDispatcher();
 
@@ -14,21 +27,25 @@
             goto(href);
         }
 
-        dispatch('click', e.detail);
+        dispatch("click", e.detail);
     }
 </script>
 
 <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
     <defs>
-        <clipPath id="clip" clipPathUnits="objectBoundingBox">
+        <clipPath id={key} clipPathUnits="objectBoundingBox">
             <path d={path} fill="black" />
         </clipPath>
     </defs>
 </svg>
 
-<button on:click={onclick} class:selected style={upper?"text-transform: uppercase;":''}>
+<button
+    on:click={onclick}
+    class:selected
+    style={`${upper ? "text-transform: uppercase;" : ""}${style}`}
+>
     {#if path}
-        <div class="icon" style="clip-path: url('#clip');" />
+        <div class="icon" style="clip-path: url('#{key}');" />
     {/if}
 
     <div class="inner"><slot /></div>
@@ -36,7 +53,7 @@
 
 <style>
     button:not(:disabled)::before {
-        content: '';
+        content: "";
         background-color: var(--bg-alt2);
         position: absolute;
         top: 0;
@@ -50,7 +67,7 @@
     }
 
     button:not(:disabled):hover::before {
-        content: '';
+        content: "";
         position: absolute;
         top: -0.45rem;
         left: 0;
@@ -62,7 +79,7 @@
     }
 
     button:not(:disabled)::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -71,24 +88,23 @@
         transition: all 0.5s;
         transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
         box-shadow: 0.2rem 0.2rem 1rem var(--fg-alt);
-    
 
         background-color: var(--fg);
     }
 
     button:not(:disabled):hover::after {
-        content: '';
+        content: "";
         width: 100%;
         height: 100%;
-  
     }
 
     button:not(:disabled):hover:active:after {
-        content: '';
+        content: "";
         background-color: var(--fg-alt);
     }
 
     button {
+      
         display: flex;
         align-items: center;
 
@@ -129,7 +145,7 @@
     }
     .selected::after {
         padding-bottom: 2rem;
-        transition: padding-bottom ease-out 1s ;
+        transition: padding-bottom ease-out 1s;
     }
 
     button > div.icon {

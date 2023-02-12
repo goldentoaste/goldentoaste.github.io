@@ -7,10 +7,12 @@
 
 <div class="parent">
     {#if src}
-        <img {src} alt="" />
+        <img width="32" height="32" {src} alt="" loading="lazy"/>
     {/if}
 
     {#if path}
+        <!-- define a invisible svg, to be used as a clip path for the recolorable svg icon later. -->
+        <!-- this svg is only used if a 'path' variable is provided. -->
         <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <clipPath id={key} clipPathUnits="objectBoundingBox">
@@ -19,14 +21,13 @@
             </defs>
         </svg>
 
+        <!-- the displayed 'icon' is actually a solid div, but using the svg as a clip path. -->
         <div class="imgDiv" style="clip-path: url('#{key}');" />
     {/if}
-    <slot />
+    <slot />    
 </div>
 
 <style>
-
-    
     .parent {
         display: flex;
         margin-right: 0.25rem;

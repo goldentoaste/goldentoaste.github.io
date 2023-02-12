@@ -3,6 +3,8 @@
     import Section from "$lib/Section.svelte";
     import InfoBox from "$lib/InfoBox.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
+    import ButtonList from "$lib/ButtonList.svelte";
+    import Button from "$lib/Button.svelte";
 
     interface SkillItem {
         url?: string;
@@ -259,7 +261,9 @@
             ],
         },
     ];
+
 </script>
+
 
 <div id="outer">
     <div id="inner">
@@ -280,6 +284,7 @@
         </Section>
     </div>
 </div>
+
 
 <style>
     div#outer {

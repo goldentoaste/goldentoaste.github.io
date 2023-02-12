@@ -16,19 +16,13 @@
 </div>
 
 <style>
-
-
-
-    .container:hover{
+    .container:hover {
         transform: scale(1.05);
         /* filter: brightness(1.05); */
         box-shadow: 0.5rem 0.5rem 1rem var(--bg-alt3);
-        
-        
     }
 
     .container {
-        
         box-sizing: border-box;
 
         flex-direction: column;
@@ -37,14 +31,11 @@
 
         height: fit-content;
         width: fit-content;
-        min-width:12rem;
-        
+        min-width: 12rem;
 
-        
-        transition-property: box-shadow transform filter;
+        transition-property: all;
         transition-duration: 0.4s;
         transition-timing-function: ease;
-    
     }
 
     .title {
@@ -61,9 +52,7 @@
         padding: 1rem;
         display: flex;
         flex-direction: column;
-        
+
         gap: 0.2rem;
     }
-
-   
 </style>

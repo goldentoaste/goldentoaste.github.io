@@ -1,5 +1,8 @@
 /* color theme based on gruvbox material https://github.com/sainnhe/gruvbox-material */
 /* css referencing https://metakirby5.github.io/yorha/ */
+
+
+
 body.lightmode {
     --bg: #d4be98;
 }
