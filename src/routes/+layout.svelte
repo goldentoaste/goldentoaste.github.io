@@ -49,28 +49,29 @@
             : "#282828";
     });
 
-    // beforeNavigate((nav: BeforeNavigate) => {
-    //     console.log("before nav", nav, nav.to?.route , $page.route,  nav.to?.route === $page.route );
+    beforeNavigate((nav: BeforeNavigate) => {
+        if (
+            nav.to === null ||
+            nav.to?.route.id === $page.route.id ||
+            $pageState === PageState.NoTransition
+        ) {
+            // if the current page does not request to wait for transition, then dont do anything
+            $navDest = "";
+            return;
+        }
 
-    //     if (nav.to === null || nav.to?.route.id === $page.route.id ||  $pageState === PageState.NoTransition) {
-    //         // if the current page does not request to wait for transition, then dont do anything
-    //         $navDest = "";
-    //         return;
-    //     }
+        if ($pageState === PageState.NeedTransition) {
+            $pageState = PageState.Transitioning;
+        }
 
-    //     if ($pageState === PageState.NeedTransition) {
-    //         $pageState = PageState.Transitioning;
-    //     }
-
-    //     if ($pageState === PageState.Transitioning) {
-    //         navDest.set(nav.to?.route.id || "/");
-    //         nav.cancel();
-    //     }
-    // });
+        if ($pageState === PageState.Transitioning) {
+            navDest.set(nav.to?.route.id || "/");
+            nav.cancel();
+        }
+    });
 
     pageState.subscribe((state) => {
         if (browser && state === PageState.ReadyToNav && $navDest) {
-  
             goto($navDest).then((val) => {
                 pageState.set(PageState.NoTransition);
             });

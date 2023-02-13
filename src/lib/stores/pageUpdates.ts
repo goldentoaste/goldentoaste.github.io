@@ -9,6 +9,6 @@ export enum PageState {
     ReadyToNav
 }
 
-export const pageState: Writable<PageState> = writable(PageState.ReadyToNav);
-export const navDest: Writable<string> = writable('/');
+export const pageState: Writable<PageState> = writable(PageState.NoTransition);
+export const navDest: Writable<string> = writable('');
 

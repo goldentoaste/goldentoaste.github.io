@@ -261,9 +261,6 @@
         },
     ];
 
-    onMount(()=>{
-        console.log('home page mounted')
-    })
 </script>
 
 <div id="outer">
