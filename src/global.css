@@ -1,8 +1,6 @@
 /* color theme based on gruvbox material https://github.com/sainnhe/gruvbox-material */
 /* css referencing https://metakirby5.github.io/yorha/ */
 
-
-
 body.lightmode {
     --bg: #d4be98;
 }
@@ -25,10 +23,8 @@ body {
 
     background-color: var(--bg);
 
-
     color: var(--fg);
     font-family: 'Open Sans', sans-serif;
-
 
 }
 
@@ -49,9 +45,6 @@ h1 {
     letter-spacing: 0.2rem;
     text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
 }
-
-
-
 
 a {
     color: var(--fg-alt);

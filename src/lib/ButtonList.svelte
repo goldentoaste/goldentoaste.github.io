@@ -5,8 +5,8 @@
     import type { ButtonParam } from "./Button.svelte";
 
     export let buttons: ButtonParam[] = [];
-    export let style = '';
-  
+    export let style = "";
+
     function expandVert(
         node: HTMLElement,
         { delay = 0, duration = 500, easing = (t: number) => t }
@@ -20,19 +20,34 @@
             },
         };
     }
+
+    function popText(input: ButtonParam) {
+        const { text, ...rest } = input;
+        return {
+            ...rest,
+        };
+    }
 </script>
 
-<div id="parent"  out:fade|local>
-    <div
-        id="decor"
-        in:expandVert={{ duration:300,easing: quartOut }}
-
-    />
-    <div id="listContainer"  style={style}>
+<div id="parent" out:fade|local={{duration:100}} on:outroend>
+    <div id="decor" in:expandVert={{ duration: 300, easing: quartOut }} />
+    <div id="listContainer" {style}>
         {#each buttons as button, index}
-            <div id="buttonHolder"  in:fly={{delay:40 * index, duration:70, easing:quartOut, x:-40}}>
+            <div
+                id="buttonHolder"
+                in:fly={{
+                    delay: 40 * index,
+                    duration: 70,
+                    easing: quartOut,
+                    x: -40,
+                }}>
                 <!-- fallback to nullop -->
-                <Button {...button } key={button.text} on:click={button.onClick||(()=>{})} style='margin:0; flex:1;'> 
+                <Button
+                    {...popText(button)}
+                    key={button.text}
+                    on:click={button.onClick || (() => {})}
+                    style="margin:0; flex:1;"
+                >
                     {button.text}
                 </Button>
             </div>
@@ -47,11 +62,10 @@
         align-items: stretch;
     }
     #decor {
-      
         content: "";
         position: relative;
         width: 0.4rem;
-    
+
         background-color: transparent;
         border-left: 0.4rem solid;
         border-right: 0.2rem solid;
@@ -64,10 +78,10 @@
         width: fit-content;
         display: flex;
         flex-direction: column;
-        gap:1.5rem;
+        gap: 1.5rem;
     }
 
-    #buttonHolder{
+    #buttonHolder {
         align-items: stretch;
         display: flex;
     }

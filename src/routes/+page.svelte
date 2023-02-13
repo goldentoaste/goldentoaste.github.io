@@ -3,8 +3,7 @@
     import Section from "$lib/Section.svelte";
     import InfoBox from "$lib/InfoBox.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
-    import ButtonList from "$lib/ButtonList.svelte";
-    import Button from "$lib/Button.svelte";
+    import { onMount } from "svelte";
 
     interface SkillItem {
         url?: string;
@@ -262,13 +261,14 @@
         },
     ];
 
+    onMount(()=>{
+        console.log('home page mounted')
+    })
 </script>
-
 
 <div id="outer">
     <div id="inner">
         <Intro />
-
         <Section title="Languages, Technologies and Tools">
             {#each groups as group}
                 <InfoBox title={group.title}>

@@ -2,12 +2,11 @@
     export let src = "";
     export let path = "";
     export let key = "";
-
 </script>
 
 <div class="parent">
     {#if src}
-        <img width="32" height="32" {src} alt="" loading="lazy"/>
+        <img width="32" height="32" {src} alt="" loading="lazy" />
     {/if}
 
     {#if path}
@@ -24,7 +23,7 @@
         <!-- the displayed 'icon' is actually a solid div, but using the svg as a clip path. -->
         <div class="imgDiv" style="clip-path: url('#{key}');" />
     {/if}
-    <slot />    
+    <slot />
 </div>
 
 <style>
@@ -46,6 +45,7 @@
         margin-right: 0.5rem;
     }
     .imgDiv {
+        transition: background-color 5s ease;
         background-color: var(--fg-alt);
     }
 </style>
