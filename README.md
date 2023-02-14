@@ -6,7 +6,8 @@ This site is built with SvelteKit, deployed to github pages using `gh-pages` and
 * Make a list and preview layout, for the Projects and Experiences tabs
 * Add interactive demos/webtoys for certain javascript projects
 * tweak the grid and vingette overlay some more, maybe add more post processing effects for even less visual clarity.
-
+* improve svg divs to have a boolean to render inverted colors : filled instead of transparent background to ensure the icon is overall sqaure.
+  - should debug why foreground and background colors are not transitioning for these divs.
 
 # Resources
 
