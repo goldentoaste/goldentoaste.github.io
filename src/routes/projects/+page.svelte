@@ -8,6 +8,7 @@
     });
 </script>
 
+
 <h1>Projects page not done yet! 🔨</h1>
 <p> 
     This page will later have a this list(with animated intro of course) that each is one of my past projects, when clicked on, more 
@@ -22,11 +23,6 @@
 </p>
 <div>
     <ButtonList
-        on:outroend={() => {
-            if ($pageState === PageState.Transitioning) {
-                $pageState = PageState.ReadyToNav;
-            }
-        }}
         style="width:30%;"
         buttons={[
             {

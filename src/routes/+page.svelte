@@ -4,6 +4,8 @@
     import InfoBox from "$lib/InfoBox.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
     import { onMount } from "svelte";
+    import { fade } from "svelte/transition";
+    import { finishOutro } from "$lib/stores/pageUpdates";
 
     interface SkillItem {
         url?: string;
@@ -263,7 +265,7 @@
 
 </script>
 
-<div id="outer">
+<div id="outer" transition:fade={{duration:100}} on:outroend={finishOutro}>
     <div id="inner">
         <Intro />
         <Section title="Languages, Technologies and Tools">
