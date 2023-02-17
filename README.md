@@ -1,5 +1,6 @@
 # My website :v
-This site is built with SvelteKit, deployed to github pages using `gh-pages` and SvelteKit's `adapter-static`
+This site is built with SvelteKit, deployed to github pages using `gh-pages` and SvelteKit's `adapter-static`  
+Hosted at [https://goldentoaste.github.io](https://goldentoaste.github.io)
 
 
 # TODO
