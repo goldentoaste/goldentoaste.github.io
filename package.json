@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"set-random-interval": "^1.1.0",
 		"vite-plugin-svelte-console-remover": "^1.0.10"
 	}
 }

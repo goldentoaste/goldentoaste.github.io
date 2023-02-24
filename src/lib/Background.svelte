@@ -2,45 +2,75 @@
     import { fade } from 'svelte/transition';
 
     import { onMount } from 'svelte';
+    import setRandomInterval from 'set-random-interval';
 
-    const linePos = 200 + Math.floor(Math.random() * 100 - 50);
+    let lineOrigin = 0;
+    export let flip = false;
+
+    setRandomInterval(
+        () => {
+            lineOrigin = Math.random();
+        },
+        2000,
+        9000
+    );
 </script>
 
 <div
     class="parent"
+
+    style={flip? "transform: scale(-1, -1);bottom:0;right:0;":""}
     transition:fade={{
         duration: 300,
     }}
 >
     {#each [...Array(4).keys()] as index}
-    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet" style="--baseX: {index * 50 + linePos}; --baseY: {index * 50 + linePos};transform: translate(calc(var(--baseX)px + var(--offsetX)px) calc(var(--baseY)px + var(--offsetY)px));" width="100" height="100" viewBox="0 0 100 100">
-        <path d="M 0 0 L 100 100" stroke="var(--fg)" stroke-width="1"/>
-    </svg>
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMin meet"
+            style="
+            transition: all ease {10 + 0.6 * index}s;
+            --baseX: {index * 5 * Math.random() + lineOrigin}px; --baseY: {index * 50 + 25 * Math.random()+lineOrigin}px;"
+            viewBox="0 0 1920 1080 "
+        >
+            <path d="M 2 2 L 1400 1000" stroke="var(--fg)" stroke-width="1" />
+        </svg>
     {/each}
+
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMin meet"
+        style="
+    transition: all ease 10s;
+    --baseX: {Math.random() * 25 + lineOrigin}px; --baseY:{Math.random() * 30 + lineOrigin}px;"
+        viewBox="0 0 1920 1080 "
+    >
+        <circle cx="{200}px" cy="{200}px" r="400" fill="none" stroke-width="1" stroke="var(--fg)" />
+        
+        <circle cx="{200}px" cy="{200}px" r="410" fill="none" stroke-width="1" stroke="var(--fg)" />
+    </svg>
 </div>
 
 <style>
     .parent {
-        filter: drop-shadow(0 0 2px var(--fg));
-    }
+        filter:  opacity(0.2) drop-shadow(0 0 4px var(--fg)) blur(0.4px);
+        position: fixed;
+        z-index: -100;
+        width: 100%;
+        min-width: 1000px;
 
-    svg > path {
-        stroke: var(--fg-alt);
-        stroke-width: 1.5;
     }
 
     svg {
-        top:100px;
-        width: 10%;
-        height: fit-content;
+        position: fixed;
+        display: inline-block;
 
-        position: absolute;
         background-color: transparent;
         color: transparent;
 
-        --offsetX: 1000;
-        --offsetY: 0;
+        --offsetX: 0px;
+        --offsetY: 0px;
 
-        
+        transform: translate(calc(var(--baseX) + var(--offsetX)), calc(var(--baseY) + var(--offsetY)));
     }
 </style>
