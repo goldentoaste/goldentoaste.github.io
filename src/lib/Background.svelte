@@ -1,9 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
-
-    import { onMount } from 'svelte';
-    import setRandomInterval from 'set-random-interval';
-
+    import { setRandomInterval } from '$lib/scripts/randomInterval';
+    
     let lineOrigin = 0;
     export let flip = false;
 
@@ -18,7 +16,6 @@
 
 <div
     class="parent"
-
     style={flip? "transform: scale(-1, -1);bottom:0;right:0;":""}
     transition:fade={{
         duration: 300,
