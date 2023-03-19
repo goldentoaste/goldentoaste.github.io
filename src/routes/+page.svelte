@@ -6,7 +6,6 @@
     import { onMount } from "svelte";
     import { fade } from "svelte/transition";
     import { finishOutro } from "$lib/stores/pageUpdates";
-
     interface SkillItem {
         url?: string;
         name: string;

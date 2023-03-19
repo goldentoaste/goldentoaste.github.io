@@ -10,24 +10,25 @@
 </script>
 
 <script lang="ts">
-    import { goto } from "$app/navigation";
-    import { createEventDispatcher } from "svelte";
+    import { goto } from '$app/navigation';
+    import { createEventDispatcher } from 'svelte';
 
-    export let href: string = "";
-    export let path: string = "";
+    export let href: string = '';
+    export let path: string = '';
     export let selected: boolean = false;
     export let upper: boolean = true;
-    export let key = "clip";
-    export let style = "";
+    export let key = 'clip';
+    export let style = '';
 
     const dispatch = createEventDispatcher();
 
     function onclick(e: MouseEvent) {
         if (href) {
-            goto(href);
+            goto(href, {
+                noScroll: true,
+            });
         }
-
-        dispatch("click", e.detail);
+        dispatch('click', e.detail);
     }
 </script>
 
@@ -39,11 +40,7 @@
     </defs>
 </svg>
 
-<button
-    on:click={onclick}
-    class:selected
-    style={`${upper ? "text-transform: uppercase;" : ""}${style}`}
->
+<button on:click={onclick} class:selected style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}>
     {#if path}
         <div class="icon" style="clip-path: url('#{key}');" />
     {/if}
@@ -53,7 +50,7 @@
 
 <style>
     button:not(:disabled)::before {
-        content: "";
+        content: '';
         background-color: var(--bg-alt2);
         position: absolute;
         top: 0;
@@ -67,7 +64,7 @@
     }
 
     button:not(:disabled):hover::before {
-        content: "";
+        content: '';
         position: absolute;
         top: -0.45rem;
         left: 0;
@@ -79,7 +76,7 @@
     }
 
     button:not(:disabled)::after {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -93,18 +90,17 @@
     }
 
     button:not(:disabled):hover::after {
-        content: "";
+        content: '';
         width: 100%;
         height: 100%;
     }
 
     button:not(:disabled):hover:active:after {
-        content: "";
+        content: '';
         background-color: var(--fg-alt);
     }
 
     button {
-      
         display: flex;
         align-items: center;
 
