@@ -1,22 +1,30 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { page } from "$app/stores";
-    import { afterNavigate } from "$app/navigation";
-    import Button from "$lib/Button.svelte";
+    import { onMount } from 'svelte';
+    import { page } from '$app/stores';
+    import { afterNavigate } from '$app/navigation';
+    import Button from '$lib/Button.svelte';
+    import Toggle from '$lib/Toggle.svelte';
     type NavItem = {
         name: string;
         dest: string;
         iconPath: string;
     };
-
     export let items: NavItem[] = [];
-    let selects : boolean[] = [];
+
+    // state management for which button is currently selected
+    let selects: boolean[] = [];
+
+    // dynamically change navbar format if window width is too small/mobile sized
+    let innerWidth = 0;
+    let useMobile = false;
+    let navExtended = false;
+
+    $: useMobile = innerWidth < 1000;
 
     function updateButtons() {
         items.forEach((item, index) => {
             selects[index] = $page.url.pathname === item.dest;
         });
-
     }
 
     afterNavigate(updateButtons);
@@ -25,22 +33,41 @@
     });
 </script>
 
-<div>
-    <nav id="navBar">
-        {#each items as item, i}
-            <Button selected={selects[i]} path={item.iconPath} href={item.dest}>
-                {item.name}</Button
-            >
-        {/each}
-    </nav>
+<svelte:window bind:innerWidth />
 
-    <svg
-        id="top"
-        width="100%"
-        height="16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-    >
+<div id="root">
+
+    <div id="top">
+        <nav id="navBar" class={useMobile ? 'mobile ' : '' + navExtended ? 'extended' : ''}>
+            {#each items as item, i}
+                {#if !useMobile || selects[i]}
+                    <Button
+                        on:click={() => {
+                            window.scrollTo({
+                                top: 0,
+                                behavior: 'smooth',
+                            });
+                        }}
+                        selected={selects[i]}
+                        path={item.iconPath}
+                        href={item.dest}
+                    >
+                        {item.name}</Button
+                    >
+                {/if}
+            {/each}
+    
+            {#if useMobile}
+                    <Toggle />
+            {/if}
+        </nav>
+    </div>
+        
+
+   
+
+
+    <svg id="top" width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <pattern
                 id="border"
@@ -57,14 +84,7 @@
                 <circle cx="28" cy="14" r="2" fill="currentColor" />
             </pattern>
         </defs>
-        <rect
-            id="rect"
-            x="0"
-            y="0"
-            width="100%"
-            height="11"
-            fill="url(#border)"
-        />
+        <rect id="rect" x="0" y="0" width="100%" height="11" fill="url(#border)" />
     </svg>
 </div>
 
@@ -76,7 +96,7 @@
 </div>
 
 <style>
-    div {
+    div#root, div#botBar {
         width: 100%;
         position: fixed;
         top: 0;
@@ -84,20 +104,27 @@
         background-color: transparent;
         display: flex;
         flex-direction: column;
-
         z-index: 100;
     }
+
+    div#top{
+        background-color: var(--bg-alt);
+    }
+
     nav {
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: center;
-        width: 100%;
-
+        justify-content: space-between;
         border-bottom: var(--fg) 0.2rem solid;
-        background-color: var(--bg-alt);
 
         overflow: hidden;
+    }
+
+    nav.mobile {
+        padding-left: 2rem;
+        padding-right: 2rem;
+
     }
 
     svg#top {

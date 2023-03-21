@@ -1,10 +1,7 @@
-
 <div id="shadow" />
 
-
 <style>
-
-div#shadow {
+    div#shadow {
         content: '';
         position: fixed;
         z-index: 1000;
@@ -17,6 +14,6 @@ div#shadow {
         right: 0;
         box-shadow: inset 0 0 1000px rgba(0, 0, 0, 1);
 
-        filter: opacity(60%) ;
+        filter: opacity(60%);
     }
 </style>

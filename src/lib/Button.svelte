@@ -1,11 +1,12 @@
 <script lang="ts" context="module">
+    import { page } from "$app/stores";
     export type ButtonParam = {
         href?: string;
         path?: string;
         selected?: boolean;
         upper?: boolean;
         text: string;
-        onClick?: (e: CustomEvent) => void;
+     
     };
 </script>
 
@@ -23,7 +24,8 @@
     const dispatch = createEventDispatcher();
 
     function onclick(e: MouseEvent) {
-        if (href) {
+        if (  href && href !== $page.route.id) {
+       
             goto(href, {
                 noScroll: true,
             });
@@ -32,15 +34,16 @@
     }
 </script>
 
-<svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <clipPath id={key} clipPathUnits="objectBoundingBox">
-            <path d={path} fill="black" />
-        </clipPath>
-    </defs>
-</svg>
+
 
 <button on:click={onclick} class:selected style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}>
+    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <clipPath id={key} clipPathUnits="objectBoundingBox">
+                <path d={path} fill="black" />
+            </clipPath>
+        </defs>
+    </svg>
     {#if path}
         <div class="icon" style="clip-path: url('#{key}');" />
     {/if}
@@ -104,11 +107,8 @@
         display: flex;
         align-items: center;
 
-        margin-right: 1.5rem;
-        margin-left: 0;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        cursor: pointer;
+        margin: 1rem;
+                cursor: pointer;
         padding: 0.5rem 2rem 0.5rem 0.5rem;
 
         font-size: 1.2rem;

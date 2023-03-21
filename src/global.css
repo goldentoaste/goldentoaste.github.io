@@ -25,7 +25,9 @@ body {
 
     color: var(--fg);
     font-family: 'Open Sans', sans-serif;
+    
 
+    
 }
 
 h2,
@@ -50,3 +52,4 @@ a {
     color: var(--fg-alt);
     font-style: italic;
 }
+
