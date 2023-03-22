@@ -4,6 +4,11 @@
     import { afterNavigate } from '$app/navigation';
     import Button from '$lib/Button.svelte';
     import Toggle from '$lib/Toggle.svelte';
+
+    import Divider from '$lib/Divider.svelte';
+    import List from '$lib/List.svelte';
+    import ListItem from '$lib/ListItem.svelte';
+    import { fade } from 'svelte/transition';
     type NavItem = {
         name: string;
         dest: string;
@@ -35,8 +40,14 @@
 
 <svelte:window bind:innerWidth />
 
-<div id="root">
+{#if navExtended}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div id="cover" transition:fade={{
+        duration:200
+    }} on:click={()=>{navExtended = false;}}/>
+{/if}
 
+<div id="root">
     <div id="top">
         <nav id="navBar" class={useMobile ? 'mobile ' : '' + navExtended ? 'extended' : ''}>
             {#each items as item, i}
@@ -48,7 +59,7 @@
                                 behavior: 'smooth',
                             });
                         }}
-                        selected={selects[i]}
+                        selected={selects[i] && !navExtended}
                         path={item.iconPath}
                         href={item.dest}
                     >
@@ -56,16 +67,36 @@
                     >
                 {/if}
             {/each}
-    
+
             {#if useMobile}
-                    <Toggle />
+                <Toggle bind:toggled={navExtended} />
             {/if}
         </nav>
+        <div id="optionContianer" style={navExtended ? 'max-height:500px;' : 'max-height:0;'}>
+            {#if navExtended}
+                <Divider />
+
+                <List style="margin:1rem;margin-left:2rem;">
+                    {#each items as item, i}
+                        {#if !selects[i]}
+                            <ListItem index={i}>
+                                <Button
+                                    href={item.dest}
+                                    path={item.iconPath}
+                                    style="margin:0;"
+                                    on:click={() => {
+                                        navExtended = false;
+                                    }}
+                                >
+                                    {item.name}
+                                </Button>
+                            </ListItem>
+                        {/if}
+                    {/each}
+                </List>
+            {/if}
+        </div>
     </div>
-        
-
-   
-
 
     <svg id="top" width="100%" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -96,7 +127,23 @@
 </div>
 
 <style>
-    div#root, div#botBar {
+    /* for the darkened background */
+    div#cover {
+        position: fixed;
+        left: 0;
+        top: 0;
+
+        width: 100%;
+        height: 100%;
+
+        background: var(--bg);
+        filter: opacity(0.8);
+
+        z-index: 99;
+    }
+
+    div#root,
+    div#botBar {
         width: 100%;
         position: fixed;
         top: 0;
@@ -107,17 +154,27 @@
         z-index: 100;
     }
 
-    div#top{
-        background-color: var(--bg-alt);
+    div#optionContianer {
+        max-height: 0;
+        transition: all 0.2s ease-out;
+    }
+
+    div#botBar {
+        background: var(--bg-alt);
+    }
+
+    div#top {
+        background: var(--bg-alt);
+
+        height: fit-content;
+        border-bottom: var(--fg) 0.2rem solid;
     }
 
     nav {
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        border-bottom: var(--fg) 0.2rem solid;
-
+        justify-content: center;
         overflow: hidden;
     }
 
@@ -125,6 +182,7 @@
         padding-left: 2rem;
         padding-right: 2rem;
 
+        justify-content: space-between;
     }
 
     svg#top {
