@@ -9,6 +9,10 @@
     import List from '$lib/List.svelte';
     import ListItem from '$lib/ListItem.svelte';
     import { fade } from 'svelte/transition';
+
+    import { browser } from '$app/environment';
+
+
     type NavItem = {
         name: string;
         dest: string;

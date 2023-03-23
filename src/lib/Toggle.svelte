@@ -7,14 +7,18 @@
 
     let dispatch = createEventDispatcher();
 
+    $: {
+        if (icon) {
+            if (toggled) {
+                icon.classList.add('toggled');
+            } else {
+                icon.classList.remove('toggled');
+            }
+        }
+    }
+
     function handleClick() {
         toggled = !toggled;
-     
-        if (toggled) {
-            icon.classList.add('toggled');
-        } else {
-            icon.classList.remove('toggled');
-        }
 
         dispatch('toggle', {
             val: toggled,
@@ -30,14 +34,47 @@
 <!-- svelte-ignore css-unused-selector -->
 <style>
     .icon {
+        position:relative;
         background: var(--fg-alt);
-        width: 1.5rem;
-        height: 1.5rem;
-        transition: background 0.3s ease-in-out;
+        width: 1.75rem;
+        height: 1.75rem;
+        transition: all 0.2s ease-in-out;
+
+        border: transparent 10% solid;
     }
 
-    :global(.icon.toggled){
+    .icon::before{
+        height: 100%;
+        top: 0;
+        width: 15%;
+        left: 42.5%;
+    }
+
+    .icon::after{
+        width: 100%;
+        left: 0;
+        height: 15%;
+        top: 42.5%;
+    }
+
+    .icon::before, .icon::after{
+        position: absolute;
+        content:"";
+        z-index: 2;
+        background: var(--bg-alt);
+        transition: background 0.2s ease-out;
+    }
+
+    :global(.icon.toggled::before, .icon.toggled::after){
+        background: var(--fg-alt);
+    }
+
+
+    :global(.icon.toggled) {
         background: var(--bg-alt2);
+        border: var(--fg-alt) 3px solid;
+
+        transform: rotate(45deg) scale(0.9);
     }
 
     .root {
