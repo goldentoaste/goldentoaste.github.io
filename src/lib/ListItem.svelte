@@ -22,5 +22,6 @@
         align-items: stretch;
         display: flex;
         background: var(--bg-alt);
+
     }
 </style>

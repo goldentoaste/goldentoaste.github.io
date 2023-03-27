@@ -73,7 +73,6 @@
     :global(.icon.toggled) {
         background: var(--bg-alt2);
         border: var(--fg-alt) 3px solid;
-
         transform: rotate(45deg) scale(0.9);
     }
 

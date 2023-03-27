@@ -1,12 +1,11 @@
 <script lang="ts" context="module">
-    import { page } from "$app/stores";
+    import { page } from '$app/stores';
     export type ButtonParam = {
         href?: string;
         path?: string;
         selected?: boolean;
         upper?: boolean;
         text: string;
-     
     };
 </script>
 
@@ -17,6 +16,7 @@
     export let href: string = '';
     export let path: string = '';
     export let selected: boolean = false;
+    export let horizontal: boolean = false;
     export let upper: boolean = true;
     export let key = 'clip';
     export let style = '';
@@ -24,8 +24,7 @@
     const dispatch = createEventDispatcher();
 
     function onclick(e: MouseEvent) {
-        if (  href && href !== $page.route.id) {
-       
+        if (href && href !== $page.route.id) {
             goto(href, {
                 noScroll: true,
             });
@@ -34,9 +33,12 @@
     }
 </script>
 
-
-
-<button on:click={onclick} class:selected style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}>
+<button
+    on:click={onclick}
+    class:selected
+    class:horizontal
+    style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}
+>
     <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <clipPath id={key} clipPathUnits="objectBoundingBox">
@@ -66,7 +68,7 @@
         transition-timing-function: ease-out;
     }
 
-    button:not(:disabled):hover::before {
+    button:not(:disabled):hover::before, .selected.horizontal::before {
         content: '';
         position: absolute;
         top: -0.45rem;
@@ -108,7 +110,7 @@
         align-items: center;
 
         margin: 1rem;
-                cursor: pointer;
+        cursor: pointer;
         padding: 0.5rem 2rem 0.5rem 0.5rem;
 
         font-size: 1.2rem;
@@ -137,11 +139,25 @@
     .selected::before {
         padding-bottom: 2rem;
         background-color: var(--bg-alt3) !important;
-        transition: padding-bottom ease-out 1s;
+ 
     }
     .selected::after {
         padding-bottom: 2rem;
-        transition: padding-bottom ease-out 1s;
+
+    }
+
+    .selected.horizontal::before {
+        padding-bottom: 0;
+        padding-right: 4rem;
+      
+
+    }
+    .selected.horizontal::after {
+        padding-bottom: 0;
+    }
+
+    .selected.horizontal:hover::after{
+        padding-right: 4rem;
     }
 
     button > div.icon {

@@ -9,6 +9,7 @@
         $pageState = PageState.NeedTransition;
     });
 
+  
     let buttons = [
         {
             text: 'Project number 1',
@@ -41,27 +42,22 @@
             upper: false,
         },
     ];
+
+    let selects = Array(buttons.length).fill(false);
+    selects[0] = true;
+
 </script>
 
-<h1>Projects page not done yet! 🔨</h1>
-<p>
-    This page will later have a this list(with animated intro of course) that each is one of my past projects, when
-    clicked on, more info should display on a big window on the side.
-</p>
-<p>
-    If the project selected is runs on the web, maybe a interactive demo could be shown in the right side group?<br />
-    This could be platform dependent, so for example big/resource intensive projects, like a unity game probably shouldnt
-    load on mobile.
-</p>
-<p>
-    Speaking of mobile, making this particular page mobile friendly could be difficult because they will look very
-    different.
-</p>
+<h1>My Projects 🔨</h1>
+<p> A list of notable projects I have worked on. More detailed descriptions and interactive demos coming soon!</p>
 <div>
-    <List style="width:30%;">
+    <List style="width:30%;min-width:300px; max-width:450px; ">
         {#each buttons as button, index}
             <ListItem {index}>
-                <Button path={button.path} upper={false} style="width:100%; margin:0;">
+                <Button horizontal={true} selected={selects[index]} path={button.path} upper={false} style="width:100%; margin:0;" on:click={()=>{
+                    selects.fill(false);
+                    selects[index] = true;
+                }}>
                     {button.text}
                 </Button>
             </ListItem>

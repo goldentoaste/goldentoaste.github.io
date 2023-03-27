@@ -25,9 +25,9 @@ body {
 
     color: var(--fg);
     font-family: 'Open Sans', sans-serif;
-    
 
-    
+
+
 }
 
 h2,
@@ -42,7 +42,6 @@ h4 {
 }
 
 h1 {
-
     font-weight: lighter;
     letter-spacing: 0.2rem;
     text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
@@ -53,3 +52,21 @@ a {
     font-style: italic;
 }
 
+hr{
+    border-top: 3px solid var(--bg-alt3);
+}
+
+hr::before{
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--bg-alt3);
+}
+hr::after{
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--bg-alt3);
+}

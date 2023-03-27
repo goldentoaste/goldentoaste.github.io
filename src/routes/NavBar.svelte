@@ -9,9 +9,7 @@
     import List from '$lib/List.svelte';
     import ListItem from '$lib/ListItem.svelte';
     import { fade } from 'svelte/transition';
-
     import { browser } from '$app/environment';
-
 
     type NavItem = {
         name: string;
@@ -24,7 +22,7 @@
     let selects: boolean[] = [];
 
     // dynamically change navbar format if window width is too small/mobile sized
-    let innerWidth = 0;
+    let innerWidth: number;
     let useMobile = false;
     let navExtended = false;
 
@@ -46,39 +44,53 @@
 
 {#if navExtended}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div id="cover" transition:fade={{
-        duration:200
-    }} on:click={()=>{navExtended = false;}}/>
+    <div
+        id="cover"
+        transition:fade={{
+            duration: 200,
+        }}
+        on:click={() => {
+            navExtended = false;
+        }}
+    />
 {/if}
 
 <div id="root">
     <div id="top">
-        <nav id="navBar" class={useMobile ? 'mobile ' : '' + navExtended ? 'extended' : ''}>
-            {#each items as item, i}
-                {#if !useMobile || selects[i]}
-                    <Button
-                        on:click={() => {
-                            window.scrollTo({
-                                top: 0,
-                                behavior: 'smooth',
-                            });
-                        }}
-                        selected={selects[i] && !navExtended}
-                        path={item.iconPath}
-                        href={item.dest}
-                    >
-                        {item.name}</Button
-                    >
-                {/if}
-            {/each}
+        <nav id="navBar" class:mobile={useMobile}>
+            {#if innerWidth !== undefined}
 
-            {#if useMobile}
-                <Toggle bind:toggled={navExtended} />
+                {#each items as item, i}
+                    {#if !useMobile || selects[i]}
+                        <Button
+                            on:click={() => {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth',
+                                });
+                            }}
+                            selected={selects[i] && !navExtended}
+                            path={item.iconPath}
+                            href={item.dest}
+                        >
+                            {item.name}</Button
+                        >
+                    {/if}
+                {/each}
+
+                {#if useMobile}
+                    <Toggle bind:toggled={navExtended} />
+                {/if}
+
+                {:else}
+                <div style="content:''; height:4rem;"/>
             {/if}
         </nav>
-        <div id="optionContianer" style={navExtended ? 'max-height:500px;' : 'max-height:0;'}>
+        <div id="optionContianer" style={navExtended ? 'max-height:350px;' : 'max-height:0;'}>
             {#if navExtended}
-                <Divider />
+
+            <hr/>
+                <!-- <Divider /> -->
 
                 <List style="margin:1rem;margin-left:2rem;">
                     {#each items as item, i}
@@ -160,7 +172,8 @@
 
     div#optionContianer {
         max-height: 0;
-        transition: all 0.2s ease-out;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
     }
 
     div#botBar {

@@ -10,8 +10,9 @@
 
         top: 0;
         left: 0;
-        bottom: 0;
-        right: 0;
+        
+        width:100dvw;
+        height: 100dvh;
         box-shadow: inset 0 0 1000px rgba(0, 0, 0, 1);
 
         filter: opacity(60%);
