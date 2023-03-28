@@ -24,7 +24,7 @@
     const dispatch = createEventDispatcher();
 
     function onclick(e: MouseEvent) {
-        if (href && href !== $page.route.id) {
+        if (href && href !== ($page.route?.id?.replace(/\/?\(\w+\)/g, "") || '/')) {
             goto(href, {
                 noScroll: true,
             });
@@ -68,7 +68,7 @@
         transition-timing-function: ease-out;
     }
 
-    button:not(:disabled):hover::before, .selected.horizontal::before {
+    button:not(:disabled):hover::before {
         content: '';
         position: absolute;
         top: -0.45rem;
@@ -149,6 +149,8 @@
     .selected.horizontal::before {
         padding-bottom: 0;
         padding-right: 4rem;
+        border-top: var(--fg-alt) 0.15rem solid;
+        border-bottom: var(--fg-alt) 0.15rem solid;
       
 
     }

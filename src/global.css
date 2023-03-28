@@ -10,6 +10,7 @@ body {
     --bg-alt: #32302f;
     --bg-alt2: #45403d;
     --bg-alt3: #5a524c;
+    --bg-alt4: #7f746b;
 
     --fg: #d4be98;
     --fg-alt: #a89984;
@@ -52,21 +53,15 @@ a {
     font-style: italic;
 }
 
-hr{
+
+hr {
+    border: none;
     border-top: 3px solid var(--bg-alt3);
+    margin: 0;
+    width: 100%;
+    display: flex;
 }
 
-hr::before{
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--bg-alt3);
-}
-hr::after{
-    content: "";
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--bg-alt3);
+iframe {
+    border: none;
 }

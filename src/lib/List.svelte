@@ -30,6 +30,7 @@
 
 <style>
     #parent {
+        height: fit-content ;
         display: flex;
         flex-direction: row;
         align-items: stretch;
@@ -49,6 +50,7 @@
 
     #listContainer {
         width: 100%;
+        height: fit-content;
         display: flex;
         flex-direction: column;
         gap: 1.5rem;

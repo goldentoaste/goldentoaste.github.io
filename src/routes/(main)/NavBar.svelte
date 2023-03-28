@@ -59,11 +59,11 @@
     <div id="top">
         <nav id="navBar" class:mobile={useMobile}>
             {#if innerWidth !== undefined}
-
                 {#each items as item, i}
                     {#if !useMobile || selects[i]}
                         <Button
                             on:click={() => {
+                       
                                 window.scrollTo({
                                     top: 0,
                                     behavior: 'smooth',
@@ -81,16 +81,13 @@
                 {#if useMobile}
                     <Toggle bind:toggled={navExtended} />
                 {/if}
-
-                {:else}
-                <div style="content:''; height:4rem;"/>
+            {:else}
+                <div style="content:''; height:4rem;" />
             {/if}
         </nav>
         <div id="optionContianer" style={navExtended ? 'max-height:350px;' : 'max-height:0;'}>
             {#if navExtended}
-
-            <hr/>
-                <!-- <Divider /> -->
+                <Divider />
 
                 <List style="margin:1rem;margin-left:2rem;">
                     {#each items as item, i}
