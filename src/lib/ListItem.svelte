@@ -8,8 +8,8 @@
 <div
     id="buttonHolder"
     in:fly={{
-        delay: 40 * index,
-        duration: 70,
+        delay: 100 * index,
+        duration: 200,
         easing: quartOut,
         x: -40,
     }}

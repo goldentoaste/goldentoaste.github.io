@@ -45,6 +45,7 @@
         background-color: var(--bg-alt2);
         white-space: nowrap;
         padding: 0.5rem;
+        padding-left: 1rem;
         font-size: larger;
         /* display: inline-block; */
     }

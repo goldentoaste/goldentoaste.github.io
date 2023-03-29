@@ -6,21 +6,15 @@
     import Button from '$lib/Button.svelte';
     import InfoBox from '$lib/InfoBox.svelte';
     import Divider from '$lib/Divider.svelte';
-    import { fade } from 'svelte/transition';
-    import { flip } from 'svelte/types/runtime/animate';
-
-    onMount(() => {
-        $pageState = PageState.NeedTransition;
-    });
 
     interface Content {
         text: string;
         title: string;
         path: string;
-        page: string
+        page: string;
     }
 
-    let contents : Content[] = [
+    let contents: Content[] = [
         {
             text: '🍔 Nommers',
             title: 'Nommers : Svelte web app',
@@ -48,24 +42,40 @@
     ];
 
     let selection = 0;
-    let content : Content;
-
+    let content: Content;
     $: {
         content = contents[selection];
-        }
+    }
 
     let iframe: HTMLIFrameElement;
-    
-    function resizeIframe(){
-        iframe.style.height=iframe.contentWindow?.document.body.scrollHeight!+40+"px";
+
+    let listHolder: HTMLDivElement;
+    let scrollY = 0;
+    let iniHeight = -1;
+    function resizeIframe() {
+        if (iframe.contentWindow?.document.body.scrollHeight + 'px' !== iframe.style.height)
+            iframe.style.height = iframe.contentWindow?.document.body.scrollHeight! + 40 + 'px';
     }
+
+    onMount(() => {
+        $pageState = PageState.NeedTransition;
+        iniHeight = listHolder.getBoundingClientRect().top;
+    });
+
+   
 </script>
 
+<svelte:window on:resize={resizeIframe} bind:scrollY />
 
 <h1>My Projects 🔨</h1>
 <p>A list of notable projects I have worked on. More detailed descriptions and interactive demos coming soon!</p>
+
 <div class="root">
-    <div class="listHolder">
+    <div
+        class="listHolder"
+        bind:this={listHolder}
+        style={iniHeight === -1 ? '' : `transform:translate(0, max(${scrollY - iniHeight}px + 6rem, 0px));`}
+    >
         <List>
             {#each contents as button, index}
                 <ListItem {index}>
@@ -77,24 +87,39 @@
                         style="width:100%; margin:0;"
                         on:click={() => {
                             selection = index;
-                        }}>
+                        }}
+                    >
                         {button.text}
                     </Button>
                 </ListItem>
             {/each}
         </List>
+
+        <Divider />
     </div>
 
-    <div class="content"  >
+    <div class="content">
         <InfoBox title={content.title} hovering={false} style="width:100%; height:100%;">
-            <Divider usePadding={false}/>
-            <iframe bind:this={iframe}  on:load={resizeIframe}  loading="lazy" title={content.title} src={`./${content.page}`} scrolling="no" >Content loading...</iframe>
-            <Divider usePadding={false}/>
+            <Divider usePadding={false} />
+            <iframe
+                bind:this={iframe}
+                on:load={resizeIframe}
+                loading="lazy"
+                title={content.title}
+                src={`./${content.page}`}
+                scrolling="no">Content loading...</iframe
+            >
+            <Divider usePadding={false} />
         </InfoBox>
     </div>
 </div>
-<svelte:window on:resize={resizeIframe}/>
+
 <style>
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
     .root {
         display: flex;
         flex-direction: row;
@@ -106,11 +131,10 @@
         width: 30%;
         min-width: 300px;
         max-width: 450px;
-        position: relative;
-        z-index: 40;
 
         margin-top: 1rem;
         padding-right: 2rem;
+        height: fit-content;
     }
     .content {
         z-index: 50;
@@ -124,8 +148,7 @@
 
     iframe {
         width: 100%;
-        height: fit-content;
-
-        object-fit: contain;
+        height: 0;
+        transition: height 0.4s ease-out;
     }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+
     import InfoBox from "$lib/InfoBox.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
 
