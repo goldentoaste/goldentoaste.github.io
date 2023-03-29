@@ -4,6 +4,7 @@
     import List from '$lib/List.svelte';
     import ListItem from '$lib/ListItem.svelte';
     import Button from '$lib/Button.svelte';
+    import InfoBox from '$lib/InfoBox.svelte';
 
     onMount(() => {
         $pageState = PageState.NeedTransition;
@@ -65,11 +66,14 @@
     </div>
 
     <div class="content">
-        <iframe
-        title={contents[selection].text}
-        src={`./${contents[selection].content}`}
-        scrolling="no"
-        />
+        <InfoBox hovering={false} style="width:100%; height:100%;">
+            <iframe
+            title={contents[selection].text}
+            src={`./${contents[selection].content}`}
+            scrolling="no"
+            />
+        </InfoBox>
+      
     </div>
 </div>
 
@@ -96,10 +100,6 @@
     .content {
         z-index: 50;
         position: relative;
-
-        background-color: var(--bg-alt3);
-
-        padding: 2rem;
         width: 70%;
     }
 

@@ -1,9 +1,11 @@
 <script>
     export let title = "";
     export let style = "";
+
+    export let hovering = true;
 </script>
 
-<div class="container" {style}>
+<div class="container" class:hovering {style} >
     {#if title}
         <div class="title">
             {title}
@@ -16,7 +18,7 @@
 </div>
 
 <style>
-    .container:hover {
+    .hovering:hover {
         transform: scale(1.05);
         /* filter: brightness(1.05); */
         box-shadow: 0.5rem 0.5rem 1rem var(--bg-alt3);
