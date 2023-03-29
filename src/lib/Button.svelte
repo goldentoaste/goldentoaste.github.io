@@ -16,6 +16,7 @@
     export let href: string = '';
     export let path: string = '';
     export let selected: boolean = false;
+    export let selectExpands = true;
     export let horizontal: boolean = false;
     export let upper: boolean = true;
     export let key = 'clip';
@@ -37,6 +38,7 @@
     on:click={onclick}
     class:selected
     class:horizontal
+    class:selectExpands
     style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}
 >
     <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +70,7 @@
         transition-timing-function: ease-out;
     }
 
-    button:not(:disabled):hover::before {
+    button:not(:disabled):hover::before, .selected:not(.selectExpands)::before {
         content: '';
         position: absolute;
         top: -0.45rem;
@@ -80,7 +82,7 @@
         border-bottom: var(--fg-alt) 0.15rem solid;
     }
 
-    button:not(:disabled)::after {
+    button:not(:disabled)::after  {
         content: '';
         position: absolute;
         top: 0;
@@ -94,13 +96,13 @@
         background-color: var(--fg);
     }
 
-    button:not(:disabled):hover::after {
+    button:not(:disabled):hover::after , .selected:not(.selectExpands)::after{
         content: '';
         width: 100%;
         height: 100%;
     }
 
-    button:not(:disabled):hover:active:after {
+    button:not(:disabled):hover:active::after {
         content: '';
         background-color: var(--fg-alt);
     }
@@ -132,18 +134,17 @@
         z-index: 555 !important;
     }
 
-    button:not(:disabled):hover {
+    button:not(:disabled):hover , .selected:not(.selectExpands) {
         color: var(--bg-alt);
     }
 
-    .selected::before {
+    .selected.selectExpands::before {
         padding-bottom: 2rem;
         background-color: var(--bg-alt3) !important;
  
     }
-    .selected::after {
+    .selected.selectExpands::after {
         padding-bottom: 2rem;
-
     }
 
     .selected.horizontal::before {

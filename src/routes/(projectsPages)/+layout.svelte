@@ -1,10 +1,5 @@
 <script>
-    import "../../global.css";
+    import './projects.css';
 </script>
 
-<style>
-    :global(body){
-        background-color: var(--bg-alt);
-    }
-</style>
 <slot/>

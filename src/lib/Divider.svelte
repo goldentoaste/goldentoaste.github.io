@@ -1,4 +1,8 @@
-<div class="divider">
+<script>
+    export let usePadding = true;
+</script>
+
+<div class="divider" class:usePadding>
     <div class="dot" />
     <div class="bar" />
     <div class="dot" />
@@ -24,8 +28,11 @@
     .divider{
         display: flex;
         gap: 1rem;
+        align-items: center;
+    }
+
+    .usePadding{
         padding-left: 2rem;
         padding-right: 2rem;
-        align-items: center;
     }
 </style>
