@@ -29,7 +29,7 @@
         },
         {
             text: 'page 2',
-            title: 'XYZ',
+            title: 'XYZ :<',
             path: '',
             page: 'debug1',
         },
@@ -65,7 +65,7 @@
    
 </script>
 
-<svelte:window on:resize={resizeIframe} bind:scrollY />
+<svelte:window on:resize|passive={resizeIframe} bind:scrollY />
 
 <h1>My Projects 🔨</h1>
 <p>A list of notable projects I have worked on. More detailed descriptions and interactive demos coming soon!</p>
