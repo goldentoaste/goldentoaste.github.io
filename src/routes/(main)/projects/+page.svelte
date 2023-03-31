@@ -50,8 +50,7 @@
     let iframe: HTMLIFrameElement;
 
     let listHolder: HTMLDivElement;
-    let scrollY = 0;
-    let iniHeight = -1;
+
     function resizeIframe() {
         if (iframe.contentWindow?.document.body.scrollHeight + 'px' !== iframe.style.height)
             iframe.style.height = iframe.contentWindow?.document.body.scrollHeight! + 40 + 'px';
@@ -59,23 +58,15 @@
 
     onMount(() => {
         $pageState = PageState.NeedTransition;
-        iniHeight = listHolder.getBoundingClientRect().top;
     });
-
-   
 </script>
 
-<svelte:window on:resize|passive={resizeIframe} bind:scrollY />
+<svelte:window on:resize|passive={resizeIframe} />
 
 <h1>My Projects 🔨</h1>
 <p>A list of notable projects I have worked on. More detailed descriptions and interactive demos coming soon!</p>
-
 <div class="root">
-    <div
-        class="listHolder"
-        bind:this={listHolder}
-        style={iniHeight === -1 ? '' : `transform:translate(0, max(${scrollY - iniHeight}px + 6rem, 0px));`}
-    >
+    <div class="listHolder" bind:this={listHolder}>
         <List>
             {#each contents as button, index}
                 <ListItem {index}>
@@ -135,6 +126,9 @@
         margin-top: 1rem;
         padding-right: 2rem;
         height: fit-content;
+
+        position: sticky;
+        top: 6rem;
     }
     .content {
         z-index: 50;
