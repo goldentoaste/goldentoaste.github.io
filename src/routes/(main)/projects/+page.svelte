@@ -19,7 +19,7 @@
             text: '🍔 Nommers',
             title: 'Nommers : Svelte web app',
             path: '',
-            page: 'debug1',
+            page: 'nommers',
         },
         {
             text: 'Test page 1',
@@ -27,12 +27,7 @@
             path: '',
             page: 'debug2',
         },
-        {
-            text: 'page 2',
-            title: 'XYZ :<',
-            path: '',
-            page: 'debug1',
-        },
+    
         {
             text: 'page 3',
             title: 'ABC',

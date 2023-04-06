@@ -1,8 +1,9 @@
-<script>
+<script lang='ts'>
     export let usePadding = true;
+    export let style :string = "";
 </script>
 
-<div class="divider" class:usePadding>
+<div class="divider" class:usePadding {style}>
     <div class="dot" />
     <div class="bar" />
     <div class="dot" />
@@ -12,7 +13,7 @@
     .bar {
         content: "";
         height: 2px;
-        width: ex;
+        width: 100%;
         background: var(--bg-alt3);
        flex: auto;
     }
@@ -26,6 +27,7 @@
     }
 
     .divider{
+        width: 100%;
         display: flex;
         gap: 1rem;
         align-items: center;

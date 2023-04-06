@@ -1,11 +1,11 @@
 <script>
-    export let title = "";
-    export let style = "";
+    export let title = '';
+    export let style = '';
 
     export let hovering = true;
 </script>
 
-<div class="container" class:hovering {style} >
+<div class="container" class:hovering {style}>
     {#if title}
         <div class="title">
             {title}
@@ -38,6 +38,7 @@
         transition-property: all;
         transition-duration: 0.4s;
         transition-timing-function: ease;
+        background-color: var(--bg-alt);
     }
 
     .title {
@@ -51,11 +52,10 @@
     }
 
     .body {
-        background-color: var(--bg-alt);
-        padding: 1rem;
+        margin: 1rem;
         display: flex;
         flex-direction: column;
 
-        gap: 0.2rem;
+        height: 100%;
     }
 </style>

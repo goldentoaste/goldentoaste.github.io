@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"svelte-gestures": "^1.4.1",
 		"svelte-markdown": "^0.2.3",
 		"svelte-preprocess": "^5.0.3",
 		"svrollbar": "^0.12.0",
