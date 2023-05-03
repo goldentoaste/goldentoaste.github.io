@@ -19,7 +19,7 @@
     export let width = 200;
     export let height = 200;
 
-    const epsilon = 0.1;
+    const epsilon = 0.15;
 
     let scrollVal = spring(0, {
         stiffness: 0.15,
@@ -127,7 +127,11 @@
                 on:touchend={(e) => {
                     up(e.touches[0]);
                 }}
+                 on:touchcancel={(e) => {
+                    up(e.touches[0]);
+                }}
                 on:touchmove={(e) => {
+                    e.stopPropagation();
                     move(e.touches[0]);
                 }}
             >
@@ -232,6 +236,7 @@
         position: relative;
         border: var(--fg-alt) 2px solid;
         overflow: hidden;
+        touch-action: none;
     }
 
     .imageItem {
@@ -248,7 +253,7 @@
 
     img {
         height: auto;
-        aspect-ratio: 1;
+        width: auto;
         background-color: var(--bg-alt);
         display: block;
         pointer-events: none;
