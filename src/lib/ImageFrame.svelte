@@ -19,7 +19,7 @@
     export let width = 200;
     export let height = 200;
 
-    const epsilon = 0.01;
+    const epsilon = 0.1;
 
     let scrollVal = spring(0, {
         stiffness: 0.15,
@@ -112,24 +112,6 @@
                 </defs>
             </svg>
 
-            <!-- {#if showArrows}
-                {#if index !== 0}
-                    <div class="arrow" id="left" transition:fade={{ duration: 200 }}>
-                        <svg viewBox="0 0 6 6">
-                            <use href="#arrow" />
-                        </svg>
-                    </div>
-                {/if}
-
-                {#if index !== items.length - 1}
-                    <div class="arrow" id="right" transition:fade={{ duration: 200 }}>
-                        <svg viewBox="0 0 6 6">
-                            <use href="#arrow" />
-                        </svg>
-                    </div>
-                {/if}
-            {/if} -->
-
             <div
                 class="imagewrapper"
                 style="
@@ -175,7 +157,39 @@
                         <img src={items[index - 1].src} alt="item" style="width: calc({width}px - 2rem);" />
                     </div>
                 {/if}
+
+                {#if showArrows}
+                    {#if index !== 0}
+                        <div class="arrow" id="left" transition:fade={{ duration: 200 }}>
+                            <!-- svelte-ignore missing-declaration -->
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <svg
+                                viewBox="0 0 6 6"
+                                on:click={() => {
+                                    $scrollVal = width;
+                                }}
+                            >
+                                <use href="#arrow" />
+                            </svg>
+                        </div>
+                    {/if}
+
+                    {#if index !== items.length - 1}
+                        <div class="arrow" id="right" transition:fade={{ duration: 200 }}>
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <svg
+                                viewBox="0 0 6 6"
+                                on:click={() => {
+                                    $scrollVal = -width;
+                                }}
+                            >
+                                <use href="#arrow" />
+                            </svg>
+                        </div>
+                    {/if}
+                {/if}
             </div>
+
             <!-- decorations -->
             {#if items.length > 1}
                 <div id="counter">
@@ -217,6 +231,7 @@
     .imagewrapper {
         position: relative;
         border: var(--fg-alt) 2px solid;
+        overflow: hidden;
     }
 
     .imageItem {
@@ -254,6 +269,7 @@
         color: var(--fg);
 
         border: 2px solid var(--fg-alt);
+        z-index: 50;
     }
 
     #starWrap {
@@ -261,7 +277,7 @@
         top: 0;
         left: 0;
 
-        transform: translate(calc(-50% + 0.15rem ), calc(-50% + 0.15rem));
+        transform: translate(calc(-50% + 0.15rem), calc(-50% + 0.15rem));
 
         display: flex;
 
@@ -303,6 +319,7 @@
 
         opacity: 0.6;
         transition: opacity 0.2s ease-out;
+        pointer-events: none;
     }
 
     .arrow:hover::before {
