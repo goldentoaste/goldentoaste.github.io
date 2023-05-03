@@ -127,7 +127,7 @@
                 on:touchend={(e) => {
                     up(e.touches[0]);
                 }}
-                 on:touchcancel={(e) => {
+                on:touchcancel={(e) => {
                     up(e.touches[0]);
                 }}
                 on:touchmove={(e) => {
@@ -139,26 +139,34 @@
                 <!-- shrink original if so -->
                 {#if index != items.length - 1 && $scrollVal < 0}
                     <div class="imageItem">
-                        <img src={items[index + 1].src} alt="item" style="width: calc({width}px - 2rem);" />
+                        <img src={items[index + 1].src} alt="item" style="min-width: calc({width}px - 2rem);" />
                     </div>
                 {/if}
 
                 <div
                     class="imageItem"
                     style={$scrollVal < 0 && index != items.length - 1
-                        ? `border-right: 2px solid var(--fg); width:${clamp(0, width + $scrollVal, width)}px;`
+                        ? `border-right: 2px solid var(--fg); width:${clamp(
+                              0,
+                              width + $scrollVal,
+                              width
+                          )}px; box-shadow:  0 0 2rem var(--bg-alt3);`
                         : ''}
                 >
-                    <img src={items[index].src} alt="item" style="width: calc({width}px - 2rem);" />
+                    <img src={items[index].src} alt="item" style="min-width: calc({width}px - 2rem);" />
                 </div>
 
                 <!-- this goes over original -->
                 {#if index != 0 && $scrollVal > 0}
                     <div
                         class="imageItem"
-                        style="border-right: 2px solid var(--fg); width:{clamp(0, $scrollVal, width)}px;"
+                        style="border-right: 2px solid var(--fg); width:{clamp(
+                            0,
+                            $scrollVal,
+                            width
+                        )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);"
                     >
-                        <img src={items[index - 1].src} alt="item" style="width: calc({width}px - 2rem);" />
+                        <img src={items[index - 1].src} alt="item" style="min-width: calc({width}px - 2rem);" />
                     </div>
                 {/if}
 
@@ -247,19 +255,21 @@
         top: 0;
         pointer-events: none;
         user-select: none;
-
         overflow: hidden;
+        background-color: var(--bg-alt);
+
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+
+        transition: border-color box-shadow 0.5s ease-in-out;
     }
 
     img {
         height: auto;
         width: auto;
-        background-color: var(--bg-alt);
         display: block;
         pointer-events: none;
-
-        border: none;
-        transition: border 0.2s;
 
         user-select: none;
         padding: 1rem;
