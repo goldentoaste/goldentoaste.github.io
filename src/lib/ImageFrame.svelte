@@ -210,6 +210,8 @@
         justify-content: center;
 
         flex-direction: column;
+
+        user-select: none;
     }
 
     .imagewrapper {
@@ -259,14 +261,21 @@
         top: 0;
         left: 0;
 
-        /* transform: translate(-50%, -50%); */
+        transform: translate(calc(-50% + 0.15rem ), calc(-50% + 0.15rem));
+
+        display: flex;
+
+        padding: 0.76rem;
+        background-color: var(--bg-alt);
     }
+
     #star {
-        width: 1rem;
-        height: 1rem;
+        width: 0.3rem;
+        height: 0.3rem;
         border-radius: 50%;
         background-color: var(--fg-alt);
-        justify-content: center;
+
+        display: inline-block;
     }
 
     .arrow {
