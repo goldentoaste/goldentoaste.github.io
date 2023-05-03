@@ -10,20 +10,67 @@
 
     import Divider from './Divider.svelte';
     import InfoBox from './InfoBox.svelte';
-    import { onMount } from 'svelte';
+    import { spring } from 'svelte/motion';
 
     export let title: string = ''; // a title to describe all this collectin of images
     export let items: ImgItem[] = [];
     export let containerStyle: string = '';
-    export let imgStyle = '';
 
     export let width = 200;
-    export let maxHeight = 200;
+    export let height = 200;
 
-    let index = 0;
+    const epsilon = 0.01;
+
+    let scrollVal = spring(0, {
+        stiffness: 0.15,
+        damping: 0.6,
+    });
+
+    let index = 1;
+    let mouseDown = false;
+    let iniX = 0;
 
     let showArrows = false;
-    let currentImg: HTMLDivElement;
+
+    function clamp(min: number, val: number, max: number) {
+        return Math.min(Math.max(min, Math.abs(val)), max);
+    }
+
+    function down(e: MouseEvent | Touch) {
+        console.log('down');
+        mouseDown = true;
+        iniX = e.clientX - $scrollVal;
+    }
+
+    function up(e: MouseEvent | Touch) {
+        console.log('up');
+        mouseDown = false;
+        if (Math.abs($scrollVal) > 0.5 * width) {
+            $scrollVal = Math.sign($scrollVal) * width;
+        } else {
+            $scrollVal = 0;
+        }
+    }
+
+    function move(e: MouseEvent | Touch) {
+        console.log('mov');
+        if (mouseDown) {
+            $scrollVal = e.clientX - iniX;
+            console.log(e.clientX, iniX, clamp(0, width + $scrollVal, width));
+        }
+    }
+
+    // check if scrolling finished
+    $: {
+        if (Math.abs(Math.abs($scrollVal) - width) < epsilon) {
+            index = index - Math.sign($scrollVal);
+            scrollVal.stiffness = 1;
+            scrollVal.damping = 1;
+            $scrollVal = 0;
+            scrollVal.stiffness = 0.1;
+            scrollVal.damping = 0.6;
+        }
+    }
 </script>
 
 {#if items.length === 0}
@@ -33,7 +80,7 @@
 {/if}
 
 {#if items.length > 0}
-    <InfoBox style={containerStyle + 'border:solid 2px var(--bg-alt2);'} {title}>
+    <InfoBox style={containerStyle + 'border:solid 2px var(--bg-alt2); width:min-content;'} {title}>
         <div
             class="imgHolder"
             on:mouseenter={() => {
@@ -65,16 +112,6 @@
                 </defs>
             </svg>
 
-            <!-- <div id="decor">
-                <div id="star" />
-            </div>
-
-            {#if items.length > 1}
-                <div id="counter">
-                    {index}/{items.length}
-                </div>
-            {/if} -->
-
             <!-- {#if showArrows}
                 {#if index !== 0}
                     <div class="arrow" id="left" transition:fade={{ duration: 200 }}>
@@ -93,58 +130,80 @@
                 {/if}
             {/if} -->
 
-            <div class="imagewrapper">
-                {#if index !== 0}
-                    <img
-                        id="prev"
-                        draggable="false"
-                        alt=""
-                        src={items[index].src}
-                        style="width:{width}px; max-height:{maxHeight}px;"
-                    />
+            <div
+                class="imagewrapper"
+                style="
+                    width:{width}px; height:{height}px;
+                    "
+                on:mousedown={down}
+                on:mouseup={up}
+                on:mouseleave={up}
+                on:mousemove={move}
+                on:touchstart={(e) => {
+                    down(e.touches[0]);
+                }}
+                on:touchend={(e) => {
+                    up(e.touches[0]);
+                }}
+                on:touchmove={(e) => {
+                    move(e.touches[0]);
+                }}
+            >
+                <!-- this goes behind original -->
+                <!-- shrink original if so -->
+                {#if index != items.length - 1 && $scrollVal < 0}
+                    <div class="imageItem">
+                        <img src={items[index + 1].src} alt="item" style="width: calc({width}px - 2rem);" />
+                    </div>
                 {/if}
 
-                <img
-                    id="current"
-                    draggable="false"
-                    alt=""
-                    src={items[index].src}
-                    style="width:{width}px; max-height:{maxHeight}px;"
-                />
+                <div
+                    class="imageItem"
+                    style={$scrollVal < 0 && index != items.length - 1
+                        ? `border-right: 2px solid var(--fg); width:${clamp(0, width + $scrollVal, width)}px;`
+                        : ''}
+                >
+                    <img src={items[index].src} alt="item" style="width: calc({width}px - 2rem);" />
+                </div>
 
-                {#if index !== items.length - 1}
-                    <img
-                        id="next"
-                        draggable="false"
-                        alt=""
-                        src={items[index + 1].src}
-                        style="width:{width}px; max-height:{maxHeight}px;"
-                    />
+                <!-- this goes over original -->
+                {#if index != 0 && $scrollVal > 0}
+                    <div
+                        class="imageItem"
+                        style="border-right: 2px solid var(--fg); width:{clamp(0, $scrollVal, width)}px;"
+                    >
+                        <img src={items[index - 1].src} alt="item" style="width: calc({width}px - 2rem);" />
+                    </div>
                 {/if}
             </div>
-            <Divider usePadding={false} style="margin-top: 0.7rem; margin-bottom:0.7rem;" />
+            <!-- decorations -->
+            {#if items.length > 1}
+                <div id="counter">
+                    {index + 1}/{items.length}
+                </div>
+            {/if}
 
-            <p >
-                {items[index].desc}
-            </p>
+            <div id="starWrap">
+                <div id="star" />
+            </div>
         </div>
+        <Divider usePadding={false} style="margin-top: 0.7rem; margin-bottom:0.7rem;" />
 
-       
+        <p>
+            {items[index].desc}
+        </p>
     </InfoBox>
 {/if}
 
 <style>
-
-    p{
+    p {
         width: 100%;
-
     }
 
     .imgHolder {
         position: relative;
-        width: min-content;
+
         height: fit-content;
-        overflow: hidden;
 
         display: flex;
         align-items: center;
@@ -155,33 +214,24 @@
 
     .imagewrapper {
         position: relative;
-
         border: var(--fg-alt) 2px solid;
+    }
 
-        width: fit-content;
-        height: fit-content;
+    .imageItem {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        pointer-events: none;
+        user-select: none;
 
         overflow: hidden;
     }
 
-    #current {
-        position: relative;
-        z-index: 2;
-    }
-
-    #prev {
-        position: absolute;
-        top: 0;
-        z-index: 1;
-    }
-
-    #next {
-        position: absolute;
-        top: 0;
-        z-index: 1;
-    }
-
     img {
+        height: auto;
+        aspect-ratio: 1;
         background-color: var(--bg-alt);
         display: block;
         pointer-events: none;
@@ -193,7 +243,31 @@
         padding: 1rem;
     }
 
+    #counter {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 0.5rem;
+        background-color: var(--bg-alt);
+        color: var(--fg);
 
+        border: 2px solid var(--fg-alt);
+    }
+
+    #starWrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        /* transform: translate(-50%, -50%); */
+    }
+    #star {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--fg-alt);
+        justify-content: center;
+    }
 
     .arrow {
         position: absolute;

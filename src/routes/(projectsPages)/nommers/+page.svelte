@@ -32,6 +32,10 @@ console.log(event)
             desc: 'This is my favorite language of all time.',
             src: 'java-icon.svg',
         },
+        {
+            src:"heroku.svg",
+            desc:"Memories from a better time."
+        }
     ]}
 />
 
