@@ -2,7 +2,7 @@
     // @ts-nocheck
     import Divider from '$lib/Divider.svelte';
     import ImageFrame from '$lib/ImageFrame.svelte';
-    import { pan } from 'svelte-gestures';
+   
     function handler(event:PointerEvent) {
 console.log(event)
     }
@@ -23,7 +23,7 @@ console.log(event)
 
 <ImageFrame
     width={200}
-    maxHeight={400}
+ 
     title="Test"
     items={[
         { desc: 'now this is one big bread image. Truely one of the bread images of our time.', src: 'bigBread.svg' },

@@ -6,70 +6,96 @@
 </script>
 
 <script lang="ts">
-    import { fade } from 'svelte/transition';
+    import { fade } from "svelte/transition";
 
-    import Divider from './Divider.svelte';
-    import InfoBox from './InfoBox.svelte';
-    import { spring } from 'svelte/motion';
+    import Divider from "./Divider.svelte";
+    import InfoBox from "./InfoBox.svelte";
+    import { spring } from "svelte/motion";
 
-    export let title: string = ''; // a title to describe all this collectin of images
+    export let title: string = ""; // a title to describe all this collectin of images
     export let items: ImgItem[] = [];
-    export let containerStyle: string = '';
+    export let containerStyle: string = "";
 
     export let width = 200;
     export let height = 200;
 
-    const epsilon = 0.15;
+    const epsilon = 1;
 
     let scrollVal = spring(0, {
-        stiffness: 0.15,
-        damping: 0.6,
+        stiffness: 0.2,
+        damping: 1,
     });
 
+    let abs = 0;
+    $: abs = Math.abs($scrollVal);
+
+    let box: HTMLElement;
     let index = 1;
     let mouseDown = false;
     let iniX = 0;
+    let lastPos = 0;
+    let iniTime = 0;
 
     let showArrows = false;
 
     function clamp(min: number, val: number, max: number) {
-        return Math.min(Math.max(min, Math.abs(val)), max);
+        return Math.min(Math.max(min, val), max);
     }
 
     function down(e: MouseEvent | Touch) {
-        console.log('down');
+        console.log("down");
         mouseDown = true;
         iniX = e.clientX - $scrollVal;
+        iniTime = Date.now();
     }
 
     function up(e: MouseEvent | Touch) {
-        console.log('up');
         mouseDown = false;
-        if (Math.abs($scrollVal) > 0.5 * width) {
-            $scrollVal = Math.sign($scrollVal) * width;
+        // condition to check if going to next image to occur
+
+        // user swipe far enough within the image
+        let farSwipe = abs > 0.45 * width || abs > 500;
+
+        // user swiped so that cursor leaves image
+        const offset = lastPos - box.getBoundingClientRect().left;
+        let exitSwipe = offset > width || offset < 0;
+
+        // user swiped fast enough
+        let fastSwipe =
+            Math.abs((lastPos - iniX) / (Date.now() - iniTime + 0.1)) > 0.5; // 500 pixels per second speed required
+
+        if (farSwipe || exitSwipe || fastSwipe) {
+
+            scrollVal.set(Math.sign($scrollVal) * (width ))
+          
         } else {
             $scrollVal = 0;
         }
     }
 
     function move(e: MouseEvent | Touch) {
-        console.log('mov');
         if (mouseDown) {
-            $scrollVal = e.clientX - iniX;
-            console.log(e.clientX, iniX, clamp(0, width + $scrollVal, width));
+            $scrollVal = clamp(index === items.length - 1? 0: -width, e.clientX - iniX, index === 0?0: width);
+
+            lastPos = e.clientX;
         }
     }
 
+  
     // check if scrolling finished
     $: {
-        if (Math.abs(Math.abs($scrollVal) - width) < epsilon) {
-            index = index - Math.sign($scrollVal);
+
+        if (!mouseDown && Math.abs(Math.abs($scrollVal) - width) < epsilon) {
+            index = clamp(0, index - Math.sign($scrollVal), items.length - 1);
             scrollVal.stiffness = 1;
-            scrollVal.damping = 1;
             $scrollVal = 0;
-            scrollVal.stiffness = 0.1;
-            scrollVal.damping = 0.6;
+            scrollVal.stiffness = 0.2;
+            scrollVal.damping = 1;
         }
+    }
+
+    function xp(...obj : Object[]) {
+        console.log(...obj);
     }
 </script>
 
@@ -80,7 +106,11 @@
 {/if}
 
 {#if items.length > 0}
-    <InfoBox style={containerStyle + 'border:solid 2px var(--bg-alt2); width:min-content;'} {title}>
+    <InfoBox
+        style={containerStyle +
+            "border:solid 2px var(--bg-alt2); width:min-content;"}
+        {title}
+    >
         <div
             class="imgHolder"
             on:mouseenter={() => {
@@ -106,7 +136,11 @@
                                 stroke="var(--fg-alt)"
                                 stroke-width="0.5"
                             />
-                            <path d="M3 1L5 3L3 5" stroke="var(--fg-alt)" stroke-width="0.5" />
+                            <path
+                                d="M3 1L5 3L3 5"
+                                stroke="var(--fg-alt)"
+                                stroke-width="0.5"
+                            />
                         </g>
                     </symbol>
                 </defs>
@@ -117,6 +151,7 @@
                 style="
                     width:{width}px; height:{height}px;
                     "
+                bind:this={box}
                 on:mousedown={down}
                 on:mouseup={up}
                 on:mouseleave={up}
@@ -131,15 +166,18 @@
                     up(e.touches[0]);
                 }}
                 on:touchmove={(e) => {
-                    e.stopPropagation();
                     move(e.touches[0]);
                 }}
             >
                 <!-- this goes behind original -->
                 <!-- shrink original if so -->
-                {#if index != items.length - 1 && $scrollVal < 0}
+                {#if index !== items.length - 1 && $scrollVal < 0}
                     <div class="imageItem">
-                        <img src={items[index + 1].src} alt="item" style="min-width: calc({width}px - 2rem);" />
+                        <img
+                            src={items[index + 1].src}
+                            alt="item"
+                            style="min-width: calc({width}px - 2rem);"
+                        />
                     </div>
                 {/if}
 
@@ -148,12 +186,16 @@
                     style={$scrollVal < 0 && index != items.length - 1
                         ? `border-right: 2px solid var(--fg); width:${clamp(
                               0,
-                              width + $scrollVal,
+                              width - abs,
                               width
                           )}px; box-shadow:  0 0 2rem var(--bg-alt3);`
-                        : ''}
+                        : ""}
                 >
-                    <img src={items[index].src} alt="item" style="min-width: calc({width}px - 2rem);" />
+                    <img
+                        src={items[index].src}
+                        alt="item"
+                        style="min-width: calc({width}px - 2rem);"
+                    />
                 </div>
 
                 <!-- this goes over original -->
@@ -162,17 +204,25 @@
                         class="imageItem"
                         style="border-right: 2px solid var(--fg); width:{clamp(
                             0,
-                            $scrollVal,
+                            abs,
                             width
                         )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);"
                     >
-                        <img src={items[index - 1].src} alt="item" style="min-width: calc({width}px - 2rem);" />
+                        <img
+                            src={items[index - 1].src}
+                            alt="item"
+                            style="min-width: calc({width}px - 2rem);"
+                        />
                     </div>
                 {/if}
 
                 {#if showArrows}
                     {#if index !== 0}
-                        <div class="arrow" id="left" transition:fade={{ duration: 200 }}>
+                        <div
+                            class="arrow"
+                            id="left"
+                            transition:fade={{ duration: 200 }}
+                        >
                             <!-- svelte-ignore missing-declaration -->
                             <!-- svelte-ignore a11y-click-events-have-key-events -->
                             <svg
@@ -187,7 +237,11 @@
                     {/if}
 
                     {#if index !== items.length - 1}
-                        <div class="arrow" id="right" transition:fade={{ duration: 200 }}>
+                        <div
+                            class="arrow"
+                            id="right"
+                            transition:fade={{ duration: 200 }}
+                        >
                             <!-- svelte-ignore a11y-click-events-have-key-events -->
                             <svg
                                 viewBox="0 0 6 6"
@@ -213,7 +267,10 @@
                 <div id="star" />
             </div>
         </div>
-        <Divider usePadding={false} style="margin-top: 0.7rem; margin-bottom:0.7rem;" />
+        <Divider
+            usePadding={false}
+            style="margin-top: 0.7rem; margin-bottom:0.7rem;"
+        />
 
         <p>
             {items[index].desc}
@@ -327,7 +384,7 @@
     .arrow::before {
         z-index: 1;
         position: absolute;
-        content: '';
+        content: "";
         background: linear-gradient(to right, transparent, var(--bg));
         width: 300%;
         height: 100%;
