@@ -1,10 +1,12 @@
 <script lang="ts">
     // @ts-nocheck
-    import Divider from '$lib/Divider.svelte';
-    import ImageFrame from '$lib/ImageFrame.svelte';
-   
-    function handler(event:PointerEvent) {
-console.log(event)
+    import Divider from "$lib/Divider.svelte";
+    import IconListItem from "$lib/IconListItem.svelte";
+    import ImageFrame from "$lib/ImageFrame.svelte";
+    import InfoBox from "$lib/InfoBox.svelte";
+
+    function handler(event: PointerEvent) {
+        console.log(event);
     }
 </script>
 
@@ -17,30 +19,29 @@ console.log(event)
 <h1>Nommers!</h1>
 
 <p>
-    Can't decide where to eat with your friends? Too many good options nearby but don't which one to go with? Simple
-    solution: enforce democracy with Nommers! (and nom the process)
+    Can't decide where to eat with your friends? Too many good options nearby
+    but don't which one to go with? Simple solution: enforce democracy with
+    Nommers! (and nom the process)
 </p>
 
-<ImageFrame
-    width={200}
- 
-    title="Test"
-    items={[
-        { desc: 'now this is one big bread image. Truely one of the bread images of our time.', src: 'bigBread.svg' },
+<div class="top">
+    <ImageFrame
+        width={400}
+        height={400}
+        title="Project show case"
+        items={[
+            {
+                src: "heroku.svg",
+                desc: "Memories from a better time.",
+            },
+        ]}
+    />
 
-        {
-            desc: 'This is my favorite language of all time.',
-            src: 'java-icon.svg',
-        },
-        {
-            src:"heroku.svg",
-            desc:"Memories from a better time."
-        }
-    ]}
-/>
+  
+</div>
 
 <style>
-    div {
+    div.top {
         display: flex;
         flex-direction: horizontal;
     }

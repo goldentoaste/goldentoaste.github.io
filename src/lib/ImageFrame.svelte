@@ -43,7 +43,6 @@
     }
 
     function down(e: MouseEvent | Touch) {
-        console.log("down");
         mouseDown = true;
         iniX = e.clientX - $scrollVal;
         iniTime = Date.now();
