@@ -30,7 +30,7 @@
     $: abs = Math.abs($scrollVal);
 
     let box: HTMLElement;
-    let index = 1;
+    let index = 0;
     let mouseDown = false;
     let iniX = 0;
     let lastPos = 0;
@@ -64,9 +64,7 @@
             Math.abs((lastPos - iniX) / (Date.now() - iniTime + 0.1)) > 0.5; // 500 pixels per second speed required
 
         if (farSwipe || exitSwipe || fastSwipe) {
-
-            scrollVal.set(Math.sign($scrollVal) * (width ))
-          
+            scrollVal.set(Math.sign($scrollVal) * width);
         } else {
             $scrollVal = 0;
         }
@@ -74,16 +72,18 @@
 
     function move(e: MouseEvent | Touch) {
         if (mouseDown) {
-            $scrollVal = clamp(index === items.length - 1? 0: -width, e.clientX - iniX, index === 0?0: width);
+            $scrollVal = clamp(
+                index === items.length - 1 ? 0 : -width,
+                e.clientX - iniX,
+                index === 0 ? 0 : width
+            );
 
             lastPos = e.clientX;
         }
     }
 
-  
     // check if scrolling finished
     $: {
-
         if (!mouseDown && Math.abs(Math.abs($scrollVal) - width) < epsilon) {
             index = clamp(0, index - Math.sign($scrollVal), items.length - 1);
             scrollVal.stiffness = 1;
@@ -93,19 +93,20 @@
         }
     }
 
-    function xp(...obj : Object[]) {
+    function xp(...obj: Object[]) {
         console.log(...obj);
     }
 </script>
 
 {#if items.length === 0}
-    <InfoBox {title}>
+    <InfoBox {title} outline={true}>
         <p>Image frame no content. (zero images provided)</p>
     </InfoBox>
 {/if}
 
 {#if items.length > 0}
     <InfoBox
+        outline={true}
         style={containerStyle +
             "border:solid 2px var(--bg-alt2); width:min-content;"}
         {title}

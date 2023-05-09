@@ -9,7 +9,7 @@
         <img width="32" height="32" {src} alt="" loading="lazy" />
     {/if}
 
-    {#if path}
+    {#if path && !src}
         <!-- define a invisible svg, to be used as a clip path for the recolorable svg icon later. -->
         <!-- this svg is only used if a 'path' variable is provided. -->
         <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">

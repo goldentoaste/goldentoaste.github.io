@@ -3,9 +3,11 @@
     export let style = '';
 
     export let hovering = true;
+
+    export let outline = false;
 </script>
 
-<div class="container" class:hovering {style}>
+<div class="container" class:hovering style={style + (outline?"border:2px solid var(--bg-alt2);":"")}>
     {#if title}
         <div class="title">
             {title}
@@ -32,13 +34,14 @@
         margin: 1rem;
 
         height: fit-content;
-        width: fit-content;
+        /* width: fit-content; */
         min-width: 12rem;
 
         transition-property: all;
         transition-duration: 0.4s;
         transition-timing-function: ease;
         background-color: var(--bg-alt);
+       
     }
 
     .title {
@@ -55,7 +58,8 @@
         margin: 1rem;
         display: flex;
         flex-direction: column;
-
+        
+       
         height: 100%;
     }
 </style>
