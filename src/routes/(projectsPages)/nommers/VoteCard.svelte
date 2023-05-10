@@ -18,7 +18,7 @@
     let dragging = false;
     let sign: number;
     $: sign = $coords.rot > 0 ? 1 : -1;
-    $: console.log(sign);
+
 
     const drag = (e: MouseEvent) => {
         if (e.buttons !== 1 || !dragging) {

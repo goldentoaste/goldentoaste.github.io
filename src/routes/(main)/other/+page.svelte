@@ -4,6 +4,12 @@
     import List from "$lib/List.svelte";
     import ListItem from "$lib/ListItem.svelte";
     import SpotLightBox from "$lib/SpotLightBox.svelte";
+    import { onMount } from "svelte";
+
+    import { pageState, PageState } from "$lib/stores/pageUpdates";
+    onMount(() => {
+        $pageState = PageState.NoTransition;
+    });
 </script>
 
 <h1>Coming soon!</h1>
@@ -18,9 +24,6 @@
     </List>
 </DropDown>
 
-
-
-<div style="background-color:black; padding:5rem; "> 
-    <SpotLightBox/>
+<div style="background-color:black; padding:5rem; ">
+    <SpotLightBox />
 </div>
-

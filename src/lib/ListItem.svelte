@@ -3,12 +3,12 @@
     import { quartOut } from 'svelte/easing';
 
     export let index = 0;
-
+    export let style = ""
     let hover = false;
 </script>
 
 <div id="listItemRoot">
-    <div
+    <div  {style}
         id="buttonHolder"
         on:mouseenter={() => {
             hover = true;

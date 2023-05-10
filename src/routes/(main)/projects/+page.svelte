@@ -1,11 +1,11 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { pageState, PageState } from '$lib/stores/pageUpdates';
-    import List from '$lib/List.svelte';
-    import ListItem from '$lib/ListItem.svelte';
-    import Button from '$lib/Button.svelte';
-    import InfoBox from '$lib/InfoBox.svelte';
-    import Divider from '$lib/Divider.svelte';
+    import { onMount } from "svelte";
+    import { pageState, PageState } from "$lib/stores/pageUpdates";
+    import List from "$lib/List.svelte";
+    import ListItem from "$lib/ListItem.svelte";
+    import Button from "$lib/Button.svelte";
+    import InfoBox from "$lib/InfoBox.svelte";
+    import Divider from "$lib/Divider.svelte";
 
     interface Content {
         text: string;
@@ -16,23 +16,23 @@
 
     let contents: Content[] = [
         {
-            text: '🍔 Nommers',
-            title: 'Nommers : Svelte web app',
-            path: '',
-            page: 'nommers',
+            text: "🍔 Nommers",
+            title: "Nommers : Svelte web app",
+            path: "",
+            page: "nommers",
         },
         {
-            text: 'Test page 1',
-            title: 'ASDASD',
-            path: '',
-            page: 'debug2',
+            text: "Test page 1",
+            title: "ASDASD",
+            path: "",
+            page: "debug2",
         },
-    
+
         {
-            text: 'page 3',
-            title: 'ABC',
-            path: '',
-            page: 'debug2',
+            text: "page 3",
+            title: "ABC",
+            path: "",
+            page: "debug2",
         },
     ];
 
@@ -47,8 +47,12 @@
     let listHolder: HTMLDivElement;
 
     function resizeIframe() {
-        if (iframe.contentWindow?.document.body.scrollHeight + 'px' !== iframe.style.height)
-            iframe.style.height = iframe.contentWindow?.document.body.scrollHeight! + 40 + 'px';
+        if (
+            iframe.contentWindow?.document.body.scrollHeight + "px" !==
+            iframe.style.height
+        )
+            iframe.style.height =
+                iframe.contentWindow?.document.body.scrollHeight! + 40 + "px";
     }
 
     onMount(() => {
@@ -59,12 +63,15 @@
 <svelte:window on:resize|passive={resizeIframe} />
 
 <h1>My Projects 🔨</h1>
-<p>A list of notable projects I have worked on. More detailed descriptions and interactive demos coming soon!</p>
+<p>
+    A list of notable projects I have worked on. More detailed descriptions and
+    interactive demos coming soon!
+</p>
 <div class="root">
     <div class="listHolder" bind:this={listHolder}>
         <List>
             {#each contents as button, index}
-                <ListItem {index}>
+                <ListItem {index} style="width:100%;">
                     <Button
                         selected={selection == index}
                         selectExpands={false}
@@ -85,7 +92,11 @@
     </div>
 
     <div class="content">
-        <InfoBox title={content.title} hovering={false} style="width:100%; height:100%;">
+        <InfoBox
+            title={content.title}
+            hovering={false}
+            style="width:100%; height:100%;"
+        >
             <Divider usePadding={false} />
             <iframe
                 bind:this={iframe}
