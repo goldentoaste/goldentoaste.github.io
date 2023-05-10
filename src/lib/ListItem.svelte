@@ -17,7 +17,7 @@
             hover = false;
         }}
         in:fly={{
-            delay: 100 * index,
+            delay: 80 * index,
             duration: 200,
             easing: quartOut,
             x: -40,
@@ -57,6 +57,7 @@
         align-items: stretch;
         display: flex;
         background: var(--bg-alt);
+        width: fit-content;
     }
 
     svg {

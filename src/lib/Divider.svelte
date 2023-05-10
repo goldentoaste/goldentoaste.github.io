@@ -34,14 +34,13 @@
     }
 
     .divider {
-        width: 100%;
+        width: auto;
         display: flex;
         gap: 1rem;
         align-items: center;
     }
 
     .usePadding {
-        padding-left: 2rem;
-        padding-right: 2rem;
+        margin: 1rem 1rem;
     }
 </style>
