@@ -12,9 +12,6 @@
     let content: HTMLDivElement;
     let body: HTMLDivElement;
 
-    let left: HTMLDivElement;
-    let right: HTMLDivElement;
-
     function contentLoad() {
         body.style.setProperty(
             "max-height",
@@ -42,7 +39,8 @@
         }}
     />
 {/if}
-<div class="dropDownParent" {style}>
+
+<div class="parent">
     <div
         class="dropDownTitle"
         on:click={() => {
@@ -82,20 +80,21 @@
         </div>
 
         {title}
-        
     </div>
 
-    {#if expanded}
-        <div bind:this={body} class="dropDownBody">
-            <DropDownContent bind:content on:mounted={contentLoad}>
-                <Divider />
+    <div style="height:0; overflow:visible;">
+        {#if expanded}
+            <div bind:this={body} class="dropDownBody">
+                <DropDownContent bind:content on:mounted={contentLoad}>
+                    <Divider />
 
-                <div style="padding-left:1rem;"><slot /></div>
+                    <div style="padding-left:1rem;"><slot /></div>
 
-                <Divider />
-            </DropDownContent>
-        </div>
-    {/if}
+                    <Divider />
+                </DropDownContent>
+            </div>
+        {/if}
+    </div>
 </div>
 
 <style>
@@ -113,7 +112,6 @@
 
     .focused {
         background-color: var(--fg-alt) !important;
-   
     }
 
     .right {
@@ -124,7 +122,7 @@
 
         background-color: var(--fg);
 
-        transition:background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
     }
 
     .down {
@@ -134,11 +132,12 @@
         background-color: var(--fg);
         transform: translate(-40%, -40%) scale(1.1);
 
-        transition:background-color 0.2s ease-out;
+        transition: background-color 0.2s ease-out;
     }
 
     .backdrop {
         position: fixed;
+        z-index: 50;
         top: 0;
         left: 0;
         bottom: 0;
@@ -147,17 +146,8 @@
         filter: opacity(50%);
     }
 
-    .dropDownParent {
-        display: flex;
-        flex-direction: column;
-
-        position: relative;
-        z-index: 10;
-
-        border: 2px solid var(--fg-alt);
-    }
-
     .dropDownTitle {
+        position: relative;
         background-color: var(--fg);
         color: var(--bg-alt);
         padding: 1rem;
@@ -168,6 +158,7 @@
         display: flex;
         align-items: center;
         justify-content: left;
+        z-index: 51;
     }
 
     .dropDownTitle:hover {
@@ -175,10 +166,20 @@
     }
 
     .dropDownBody {
+        border: 2px solid var(--fg-alt);
+        position: relative;
         height: fit-content;
+        z-index: 51;
+
+        background-color: var(--bg);
         max-height: 0;
 
         transition: max-height 0.2s ease-out;
         overflow: hidden;
+    }
+
+    .parent {
+        display: flex;
+        flex-direction: column;
     }
 </style>

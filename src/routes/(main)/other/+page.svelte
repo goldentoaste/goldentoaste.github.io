@@ -3,6 +3,7 @@
     import DropDown from "$lib/DropDown.svelte";
     import List from "$lib/List.svelte";
     import ListItem from "$lib/ListItem.svelte";
+    import SpotLightBox from "$lib/SpotLightBox.svelte";
 </script>
 
 <h1>Coming soon!</h1>
@@ -16,3 +17,10 @@
         {/each}
     </List>
 </DropDown>
+
+
+
+<div style="background-color:black; padding:5rem; "> 
+    <SpotLightBox/>
+</div>
+
