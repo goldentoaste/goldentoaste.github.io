@@ -43,6 +43,7 @@
 <div class="parent">
     <div
         class="dropDownTitle"
+        {style}
         on:click={() => {
             expanded = !expanded;
         }}
@@ -104,7 +105,6 @@
         height: 1rem;
         display: inline-block;
         margin-right: 1rem;
-
         background-color: var(--bg-alt);
 
         transform: rotate(45deg);
@@ -147,7 +147,7 @@
     }
 
     .dropDownTitle {
-        position: relative;
+  
         background-color: var(--fg);
         color: var(--bg-alt);
         padding: 1rem;
@@ -158,7 +158,7 @@
         display: flex;
         align-items: center;
         justify-content: left;
-        z-index: 51;
+ 
     }
 
     .dropDownTitle:hover {
@@ -167,10 +167,9 @@
 
     .dropDownBody {
         border: 2px solid var(--fg-alt);
-        position: relative;
+    
         height: fit-content;
-        z-index: 51;
-
+    
         background-color: var(--bg);
         max-height: 0;
 
@@ -181,5 +180,7 @@
     .parent {
         display: flex;
         flex-direction: column;
+  position: relative;
+  z-index: 50;
     }
 </style>
