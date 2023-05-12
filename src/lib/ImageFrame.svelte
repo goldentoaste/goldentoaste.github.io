@@ -181,7 +181,9 @@
                 {#if index !== items.length - 1 && $scrollVal < 0}
                     <div class="imageItem">
                         <img
+                        
                             on:load={(e) => {
+                                console.log("loaded")
                                 // @ts-ignore
                                 e?.target?.style.setProperty(
                                     "filter"," opacity(1)"
@@ -206,6 +208,7 @@
                 >
                     <img
                         on:load={(e) => {
+                             console.log("loaded")
                             // @ts-ignore
                             e?.target?.style.setProperty(
                                     "filter"," opacity(1)"
@@ -213,9 +216,11 @@
                         }}
                         src={items[index].src}
                         alt="item"
-                        style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
+                        style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem); filter:opacity(1);"
                     />
                 </div>
+
+                <link rel="preload" href={items[index+1].src}/>
 
                 <!-- this goes over original -->
                 {#if index != 0 && $scrollVal > 0}
