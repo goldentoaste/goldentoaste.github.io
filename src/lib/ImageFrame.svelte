@@ -63,6 +63,7 @@
 
         // user swiped so that cursor leaves image
         const offset = lastPos - box.getBoundingClientRect().left;
+
         let exitSwipe = offset > width || offset < 0;
 
         // user swiped fast enough
@@ -180,8 +181,11 @@
                 {#if index !== items.length - 1 && $scrollVal < 0}
                     <div class="imageItem">
                         <img
-                            on:load={() => {
-                        
+                            on:load={(e) => {
+                                // @ts-ignore
+                                e?.target?.style.setProperty(
+                                    "filter"," opacity(1)"
+                                );
                             }}
                             src={items[index + 1].src}
                             alt="item"
@@ -201,8 +205,11 @@
                         : ""}
                 >
                     <img
-                        on:load={() => {
-                        
+                        on:load={(e) => {
+                            // @ts-ignore
+                            e?.target?.style.setProperty(
+                                    "filter"," opacity(1)"
+                                );
                         }}
                         src={items[index].src}
                         alt="item"
@@ -221,41 +228,49 @@
                         )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);"
                     >
                         <img
-                            on:load={() => {
-                            
+                            on:load={(e) => {
+                                // @ts-ignore
+                                e?.target?.style.setProperty(
+                                    "filter"," opacity(1)"
+                                );
                             }}
                             src={items[index - 1].src}
                             alt="item"
-                            style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
+                            style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
                         />
                     </div>
                 {/if}
 
                 {#if showArrows}
                     {#if index !== 0}
-                        <div class="arrow" id="left">
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <div
+                            transition:fade={{ duration: 200 }}
+                            class="arrow"
+                            id="left"
+                            on:click={() => {
+                                $scrollVal = width;
+                            }}
+                        >
                             <!-- svelte-ignore missing-declaration -->
-                            <!-- svelte-ignore a11y-click-events-have-key-events -->
-                            <svg
-                                viewBox="0 0 6 6"
-                                on:click={() => {
-                                    $scrollVal = width;
-                                }}
-                            >
+
+                            <svg viewBox="0 0 6 6">
                                 <use href="#arrow" />
                             </svg>
                         </div>
                     {/if}
 
                     {#if index !== items.length - 1}
-                        <div class="arrow" id="right">
-                            <!-- svelte-ignore a11y-click-events-have-key-events -->
-                            <svg
-                                viewBox="0 0 6 6"
-                                on:click={() => {
-                                    $scrollVal = -width;
-                                }}
-                            >
+                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <div
+                            transition:fade={{ duration: 200 }}
+                            class="arrow"
+                            id="right"
+                            on:click={() => {
+                                $scrollVal = -width;
+                            }}
+                        >
+                            <svg viewBox="0 0 6 6">
                                 <use href="#arrow" />
                             </svg>
                         </div>
@@ -303,7 +318,6 @@
         flex-direction: column;
 
         user-select: none;
-   
     }
 
     .imagewrapper {
@@ -313,8 +327,6 @@
         border: var(--fg-alt) 2px solid;
         overflow: hidden;
         touch-action: none;
-
-      
     }
 
     .imageItem {
@@ -326,7 +338,6 @@
         pointer-events: none;
         user-select: none;
         overflow: hidden;
-      
 
         display: flex;
         /* justify-content: center; */
@@ -335,21 +346,20 @@
         transition: border-color box-shadow 0.5s ease-in-out;
 
         background: var(--bg);
-        background-size: 100% 100%; 
+        background-size: 100% 100%;
     }
 
     img {
-      
         display: block;
-
         object-fit: contain;
         /* display: block; */
         pointer-events: none;
 
         user-select: none;
         padding: 1rem;
-        
-     
+
+        filter: opacity(0);
+        transition: filter 0.25s ease-out;
     }
 
     #counter {
@@ -394,6 +404,7 @@
         flex-direction: column;
         justify-content: center;
         transition: all 0.2s ease-out;
+        margin: 0 0.5rem;
     }
 
     .arrow:active {
