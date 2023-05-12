@@ -177,71 +177,73 @@
                 }}
             >
                 <!-- this goes behind original -->
-                <!-- shrink original if so -->
-                {#if index !== items.length - 1 && $scrollVal < 0}
-                    <div class="imageItem">
+                <!-- shrink original if so  && $scrollVal < 0 && $scrollVal > 0-->
+                {#if index !== items.length - 1}
+                    <div
+                        id={index + 1 + ""}
+                        class="imageItem"
+                        style="z-index:1"
+                    >
                         <img
-                        
                             on:load={(e) => {
-                                console.log("loaded")
+                                console.log("loaded");
                                 // @ts-ignore
                                 e?.target?.style.setProperty(
-                                    "filter"," opacity(1)"
+                                    "filter",
+                                    " opacity(1)"
                                 );
                             }}
                             src={items[index + 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
+                            loading="lazy"
                         />
                     </div>
                 {/if}
 
                 <div
+                    id={index + ""}
                     class="imageItem"
-                    style={$scrollVal < 0 && index != items.length - 1
+                    style={($scrollVal < 0 && index != items.length - 1
                         ? `border-right: 2px solid var(--fg); width:${clamp(
                               0,
                               width - abs,
                               width
-                          )}px; box-shadow:  0 0 2rem var(--bg-alt3);`
-                        : ""}
+                          )}px; box-shadow:0 0 2rem var(--bg-alt3);`
+                        : "") + "z-index:2;"}
                 >
                     <img
-                        on:load={(e) => {
-                             console.log("loaded")
-                            // @ts-ignore
-                            e?.target?.style.setProperty(
-                                    "filter"," opacity(1)"
-                                );
-                        }}
                         src={items[index].src}
                         alt="item"
                         style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem); filter:opacity(1);"
                     />
                 </div>
 
-                <link rel="preload" href={items[index+1].src}/>
-
                 <!-- this goes over original -->
-                {#if index != 0 && $scrollVal > 0}
+                {#if index !== 0}
                     <div
+                        id={index - 1 + ""}
                         class="imageItem"
-                        style="border-right: 2px solid var(--fg); width:{clamp(
-                            0,
-                            abs,
-                            width
-                        )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);"
+                        style={($scrollVal > 0
+                            ? `border-right: 2px solid var(--fg); width:${clamp(
+                                  0,
+                                  abs,
+                                  width
+                              )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);`
+                            : "width:0;") + "z-index:3;"}
                     >
                         <img
                             on:load={(e) => {
                                 // @ts-ignore
                                 e?.target?.style.setProperty(
-                                    "filter"," opacity(1)"
+                                    "filter",
+                                    "opacity(1)"
                                 );
                             }}
                             src={items[index - 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
+                            loading="lazy"
                         />
                     </div>
                 {/if}
@@ -348,8 +350,9 @@
         /* justify-content: center; */
         align-items: center;
 
-        transition: border-color box-shadow 0.5s ease-in-out;
-
+        transition-property: border-color, box-shadow;
+        transition-timing-function: ease-out;
+        transition-duration: 0.5s;
         background: var(--bg);
         background-size: 100% 100%;
     }
@@ -367,10 +370,14 @@
         transition: filter 0.25s ease-out;
     }
 
+    p{
+        margin: 0.25rem;
+    }
+
     #counter {
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: -1px;
         padding: 0 0.5rem;
         background-color: var(--bg-alt);
         color: var(--fg);
@@ -384,11 +391,12 @@
         top: 0;
         left: 0;
 
-        transform: translate(calc(-50% + 0.15rem), calc(-50% + 0.15rem));
+        transform: translate(-17%, -17%);
 
         display: flex;
 
-        padding: 0.76rem;
+        padding-right: 1rem;
+        padding-bottom: 1rem;
         background-color: var(--bg-alt);
     }
 
@@ -410,6 +418,7 @@
         justify-content: center;
         transition: all 0.2s ease-out;
         margin: 0 0.5rem;
+        z-index: 6;
     }
 
     .arrow:active {
