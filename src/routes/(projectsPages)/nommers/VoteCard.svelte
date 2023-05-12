@@ -139,7 +139,6 @@
         targets.x = 0;
         targets.y = 0;
         coords.set(targets);
-        console.log(targets);
     }}
 />
 

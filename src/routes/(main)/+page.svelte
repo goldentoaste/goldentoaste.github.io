@@ -3,7 +3,6 @@
     import Section from "$lib/Section.svelte";
     import InfoBox from "$lib/InfoBox.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
-    import { onMount } from "svelte";
     import { fade } from "svelte/transition";
     import { finishOutro } from "$lib/stores/pageUpdates";
     interface SkillItem {

@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
     export interface TechItem {
         name: string;
-        src: string;
-        path: string;
+        src?: string;
+        path?: string;
     }
 
     export interface TechGroup {

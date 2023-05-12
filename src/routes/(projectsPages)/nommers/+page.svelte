@@ -27,6 +27,28 @@
     Nommers! (and nom the process)
 </p>
 
+<Divider />
+
+<ul>
+    <li>
+        Co-created with: <a href="https://github.com/christinaraganit"
+            >Christina Raganit</a
+        >
+    </li>
+    <li>
+        Links:
+        <ul>
+            <li>
+                <a href="https://github.com/goldentoaste/nommers">Github</a>
+            </li>
+
+            <li>
+                <a href="https://devpost.com/software/nommers">DevPost</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
 <div class="top">
     <ImageFrame
         maxWidth={500}
@@ -43,8 +65,12 @@
                 src: "nommer/2.jpg",
             },
             {
-                desc:"Image of an unrelated cat",
-                src:"nommer/cat.jpg"
+                desc: "Image of an unrelated cat",
+                src: "nommer/cat.jpg",
+            },
+            {
+                desc:"Image of two unrelated cats",
+                src:"nommer/2cats.jpg"
             }
         ]}
     />
@@ -106,10 +132,7 @@
 
 <div style="width:500px; height:500px;">
     <VoteCard>
-        <div class="demo">
-
-            More work is needed for this widget
-        </div>
+        <div class="demo">More work is needed for this widget</div>
     </VoteCard>
 </div>
 
@@ -120,5 +143,7 @@
         flex-flow: wrap;
     }
 
-    .demo{color:black;}
+    .demo {
+        color: black;
+    }
 </style>

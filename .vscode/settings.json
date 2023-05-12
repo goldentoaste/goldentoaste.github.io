@@ -1,0 +1,6 @@
+{
+    "emmet.includeLanguages": {
+        "svelte": "html"
+    },
+    "svelte.plugin.html.completions.emmet": true
+}

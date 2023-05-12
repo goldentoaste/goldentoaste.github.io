@@ -180,6 +180,9 @@
                 {#if index !== items.length - 1 && $scrollVal < 0}
                     <div class="imageItem">
                         <img
+                            on:load={() => {
+                        
+                            }}
                             src={items[index + 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
@@ -198,6 +201,9 @@
                         : ""}
                 >
                     <img
+                        on:load={() => {
+                        
+                        }}
                         src={items[index].src}
                         alt="item"
                         style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
@@ -215,6 +221,9 @@
                         )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);"
                     >
                         <img
+                            on:load={() => {
+                            
+                            }}
                             src={items[index - 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
@@ -224,11 +233,7 @@
 
                 {#if showArrows}
                     {#if index !== 0}
-                        <div
-                            class="arrow"
-                            id="left"
-                            transition:fade={{ duration: 200 }}
-                        >
+                        <div class="arrow" id="left">
                             <!-- svelte-ignore missing-declaration -->
                             <!-- svelte-ignore a11y-click-events-have-key-events -->
                             <svg
@@ -243,11 +248,7 @@
                     {/if}
 
                     {#if index !== items.length - 1}
-                        <div
-                            class="arrow"
-                            id="right"
-                            transition:fade={{ duration: 200 }}
-                        >
+                        <div class="arrow" id="right">
                             <!-- svelte-ignore a11y-click-events-have-key-events -->
                             <svg
                                 viewBox="0 0 6 6"
@@ -302,6 +303,7 @@
         flex-direction: column;
 
         user-select: none;
+   
     }
 
     .imagewrapper {
@@ -311,6 +313,8 @@
         border: var(--fg-alt) 2px solid;
         overflow: hidden;
         touch-action: none;
+
+      
     }
 
     .imageItem {
@@ -322,25 +326,30 @@
         pointer-events: none;
         user-select: none;
         overflow: hidden;
-        background-color: var(--bg-alt);
+      
 
         display: flex;
         /* justify-content: center; */
         align-items: center;
 
         transition: border-color box-shadow 0.5s ease-in-out;
+
+        background: var(--bg);
+        background-size: 100% 100%; 
     }
 
     img {
-        /* height: auto; */
+      
         display: block;
-        
+
         object-fit: contain;
         /* display: block; */
         pointer-events: none;
 
         user-select: none;
         padding: 1rem;
+        
+     
     }
 
     #counter {
