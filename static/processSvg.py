@@ -2,26 +2,14 @@ import sys
 from svg.path import parse_path
 
 p = sys.argv[1]
-
+maxSize = float(sys.argv[2])
 
 # normalize a given svg path
 path = parse_path(p).d().split()
 
-m = 0
-
-for item in path:
-    
-    parts = item.split(",")
-    
-    p:str
-    for p in parts:
-        if p.replace('.','').isdigit():
-            num = float(p)
-            if num > m:
-                m = num
-                
-
 out = ""
+
+
 
 
 for item in path:
@@ -30,11 +18,12 @@ for item in path:
     
     temp = []
     for p in parts:
-        if p.replace('.','').isdigit():
+      
+        try:
             num = float(p)
-            temp.append(f"{num/m:.4f}")
-        else:
+            temp.append(f"{num/maxSize:.4f}")
+        except ValueError:
             out += f" {p}"
     out += f" {','.join(temp)}"
     
-print(out)
+print(out.replace("  ", " "))

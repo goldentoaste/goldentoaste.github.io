@@ -186,7 +186,7 @@
                     >
                         <img
                             on:load={(e) => {
-                                console.log("loaded");
+
                                 // @ts-ignore
                                 e?.target?.style.setProperty(
                                     "filter",

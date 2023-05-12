@@ -8,6 +8,13 @@ export enum PageState {
     ReadyToNav
 }
 
+export let stateName = {
+    0 : "No Transition",
+    1: "Need Transition",
+    2: "Transitioning",
+    3: "Ready to Nav"
+}
+
 export const pageState: Writable<PageState> = writable(PageState.NoTransition);
 export const navDest: Writable<string> = writable('');
 

@@ -3,8 +3,8 @@
     import Shadow from '$lib/Shadow.svelte';
     import Grid from '$lib/Grid.svelte';
     import { onMount } from 'svelte';
-    import { PageState, pageState, navDest } from '$lib/stores/pageUpdates';
-    import { beforeNavigate, goto } from '$app/navigation';
+    import { PageState, pageState, navDest, stateName } from '$lib/stores/pageUpdates';
+    import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
     import '../../global.css';
     import type { BeforeNavigate } from '@sveltejs/kit';
     import { browser } from '$app/environment';
@@ -50,11 +50,12 @@
 
     beforeNavigate((nav: BeforeNavigate) => {
     
-        if (nav.to === null || nav.to?.route.id === $page.route.id || $pageState === PageState.NoTransition) {
+        if (nav.to === null || nav.to?.route.id === $page.route.id ) {
             // if the current page does not request to wait for transition, then dont do anything
             $navDest = '';
             return;
         }
+        
 
         if ($pageState === PageState.NeedTransition) {
             $pageState = PageState.Transitioning;
@@ -64,12 +65,18 @@
             navDest.set(nav.to?.route.id?.replace(/\/?\(\w+\)/g, "") || '/');
             nav.cancel();
         }
+
+        // if ($pageState === PageState.NoTransition){
+        //     $pageState = PageState.Transitioning;
+        // }
     });
+
 
     pageState.subscribe((state) => {
         if (browser && state === PageState.ReadyToNav && $navDest) {
-       
-            goto($navDest).then((val) => {
+            
+            goto($navDest)
+            .then((val) => {
                 pageState.set(PageState.NoTransition);
             });
         }
