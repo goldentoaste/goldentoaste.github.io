@@ -29,6 +29,7 @@
 
 <div class="top">
     <ImageFrame
+        maxWidth={500}
         width={500}
         height={300}
         title="Project show case"
@@ -41,6 +42,10 @@
                 desc: "Nom Nom Nom",
                 src: "nommer/2.jpg",
             },
+            {
+                desc:"Image of an unrelated cat",
+                src:"nommer/cat.jpg"
+            }
         ]}
     />
 

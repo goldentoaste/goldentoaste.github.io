@@ -18,6 +18,12 @@
 
     export let width = 200;
     export let height = 200;
+    export let maxWidth = 200;
+    let clientWidth: number;
+
+    $: {
+        width = Math.min(clientWidth, maxWidth);
+    }
 
     const epsilon = 1;
 
@@ -112,7 +118,9 @@
         {title}
     >
         <div
+            bind:clientWidth
             class="imgHolder"
+            style="width:{maxWidth}px; height:{height}px;"
             on:mouseenter={() => {
                 showArrows = true;
             }}
@@ -146,11 +154,9 @@
                 </defs>
             </svg>
 
+            <!-- width:{width}px; height:{height}px; -->
             <div
                 class="imagewrapper"
-                style="
-                    width:{width}px; height:{height}px;
-                    "
                 bind:this={box}
                 on:mousedown={down}
                 on:mouseup={up}
@@ -176,7 +182,7 @@
                         <img
                             src={items[index + 1].src}
                             alt="item"
-                            style="min-width: calc({width}px - 2rem);"
+                            style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
                         />
                     </div>
                 {/if}
@@ -194,7 +200,7 @@
                     <img
                         src={items[index].src}
                         alt="item"
-                        style="min-width: calc({width}px - 2rem);"
+                        style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
                     />
                 </div>
 
@@ -211,7 +217,7 @@
                         <img
                             src={items[index - 1].src}
                             alt="item"
-                            style="min-width: calc({width}px - 2rem);"
+                            style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
                         />
                     </div>
                 {/if}
@@ -286,7 +292,8 @@
     .imgHolder {
         position: relative;
 
-        height: fit-content;
+        max-width: 100%;
+        max-height: 100%;
 
         display: flex;
         align-items: center;
@@ -298,6 +305,8 @@
     }
 
     .imagewrapper {
+        width: 100%;
+        height: 100%;
         position: relative;
         border: var(--fg-alt) 2px solid;
         overflow: hidden;
@@ -323,9 +332,11 @@
     }
 
     img {
-        height: auto;
-        width: auto;
+        /* height: auto; */
         display: block;
+        
+        object-fit: contain;
+        /* display: block; */
         pointer-events: none;
 
         user-select: none;
