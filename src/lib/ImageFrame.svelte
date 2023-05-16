@@ -190,13 +190,13 @@
                                 // @ts-ignore
                                 e?.target?.style.setProperty(
                                     "filter",
-                                    " opacity(1)"
+                                    "opacity(1)"
                                 );
                             }}
                             src={items[index + 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
-                            loading="lazy"
+                                loading="lazy"
                         />
                     </div>
                 {/if}

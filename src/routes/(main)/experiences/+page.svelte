@@ -11,7 +11,7 @@
 
 <h1
     transition:fade={{
-        duration: 1000,
+        duration: 150,
     }}
     on:outroend={finishOutro}
 >

@@ -4,7 +4,7 @@
     import { finishOutro } from "$lib/stores/pageUpdates";
 </script>
 
-<div transition:fade={{ duration: 1000 }} on:outroend={finishOutro}>
+<div transition:fade={{ duration: 150 }} on:outroend={finishOutro}>
     <ProjectPage
         contents={[
             {
@@ -14,18 +14,17 @@
                 page: "nommers",
             },
             {
-                text: "Test page 1",
-                title: "ASDASD",
-                path: "",
-                page: "debug2",
-            },
-
-            {
-                text: "ScreencCap",
+                text: "✂️ ScreencCap",
                 title: "ScreenCap - A screen capturing/utilities tool for desktop",
                 path: "",
                 page: "screencap",
             },
+            {
+                text:"🥠 MisFortune Cookie", 
+                title: "MisFortune Cookie: Tasty daily fortune",
+                path:"",
+                page: "fortunecookie"
+            }
         ]}
     />
 </div>

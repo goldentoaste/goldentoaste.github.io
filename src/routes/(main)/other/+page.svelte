@@ -14,6 +14,8 @@
 
 <h1>Coming soon!</h1>
 
+<p>(Just dumping some experimental ui elements here for now)</p>
+
 <DropDown title={"Drop down test title"}>
     <List>
         {#each [...Array(5).keys()] as x}
