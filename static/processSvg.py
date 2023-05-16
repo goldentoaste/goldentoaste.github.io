@@ -7,6 +7,9 @@ offset = float(sys.argv[3])
 # normalize a given svg path
 
 path = parse_path(p).d().split()
+if path[0] == "m":
+    path[0] = "M"
+
 print(path)
 # print(parse_path(p))
 out = f""
@@ -24,24 +27,24 @@ for item in path:
         
         try:
             num = float(p)
-
-            print(last)
-            if last and last.isupper():
+            if  last.isupper():
                 if index == 0 and last == "V":
                     num -= offset
                 if index == 1:
                     num -= offset   
-         
-            if last and ( last in ('v', 'V') or (last.isupper() and index == 1)):
-                temp.append(f"{num/(maxSize - offset):.4f}")
-            else:
-                temp.append(f"{num/(maxSize):.4f}")
+                   
+            result = f"{num/(maxSize):.3f}"
+            if result[0] == '0':
+                result = result[1:]
+            if result[0] =='-':
+                result = '-'+result[2:]
+            temp.append(result)
         except ValueError:
-            out += f" {p}"
+            out += f"{p}"
             
     if len(parts) == 1:
         last = parts[0].strip()
 
-    out += f" {','.join(temp)}"
+    out += f" {''.join(temp)}"
     
-print(out.replace("  ", " "))
+print(out.replace(" ", ""))

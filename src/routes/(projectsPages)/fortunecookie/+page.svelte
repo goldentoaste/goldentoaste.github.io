@@ -14,7 +14,7 @@
 <h1>(Mis)Fortune Cookies!</h1>
 
 <div class="points">
-    <IconListItem path={svgs.link} key="star">
+    <IconListItem path={svgs.star} key="star">
         Winner of SFU System Hacks 2023 - Judge's Choice
     </IconListItem>
 
