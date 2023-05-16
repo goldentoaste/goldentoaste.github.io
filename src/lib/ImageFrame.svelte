@@ -185,14 +185,7 @@
                         style="z-index:1"
                     >
                         <img
-                            on:load={(e) => {
-
-                                // @ts-ignore
-                                e?.target?.style.setProperty(
-                                    "filter",
-                                    "opacity(1)"
-                                );
-                            }}
+                           
                             src={items[index + 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
@@ -233,13 +226,7 @@
                             : "width:0;") + "z-index:3;"}
                     >
                         <img
-                            on:load={(e) => {
-                                // @ts-ignore
-                                e?.target?.style.setProperty(
-                                    "filter",
-                                    "opacity(1)"
-                                );
-                            }}
+                           
                             src={items[index - 1].src}
                             alt="item"
                             style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
@@ -366,7 +353,7 @@
         user-select: none;
         padding: 1rem;
 
-        filter: opacity(0);
+
         transition: filter 0.25s ease-out;
     }
 

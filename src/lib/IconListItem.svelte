@@ -1,7 +1,7 @@
-<script>
+<script lang='ts'>
     export let src = "";
     export let path = "";
-    export let key = "";
+    export let key :string;
 </script>
 
 <div class="parent">

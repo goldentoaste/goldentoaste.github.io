@@ -1,34 +1,90 @@
-
-
-
 <script lang="ts">
+    import Divider from "$lib/Divider.svelte";
     import IconListItem from "$lib/IconListItem.svelte";
+    import ImageFrame from "$lib/ImageFrame.svelte";
+    import TechUsed from "$lib/TechUsed.svelte";
     import { svgs } from "$lib/stores/svgs";
-
-
 </script>
 
-
-
-
 <h1>(Mis)Fortune Cookies!</h1>
+<p>
+    MisFortune Cookie delivers your daily fortune via a virtual cookie! Crack
+    open your cookie each morning so you can be prepared for the day.
+</p>
 
+<Divider />
 <div class="points">
     <IconListItem path={svgs.star} key="star">
         Winner of SFU System Hacks 2023 - Judge's Choice
     </IconListItem>
 
-    
+    <IconListItem path={svgs.github} key="github">
+        <a href="https://github.com/goldentoaste/fortune-cookie">Github Repo</a
+        ></IconListItem
+    >
+    <IconListItem path={svgs.link} key="link">
+        <a href="https://goldentoaste.github.io/fortune-cookie/"
+            >Try it out here!</a
+        >
+    </IconListItem>
+
+    <IconListItem path={svgs.link} key="link">
+        <a href="https://devpost.com/software/misfortune-cookie">DevPost Page</a
+        >
+    </IconListItem>
+</div>
+<Divider />
+<div class="top">
+    <ImageFrame
+        maxWidth={400}
+        height={300}
+        title="Cookie Demos"
+        items={[
+            {
+                desc: "Grahpics of the fortune cookie",
+                src: "cookie/cookie.jpg",
+            },
+            {
+                desc: "The cookie getting cracked open, revealing the message",
+                src: "cookie/cracked.jpg",
+            },
+        ]}
+    />
+
+    <TechUsed
+        input={[
+            {
+                name: "Front End",
+                items: [
+                    {
+                        name: "Svelte",
+                        src: "icons/svelte.svg",
+                    },
+                ],
+            },
+            {
+                name: "Back End",
+                items: [
+                    {
+                        name: "Svelte Kit",
+                        src: "icons/svelte.svg",
+                    },
+                ],
+            },
+        ]}
+    />
 </div>
 
-
 <style>
-
-    
-
+    .top {
+        display: flex;
+        flex-grow: wrap;
+        gap: 1rem;
+        flex-direction: row;
+    }
 
     .points {
-        display:flex;
+        display: flex;
         flex-flow: wrap;
         gap: 0.5rem;
         flex-direction: column;

@@ -2,5 +2,6 @@
     "emmet.includeLanguages": {
         "svelte": "html"
     },
-    "svelte.plugin.html.completions.emmet": true
+    "svelte.plugin.html.completions.emmet": true,
+    "svg.preview.background": "white"
 }
