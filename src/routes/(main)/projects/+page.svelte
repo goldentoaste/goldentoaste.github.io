@@ -14,7 +14,7 @@
                 page: "nommers",
             },
             {
-                text: "✂️ ScreencCap",
+                text: "✂️ ScreenCap",
                 title: "ScreenCap - A screen capturing/utilities tool for desktop",
                 path: "",
                 page: "screencap",
