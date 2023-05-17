@@ -8,10 +8,16 @@
     <ProjectPage
         contents={[
             {
-                text: "🍔 Nommers",
-                title: "Nommers : Resturant finder web app",
+                text: "🔮 Toneteller",
+                title: "Toneteller - Ai tool for emotion detection",
                 path: "",
-                page: "nommers",
+                page: "toneteller",
+            },
+            {
+                text: "🥠 MisFortune Cookie",
+                title: "MisFortune Cookie: Tasty daily fortune",
+                path: "",
+                page: "fortunecookie",
             },
             {
                 text: "✂️ ScreenCap",
@@ -19,19 +25,13 @@
                 path: "",
                 page: "screencap",
             },
-            {
-                text:"🥠 MisFortune Cookie", 
-                title: "MisFortune Cookie: Tasty daily fortune",
-                path:"",
-                page: "fortunecookie"
-            },
 
             {
-                text:"🔮 Toneteller",
-                title: "Toneteller - Ai tool for emotion detection",
-                path:"",
-                page: "toneteller"
-            }
+                text: "🍔 Nommers",
+                title: "Nommers : Resturant finder web app",
+                path: "",
+                page: "nommers",
+            },
         ]}
     />
 </div>

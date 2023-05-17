@@ -31,7 +31,7 @@
 
 <ul>
     <li>
-        Co-created with: <a href="https://github.com/christinaraganit"
+        Co-created with: <a target="_blank" href="https://github.com/christinaraganit"
             >Christina Raganit</a
         >
     </li>
@@ -39,11 +39,11 @@
         Links:
         <ul>
             <li>
-                <a href="https://github.com/goldentoaste/nommers">Github</a>
+                <a target="_blank" href="https://github.com/goldentoaste/nommers">Github</a>
             </li>
 
             <li>
-                <a href="https://devpost.com/software/nommers">DevPost</a>
+                <a target="_blank" href="https://devpost.com/software/nommers">DevPost</a>
             </li>
         </ul>
     </li>

@@ -5,12 +5,10 @@
     import TechUsed from "$lib/TechUsed.svelte";
     import { svgs } from "$lib/stores/svgs";
 
-    import Highlight from 'svelte-highlight';
-    import typescript from 'svelte-highlight/languages/typescript';
+    import Highlight from "svelte-highlight";
+    import typescript from "svelte-highlight/languages/typescript";
     import "svelte-highlight/styles/gruvbox-dark-medium.css";
 </script>
-
-
 
 <h1>(Mis)Fortune Cookies!</h1>
 <p>
@@ -25,23 +23,21 @@
     </IconListItem>
 
     <IconListItem path={svgs.github} key="github">
-        <a href="https://github.com/goldentoaste/fortune-cookie">Github Repo</a
+        <a target="_blank" href="https://github.com/goldentoaste/fortune-cookie"
+            >Github Repo</a
         ></IconListItem
     >
     <IconListItem path={svgs.link} key="link">
-        <a href="https://goldentoaste.github.io/fortune-cookie/"
+        <a target="_blank" href="https://goldentoaste.github.io/fortune-cookie/"
             >Try it out here!</a
         >
     </IconListItem>
 
     <IconListItem path={svgs.link} key="link">
-        <a href="https://devpost.com/software/misfortune-cookie">DevPost Page</a
+        <a target="_blank" href="https://devpost.com/software/misfortune-cookie"
+            >DevPost Page</a
         >
     </IconListItem>
-
-
-    
-    
 </div>
 <Divider />
 <div class="top">
@@ -89,23 +85,26 @@
     />
 </div>
 
-
 <p>
-    This project was initially created during Sfu SystemHacks 2023 in under 12 hours, and the currently deployed site 
-    is really a demo of the concept. Currently it would be nice to improve the general UI, improve animation, and most importantly improve 
-    the message generation system. 
+    This project was initially created during Sfu SystemHacks 2023 in under 12
+    hours, and the currently deployed site is really a demo of the concept.
+    Currently it would be nice to improve the general UI, improve animation, and
+    most importantly improve the message generation system.
 </p>
 
 <p>
-    The message generation currently works of a template system, for example a template can look like: 
-    <Highlight language={typescript} code='"I sure would __adj__ to __verb__ a __noun__ right now!"' />
+    The message generation currently works of a template system, for example a
+    template can look like:
+    <Highlight
+        language={typescript}
+        code="`I sure would __adj__ to __verb__ a __noun__ right now!`"
+    />
 
-    where the dunder wrapped place holders 
-    can be replaced with corresponding words at run time, and pray that they make sense. It would nice to 
-    make it to modify the system to make it more gramatically correct and the sentence outputs could make more sense.
+    where the dunder wrapped place holders can be replaced with corresponding
+    words at run time, and pray that they make sense. It would nice to make it
+    to modify the system to make it more gramatically correct and the sentence
+    outputs could make more sense.
 </p>
-
-
 
 <style>
     .top {

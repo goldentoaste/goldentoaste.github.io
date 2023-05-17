@@ -12,7 +12,7 @@
 
 
 <IconListItem path={svgs.github} key="github"
-    ><a href="https://github.com/goldentoaste/screenCap">Github repo</a>
+    ><a target="_blank" href="https://github.com/goldentoaste/screenCap">Github repo</a>
 </IconListItem>
 
 <p>
