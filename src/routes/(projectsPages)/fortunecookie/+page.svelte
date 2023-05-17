@@ -120,5 +120,6 @@
         flex-flow: wrap;
         gap: 0.5rem;
         flex-direction: column;
+        margin-left: 1rem;
     }
 </style>

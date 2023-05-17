@@ -60,5 +60,8 @@
 
     .items{
         margin: 0.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
     }
 </style>

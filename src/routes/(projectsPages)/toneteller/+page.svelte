@@ -5,8 +5,7 @@
     import TechUsed from "$lib/TechUsed.svelte";
     import { svgs } from "$lib/stores/svgs";
 
-    import Highlight from 'svelte-highlight';
-    import typescript from 'svelte-highlight/languages/typescript';
+  
     import "svelte-highlight/styles/gruvbox-dark-medium.css";
 </script>
 
@@ -14,25 +13,32 @@
 
 <h1>Toneteller!</h1>
 <p>
-    Toneteller is 
+    Toneteller is an Ai powered tool to analyse any text on the browser to detect the emotion behind any sentence.
+    This web app features a well designed main webpage, and also a chrome extension so the detection can work on any webpage.
 </p>
 
 <Divider />
 <div class="points">
     <IconListItem path={svgs.star} key="star">
-        Winner of SFU System Hacks 2023 - Judge's Choice
+        Winner of HackED 2023 at Edmonton - 2nd Place
     </IconListItem>
 
     <IconListItem path={svgs.github} key="github">
-        <a href="https://github.com/goldentoaste/fortune-cookie">Github Repo</a
+        <a href="https://github.com/iAniket23/tone-teller">Github Repo</a
         ></IconListItem
     >
     <IconListItem path={svgs.link} key="link">
-        <a href="https://goldentoaste.github.io/fortune-cookie/"
+        <a href="https://hackathon-hacked2023.github.io/DivineInspiration/"
             >Try it out here!</a
         >
     </IconListItem>
 
+    <IconListItem path={svgs.puzzle} key="puzzle">
+        <a href="https://github.com/Hackathon-Hacked2023/DivineInspiration/releases/tag/v1"
+            >Download the Chrome extension here!</a
+        >
+    </IconListItem>
+   
     <IconListItem path={svgs.link} key="link">
         <a href="https://devpost.com/software/misfortune-cookie">DevPost Page</a
         >
@@ -45,22 +51,26 @@
 <Divider />
 <div class="top">
     <ImageFrame
-        maxWidth={400}
+        maxWidth={600}
         height={300}
-        title="Cookie Demos"
+        title="Toneteller demos"
         items={[
             {
-                desc: "Grahpics of the fortune cookie",
-                src: "cookie/cookie.jpg",
+                desc: "Promo image of Toneteller",
+                src: "toneteller/promo.jpg",
             },
             {
-                desc: "The cookie getting cracked open, revealing the message",
-                src: "cookie/cracked.jpg",
+                desc: "This page lets the user type in their input directly and get the analysis results here.",
+                src: "toneteller/input.jpg",
             },
             {
-                desc: "An example message box",
-                src: "cookie/messagebox.jpg",
+                desc: "Toneteller's Chrome extension lets you use the Ai analysis anywhere.",
+                src: "toneteller/extension.jpg",
             },
+            {
+                desc:"The extension can also anaylse content in any webpage.",
+                src:'toneteller/webpage.jpg'
+            }
         ]}
     />
 
@@ -70,39 +80,64 @@
                 name: "Front End",
                 items: [
                     {
-                        name: "Svelte",
+                        name: "React",
                         src: "icons/svelte.svg",
                     },
+                    {
+                        name:"Lots of Custom Css",
+                        src:"icons/css.svg"
+                    },
+                    {
+                        name:"Chrome Extension Api",
+                        src:"icons/chrome.svg"
+                    }
                 ],
             },
             {
-                name: "Back End",
+                name: "Server",
                 items: [
                     {
-                        name: "Svelte Kit",
-                        src: "icons/svelte.svg",
+                        name: "Python",
+                        src: "icons/python.svg",
                     },
+                    {
+                        name:"Flask",
+                        src:"icons/flask.svg"
+                    }
                 ],
             },
+
+            {
+                name:"Deployment",
+                items:[
+                    {
+                        name: "Google Cloud Run",
+                        src: "icons/gcloud.svg"
+                    },
+                    {
+                        name: "Docker",
+                        src:"icons/docker.svg"
+                    }
+                ]
+            },
+            {
+                name:"Machine Learning",
+                items:[
+                    {
+                        name:"Hugging Face",
+                        src:"icons/huggingface.svg"
+                    },
+                    {
+                        name: "🤖 RoBERTa (language model)",
+                        src:""
+                    }
+                ]
+            }
         ]}
     />
 </div>
 
 
-<p>
-    This project was initially created during Sfu SystemHacks 2023 in under 12 hours, and the currently deployed site 
-    is really a demo of the concept. Currently it would be nice to improve the general UI, improve animation, and most importantly improve 
-    the message generation system. 
-</p>
-
-<p>
-    The message generation currently works of a template system, for example a template can look like: 
-    <Highlight language={typescript} code='"I sure would __adj__ to __verb__ a __noun__ right now!"' />
-
-    where the dunder wrapped place holders 
-    can be replaced with corresponding words at run time, and pray that they make sense. It would nice to 
-    make it to modify the system to make it more gramatically correct and the sentence outputs could make more sense.
-</p>
 
 
 
@@ -119,5 +154,6 @@
         flex-flow: wrap;
         gap: 0.5rem;
         flex-direction: column;
+        padding-left: 1rem;
     }
 </style>
