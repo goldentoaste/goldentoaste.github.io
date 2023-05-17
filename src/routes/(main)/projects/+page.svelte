@@ -9,7 +9,7 @@
         contents={[
             {
                 text: "🍔 Nommers",
-                title: "Nommers : Svelte web app",
+                title: "Nommers : Resturant finder web app",
                 path: "",
                 page: "nommers",
             },
@@ -24,6 +24,13 @@
                 title: "MisFortune Cookie: Tasty daily fortune",
                 path:"",
                 page: "fortunecookie"
+            },
+
+            {
+                text:"🔮 Toneteller",
+                title: "Toneteller - Ai tool for emotion detection",
+                path:"",
+                page: "toneteller"
             }
         ]}
     />

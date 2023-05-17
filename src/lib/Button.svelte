@@ -12,7 +12,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { createEventDispatcher } from 'svelte';
-
     export let href: string = '';
     export let path: string = '';
     export let selected: boolean = false;
