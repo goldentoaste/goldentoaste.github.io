@@ -73,6 +73,7 @@
                             style="width:100%; margin:0;"
                             on:click={() => {
                                 selection = index;
+                                iframe.style.height = '0';
                             }}
                         >
                             {button.text}
@@ -94,6 +95,7 @@
                                 on:click={() => {
                                     selection = index;
                                     expanded = false;
+                                    iframe.style.height = '0';
                                 }}
                             >
                                 {button.text}
