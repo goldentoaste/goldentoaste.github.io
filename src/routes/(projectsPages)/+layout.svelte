@@ -1,5 +1,12 @@
 <script>
-    import './projects.css';
+    import { fade } from "svelte/transition";
+    import "./projects.css";
 </script>
 
-<slot/>
+<div
+    transition:fade={{
+        duration: 150,
+    }}
+>
+    <slot />
+</div>

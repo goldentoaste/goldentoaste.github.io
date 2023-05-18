@@ -17,6 +17,7 @@
     import InfoBox from "$lib/InfoBox.svelte";
     import Divider from "$lib/Divider.svelte";
     import DropDown from "$lib/DropDown.svelte";
+    import { fade } from "svelte/transition";
 
     export let contents: Content[] = [];
 
@@ -73,7 +74,6 @@
                             style="width:100%; margin:0;"
                             on:click={() => {
                                 selection = index;
-                                iframe.style.height = '0';
                             }}
                         >
                             {button.text}
@@ -95,7 +95,6 @@
                                 on:click={() => {
                                     selection = index;
                                     expanded = false;
-                                    iframe.style.height = '0';
                                 }}
                             >
                                 {button.text}
@@ -116,14 +115,18 @@
             style="width:auto; height:100%; margin:0;"
         >
             <Divider usePadding={false} />
-            <iframe
-                bind:this={iframe}
-                on:load={resizeIframe}
-                loading="lazy"
-                title={content.title}
-                src={`./${content.page}`}
-                scrolling="no">Content loading...</iframe
-            >
+
+            {#key selection}
+                <iframe
+                    in:fade={{ duration: 500 }}
+                    bind:this={iframe}
+                    on:load={resizeIframe}
+                    loading="lazy"
+                    title={content.title}
+                    src={`./${content.page}`}
+                    scrolling="no">Content loading...</iframe
+                >
+            {/key}
             <Divider usePadding={false} />
         </InfoBox>
     </div>

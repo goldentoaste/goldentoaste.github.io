@@ -5,14 +5,13 @@
     import TechUsed from "$lib/TechUsed.svelte";
 </script>
 
-<h1>Screencap :3</h1>
-
-
 
 
 
 <IconListItem path={svgs.github} key="github"
-    ><a target="_blank" href="https://github.com/goldentoaste/screenCap">Github repo</a>
+    ><a target="_blank" href="https://github.com/goldentoaste/screenCap"
+        >Github repo</a
+    >
 </IconListItem>
 
 <p>
@@ -22,13 +21,20 @@
 </p>
 
 <div class="top">
-    <ImageFrame height={600} maxWidth={800} title="Demo Images" items={
-        [
-            {desc:"Images pinned in front of other programs", src:'screencap/pinned.png'},
-            {desc:"Right click menu showcasing the various features the program has at the moment",
-        src:"screencap/menu.png"}
-        ]
-    }
+    <ImageFrame
+        height={600}
+        maxWidth={800}
+        title="Demo Images"
+        items={[
+            {
+                desc: "Images pinned in front of other programs",
+                src: "screencap/pinned.png",
+            },
+            {
+                desc: "Right click menu showcasing the various features the program has at the moment",
+                src: "screencap/menu.png",
+            },
+        ]}
     />
     <TechUsed
         input={[
