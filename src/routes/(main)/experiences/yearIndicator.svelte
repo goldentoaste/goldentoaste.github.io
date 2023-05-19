@@ -44,7 +44,7 @@
                 class="dot x2"
                 style="right:0; top:0; transform:translate(150%, 150%);"
             />
-            <div class="dot x3"  style="left:0; top:0; transform:translate(150%, 150%);"/>
+            <div class="dot x3"  style="left:0; top:0; transform:translate(300%, 150%);"/>
            
             <div class="diamond" />
         </div>
@@ -93,7 +93,7 @@
         left: 0;
         top: 0;
 
-        transform: translate(-100%, calc(-50% + 1px))  rotate(45deg);
+        transform: translate(-50%, calc(-50% + 1px))  rotate(45deg);
 
         background: var(--fg-alt);
     }

@@ -51,8 +51,9 @@
 </div>
 <Divider />
 <div class="top">
-    <div style="flex-grow:3;">
+    <div style="flex:2; max-width:fit-content">
         <ImageFrame
+
             maxWidth={600}
             height={300}
             title="Toneteller demos"
@@ -77,7 +78,7 @@
         />
     </div>
 
-    <div style="flex-grow:2;">
+    <div style="flex:3; max-width:100%;">
         <TechUsed
             input={[
                 {
@@ -145,9 +146,11 @@
 <style>
     .top {
         display: flex;
-        flex-grow: wrap;
+
         gap: 1rem;
         flex-direction: row;
+        flex-flow: wrap;
+
     }
 
     .points {

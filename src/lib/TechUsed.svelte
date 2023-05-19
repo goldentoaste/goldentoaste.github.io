@@ -17,9 +17,10 @@
     import Divider from "./Divider.svelte";
 
     export let input: TechGroup[] = [];
+    export let style : string = "";
 </script>
 
-<InfoBox title="Tech used" outline={true}>
+<InfoBox title="Tech used" outline={true} {style}> 
     <div class="techUsed">
         {#each input as group}
             <div class="techGroup">
@@ -30,10 +31,8 @@
                 <div class="items">
                     {#each group.items as item}
                         <IconListItem src={item.src} path={item.path} key={item.name}
-                            >{item.name}</IconListItem
-                        >
+                            >{item.name}</IconListItem>
                     {/each}
-
                 </div>
             </div>
         {/each}

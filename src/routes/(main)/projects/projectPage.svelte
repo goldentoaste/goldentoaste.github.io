@@ -156,7 +156,7 @@
     }
     .content {
         position: relative;
-        width: 70%;
+        width: 100%;
     }
 
     .content > *::selection {

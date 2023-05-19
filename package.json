@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"overlayscrollbars-svelte": "^0.4.0",
 		"svelte-gestures": "^1.4.1",
 		"svelte-highlight": "^7.3.0",
 		"svelte-markdown": "^0.2.3",
