@@ -1,9 +1,0 @@
-.box.svelte-a8hthr:hover::before{background:radial-gradient(
-            circle at var(--X) var(--Y),
-            var(--bg-alt) 0px,
-            var(--bg) 150px
-        )}.box.svelte-a8hthr::before{content:"";position:absolute;left:3px;top:3px;width:calc(100% - 6px);height:calc(100% - 6px);background-color:var(--bg);z-index:-1;filter:opacity(0.99)}.box.svelte-a8hthr{--X:0px;--Y:0px;z-index:1;position:relative;width:300px;height:300px;background-color:var(--bg-alt2);padding:2rem;transition-property:transform box-shadow filter;transition-duration:0.3s;transition-timing-function:ease-out}.box.svelte-a8hthr:hover{transform:scale(1.05);box-shadow:5px 5px 35px 10px var(--bg);filter:brightness(1.05);background:radial-gradient(
-            circle at var(--X) var(--Y),
-            var(--bg-alt4) 0px,
-            var(--bg) 150px
-        )}

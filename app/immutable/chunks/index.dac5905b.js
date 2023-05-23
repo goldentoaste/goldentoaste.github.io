@@ -1,3 +1,0 @@
-import{a9 as x,aa as u}from"./index.4db08ef9.js";function _(t){const n=t-1;return n*n*n+1}function C(t){return Math.pow(t-1,3)*(1-t)+1}function O(t,{delay:n=0,duration:o=400,easing:a=x}={}){const s=+getComputedStyle(t).opacity;return{delay:n,duration:o,easing:a,css:c=>`opacity: ${c*s}`}}function S(t,{delay:n=0,duration:o=400,easing:a=_,x:s=0,y:c=0,opacity:f=0}={}){const r=getComputedStyle(t),e=+r.opacity,y=r.transform==="none"?"":r.transform,p=e*(1-f),[l,m]=u(s),[$,d]=u(c);return{delay:n,duration:o,easing:a,css:(i,g)=>`
-			transform: ${y} translate(${(1-i)*l}${m}, ${(1-i)*$}${d});
-			opacity: ${e-p*g}`}}export{S as a,_ as c,O as f,C as q};
