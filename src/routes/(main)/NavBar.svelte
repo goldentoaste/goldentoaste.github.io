@@ -9,7 +9,6 @@
     import List from '$lib/List.svelte';
     import ListItem from '$lib/ListItem.svelte';
     import { fade } from 'svelte/transition';
-    import { browser } from '$app/environment';
 
     type NavItem = {
         name: string;
@@ -157,7 +156,7 @@
 
     div#root,
     div#botBar {
-        width: 100%;
+        width: 100dvw;
         position: fixed;
         top: 0;
         left: 0;
@@ -182,6 +181,7 @@
 
         height: fit-content;
         border-bottom: var(--fg) 0.2rem solid;
+    
     }
 
     nav {
@@ -190,6 +190,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
+    
     }
 
     nav.mobile {

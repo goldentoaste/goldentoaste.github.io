@@ -63,7 +63,7 @@
         transition-timing-function: ease-out;
     }
 
-    .box:hover {
+    /* .box:hover {
         transform: scale(1.05);
         box-shadow: 5px 5px 35px 10px var(--bg);
         filter: brightness(1.05);
@@ -73,5 +73,5 @@
             var(--bg-alt4) 0px,
             var(--bg) 150px
         );
-    }
+    } */
 </style>
