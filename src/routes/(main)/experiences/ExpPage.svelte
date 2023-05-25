@@ -8,14 +8,16 @@
 </script>
 
 <script lang="ts">
-    import { PageState, finishOutro, pageState } from "$lib/stores/pageUpdates";
+    import { PageState, pageState } from "$lib/stores/pageUpdates";
     import { onMount } from "svelte";
     import YearIndicator from "./yearIndicator.svelte";
     import ExpItem from "./expItem.svelte";
     import { browser } from "$app/environment";
     import elementVisible from "$lib/scripts/elementVisible";
     import InfoBox from "$lib/InfoBox.svelte";
-    import { fly } from "svelte/transition";
+    import { fade, fly } from "svelte/transition";
+    import { cubicOut } from "svelte/easing";
+    import Divider from "$lib/Divider.svelte";
 
     export let pageInput: ExperienceInput[];
 
@@ -33,6 +35,12 @@
 
     let selectedYear = 0;
     let selectedItem = 0;
+
+    let isMobile = false;
+    let showModal = false;
+    $: {
+        isMobile = windowWidth < 900;
+    }
 
     let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
     years.fill(undefined);
@@ -137,6 +145,7 @@
                                 on:click={() => {
                                     selectedYear = yearIndex;
                                     selectedItem = itemIndex;
+                                    showModal = true;
                                 }}
                                 class="iniHidden"
                                 use:elementVisible={[
@@ -154,25 +163,114 @@
                 {/each}
             </div>
         </div>
-        
-        {#key [selectedItem,selectedYear]}
-        <div class="infobox" in:fly={{y:-30, duration:600}}>
-            <InfoBox style="width:auto;" title={pageInput[selectedYear].items[selectedItem].title}>
-                <h1 >
-                    {pageInput[selectedYear].items[selectedItem].moreDetails}
-                </h1>
-            </InfoBox>
-        </div>
-        {/key}
-    
+
+        {#if isMobile && showModal}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div
+                class="shadow"
+                transition:fade={{ duration: 500, easing: cubicOut }}
+                on:click={() => {
+                    showModal = false;
+                }}
+            />
+        {/if}
+        {#if !isMobile || showModal}
+            {#key [selectedItem, selectedYear]}
+                <div
+                    class="infobox"
+                    in:fly={{ y: -30, duration: 500, easing: cubicOut }}
+                    class:mobileInfo={isMobile}
+                >
+                    <InfoBox
+                        style="width:auto;"
+                        title={pageInput[selectedYear].items[selectedItem]
+                            .title}
+                        titleEnd={pageInput[selectedYear].items[selectedItem]
+                            .duration}
+                    >
+                        {@const item =
+                            pageInput[selectedYear].items[selectedItem]}
+                        <div class="boxtop">
+                            <p>
+                                {@html item.description}
+                            </p>
+
+                            <img
+                                src={item.logoSrc}
+                                alt="logo of {item.title}"
+                            />
+                        </div>
+
+                        {#if item.moreDetails && item.moreDetails.length > 0}
+                            <Divider usePadding={false} />
+                            <ul>
+                                {#each item.moreDetails as detail}
+                                    <li>{detail}</li>
+                                {/each}
+                            </ul>
+                        {/if}
+                    </InfoBox>
+                </div>
+            {/key}
+        {/if}
     </div>
 </div>
 
 <style>
+    .shadow {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+
+        background-color: black;
+        opacity: 0.4;
+
+        z-index: 999;
+    }
+
+    div.mobileInfo {
+        /* 4 hit combo to position at center of screen */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+
+        max-width: calc(100vw - 2rem);
+    }
+
+    .boxtop {
+        display: flex;
+        justify-content: space-between;
+
+        align-items: center;
+        
+    }
+
+    .boxtop > img {
+        width: 100px;
+        height: fit-content;
+
+        border: 2px solid var(--fg-alt);
+        object-fit: contain;
+    }
+    p {
+        margin-left: 0.25rem;
+    }
+
+    ul {
+        margin-left: 0.25;
+    }
+
     .infobox {
         transform: translate(0, 5rem);
 
         width: 500px;
+        height: min-content;
+        position: sticky;
+        top: 4.5rem;
     }
 
     .wrapper {
@@ -218,7 +316,7 @@
         overflow: hidden;
         border-top: 2px solid var(--fg-alt);
 
-        transition: max-width 0.2s ease-out;
+        transition: max-width 0.35s ease-out;
     }
 
     .decor {

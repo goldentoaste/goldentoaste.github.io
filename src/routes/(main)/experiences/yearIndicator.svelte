@@ -23,7 +23,7 @@
             css: (t: number) => {
                 const e = cubicOut(t);
                 return `
-                width: ${e * maxWidth}px;`;
+                max-width: ${e * maxWidth}px;`;
             },
         };
     }

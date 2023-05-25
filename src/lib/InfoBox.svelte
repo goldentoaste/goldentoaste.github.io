@@ -1,16 +1,24 @@
 <script>
-    export let title = '';
-    export let style = '';
+    export let title = "";
+    export let titleEnd = "";
+    export let style = "";
 
     export let hovering = true;
 
     export let outline = false;
 </script>
 
-<div class="container" class:hovering style={style + (outline?"border:2px solid var(--bg-alt2);":"")}>
+<div
+    class="container"
+    class:hovering
+    style={style + (outline ? "border:2px solid var(--bg-alt2);" : "")}
+>
     {#if title}
         <div class="title">
-            {title}
+            <span>{title}</span>
+            {#if titleEnd}
+                <span class="titleEnd">{titleEnd}</span>
+            {/if}
         </div>
     {/if}
 
@@ -41,7 +49,6 @@
         transition-duration: 0.4s;
         transition-timing-function: ease;
         background-color: var(--bg-alt);
-       
     }
 
     .title {
@@ -51,15 +58,22 @@
         padding: 0.5rem;
         padding-left: 1rem;
         font-size: larger;
-        /* display: inline-block; */
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span.titleEnd {
+        color: var(--fg-alt);
+        margin-right: 0.25rem;
+        font-size: medium;
     }
 
     .body {
         margin: 1rem;
         display: flex;
         flex-direction: column;
-        
-       
+
         height: 100%;
     }
 </style>
