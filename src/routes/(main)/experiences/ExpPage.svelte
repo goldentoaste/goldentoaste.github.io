@@ -14,6 +14,8 @@
     import ExpItem from "./expItem.svelte";
     import { browser } from "$app/environment";
     import elementVisible from "$lib/scripts/elementVisible";
+    import InfoBox from "$lib/InfoBox.svelte";
+    import { fly } from "svelte/transition";
 
     export let pageInput: ExperienceInput[];
 
@@ -21,12 +23,16 @@
 
     let pageHeight = 0;
     let windowHeight = 0;
+    let windowWidth = 1000;
     let scrollY = 0;
     let maxScroll = 0;
 
     let line: HTMLDivElement;
     let startingHeight = 0;
     let bottomGap = 150; // in p
+
+    let selectedYear = 0;
+    let selectedItem = 0;
 
     let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
     years.fill(undefined);
@@ -49,7 +55,7 @@
     }
     onMount(() => {
         $pageState = PageState.NeedTransition;
-       
+
         setTimeout(() => {
             mounted = true;
             bodyResized();
@@ -70,6 +76,7 @@
     bind:scrollY
     on:resize={bodyResized}
     bind:innerHeight={windowHeight}
+    bind:innerWidth={windowWidth}
 />
 
 <!-- <h1
@@ -78,66 +85,108 @@
     scroll : {Math.round(scrollY)}, maxScroll: {maxScroll}
 </h1> -->
 
-<h1>Past Experiences and Achievement</h1>
+<div class="wrapper">
+    <div class="root">
+        <div class="left">
+            <h1>Past Experiences and Achievement</h1>
+            <div class="timelineParent">
+                <div class="hline" style={mounted ? "max-width:800px;" : ""}>
+                    <div class="decor" />
+                </div>
 
-<div class="timelineParent">
-    <div class="hline" style={mounted ? "max-width:800px;" : ""}>
-        <div class="decor" />
-    </div>
+                <div
+                    bind:this={line}
+                    class="vline"
+                    style={mounted
+                        ? `height:${
+                              windowHeight -
+                              bottomGap -
+                              startingHeight +
+                              maxScroll
+                          }px;`
+                        : ""}
+                >
+                    <div class="scrollDiamond">
+                        <div class="innerArrow" />
 
-    <div
-        bind:this={line}
-        class="vline"
-        style={mounted
-            ? `height:${
-                  windowHeight - bottomGap - startingHeight + maxScroll
-              }px;`
-            : ""}
-    >
-        <div class="scrollDiamond">
-            <div class="innerArrow" />
-
-            <div class="littleArrow" />
-        </div>
-    </div>
-</div>
-
-<div style="margin-left: 2.5rem; margin-bottom:10rem;">
-    {#each pageInput as group, index}
-        <div class="group">
-            <div
-                use:elementVisible={[
-                    (node) => {
-                        node.classList.add("visible");
-                    },
-                    windowHeight,
-                    bottomGap / 2,
-                ]}
-                bind:this={years[index]}
-                class="year iniHidden"
-            >
-                <YearIndicator year={group.year} />
+                        <div class="littleArrow" />
+                    </div>
+                </div>
             </div>
 
-            {#each group.items as item}
-                <div
-                    class="iniHidden"
-                    use:elementVisible={[
-                        (node) => {
-                            node.classList.add("visible");
-                        },
-                        windowHeight,
-                        bottomGap / 2,
-                    ]}
-                >
-                    <ExpItem info={item} />
-                </div>
-            {/each}
+            <div style="margin-left: 2.5rem; margin-bottom:10rem;">
+                {#each pageInput as group, yearIndex}
+                    <div class="group">
+                        <div
+                            use:elementVisible={[
+                                (node) => {
+                                    node.classList.add("visible");
+                                },
+                                windowHeight,
+                                bottomGap / 2,
+                            ]}
+                            bind:this={years[yearIndex]}
+                            class="year iniHidden"
+                        >
+                            <YearIndicator year={group.year} />
+                        </div>
+
+                        {#each group.items as item, itemIndex}
+                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <div
+                                on:click={() => {
+                                    selectedYear = yearIndex;
+                                    selectedItem = itemIndex;
+                                }}
+                                class="iniHidden"
+                                use:elementVisible={[
+                                    (node) => {
+                                        node.classList.add("visible");
+                                    },
+                                    windowHeight,
+                                    bottomGap / 2,
+                                ]}
+                            >
+                                <ExpItem info={item} />
+                            </div>
+                        {/each}
+                    </div>
+                {/each}
+            </div>
         </div>
-    {/each}
+        
+        {#key [selectedItem,selectedYear]}
+        <div class="infobox" in:fly={{y:-30, duration:600}}>
+            <InfoBox style="width:auto;" title={pageInput[selectedYear].items[selectedItem].title}>
+                <h1 >
+                    {pageInput[selectedYear].items[selectedItem].moreDetails}
+                </h1>
+            </InfoBox>
+        </div>
+        {/key}
+    
+    </div>
 </div>
 
 <style>
+    .infobox {
+        transform: translate(0, 5rem);
+
+        width: 500px;
+    }
+
+    .wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .root {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+
     :global(.iniHidden) {
         filter: opacity(0);
         transition: filter 0.3s ease-out;
@@ -157,7 +206,6 @@
 
     .timelineParent {
         width: auto;
-
         position: relative;
     }
 

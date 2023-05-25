@@ -7,24 +7,24 @@
             year: "2023",
             items: [
                 {
-                    title: "Present Day",
+                    title: "Present Da5y",
                     duration: "Present Time",
                     details: [
-                        "*HAHAHAHA*"
+                        "*HAHAHAHA1*"
                     ],
                 },
                 {
-                    title: "Present Day",
+                    title: "Presen1t Day",
                     duration: "Present Time",
                     details: [
-                        "*HAHAHAHA*"
+                        "*HAHAHAHA2*"
                     ],
                 },
                 {
-                    title: "Present Day",
+                    title: "Present Da2y",
                     duration: "Present Time",
                     details: [
-                        "*HAHAHAHA*"
+                        "*HAHAHAHA3*"
                     ],
                 },
             ],
