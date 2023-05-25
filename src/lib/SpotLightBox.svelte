@@ -8,14 +8,14 @@
 
     let item: HTMLDivElement;
 
-    function move(e: MouseEvent) {
+    function move(e: MouseEvent | Touch) {
         let box = item.getBoundingClientRect();
         item.style.setProperty("--X", e.clientX - box.left + "px");
         item.style.setProperty("--Y", e.clientY - box.top + "px");
     }
 </script>
 
-<div on:mousemove={move} bind:this={item} class="box" {style}>
+<div on:mousemove={move} on:touchmove={(e)=>{move(e.touches[0])}} bind:this={item} class="box" {style}>
     <slot/>
 </div>
 

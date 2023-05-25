@@ -6,6 +6,8 @@ body.lightmode {
 }
 
 body {
+
+
     --bg: #1d2021;
     --bg-alt: #32302f;
     --bg-alt2: #45403d;
@@ -27,6 +29,8 @@ body {
     color: var(--fg);
     font-family: 'Open Sans', sans-serif;
     scrollbar-gutter: stable;
+
+   
 }
 
 h2,

@@ -66,7 +66,6 @@
         }
 
         if ($pageState === PageState.Transitioning) {
-            console.log("in transition")
             navDest.set(nav.to?.route.id?.replace(/\/?\(\w+\)/g, "") || '/');
             nav.cancel();
         }
