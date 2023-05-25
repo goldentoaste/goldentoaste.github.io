@@ -18,6 +18,7 @@
     import { fade, fly } from "svelte/transition";
     import { cubicOut } from "svelte/easing";
     import Divider from "$lib/Divider.svelte";
+    import { spring } from "svelte/motion";
 
     export let pageInput: ExperienceInput[];
 
@@ -31,7 +32,15 @@
 
     let line: HTMLDivElement;
     let startingHeight = 0;
-    let bottomGap = 150; // in p
+    let bottomGap = 150; // in px
+    let vlineHeight = spring(0, {
+        precision:2,
+        stiffness:0.07,
+        damping:0.7
+    });
+
+    
+    $: $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
 
     let selectedYear = 0;
     let selectedItem = 0;
@@ -45,22 +54,18 @@
     let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
     years.fill(undefined);
 
-    // always calc the furthrest point user scroll, to set length of the vert line
-    // basically on scroll event here
-    $: {
-        maxScroll = Math.round(Math.max(scrollY, maxScroll));
-    }
-
     // if height of page changed at run time, reduce max scroll to relfect that
     $: {
         scrollY = Math.min(pageHeight, scrollY);
     }
+    $: maxScroll = Math.round(Math.max(scrollY, maxScroll));
 
     function bodyResized() {
         if (browser) {
             pageHeight = document.body.clientHeight;
         }
     }
+
     onMount(() => {
         $pageState = PageState.NeedTransition;
 
@@ -105,14 +110,7 @@
                 <div
                     bind:this={line}
                     class="vline"
-                    style={mounted
-                        ? `height:${
-                              windowHeight -
-                              bottomGap -
-                              startingHeight +
-                              maxScroll
-                          }px;`
-                        : ""}
+                    style={mounted ? `height:${$vlineHeight}px;` : ""}
                 >
                     <div class="scrollDiamond">
                         <div class="innerArrow" />
@@ -246,7 +244,6 @@
         justify-content: space-between;
 
         align-items: center;
-        
     }
 
     .boxtop > img {
@@ -341,7 +338,7 @@
         top: 0;
         left: calc(2.5rem - 1px);
 
-        transition: height 0.5s ease;
+        /* transition: height 0.5s ease-in-out; */
     }
 
     .scrollDiamond {
