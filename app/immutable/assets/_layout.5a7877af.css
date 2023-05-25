@@ -1,0 +1,66 @@
+/* color theme based on gruvbox material https://github.com/sainnhe/gruvbox-material */
+/* css referencing https://metakirby5.github.io/yorha/ */
+
+body.lightmode {
+    --bg: #d4be98;
+}
+
+body {
+    --bg: #282828;
+    --bg-alt: #32302f;
+    --bg-alt2: #45403d;
+    --bg-alt3: #5a524c;
+    --bg-alt4: #7f746b;
+
+    --fg: #d4be98;
+    --fg-alt: #a89984;
+
+    --red: #ea6962;
+    --orange: #e78a4e;
+    --yellow: #d8a657;
+    --green: #a9b665;
+    --aqua: #7daea3;
+    --purple: #d3869b;
+
+    background-color: var(--bg-alt);
+
+    color: var(--fg);
+    font-family: 'Open Sans', sans-serif;
+
+
+}
+
+h2,
+h3,
+h4 {
+    font-weight: 100;
+}
+
+::selection {
+    background-color: var(--bg-alt3);
+    color: var(--fg);
+}
+
+h1 {
+    font-weight: lighter;
+    letter-spacing: 0.2rem;
+    text-shadow: 0.3rem 0.3rem 0 var(--bg-alt3);
+}
+
+a {
+    color: var(--fg-alt);
+    font-style: italic;
+}
+
+
+hr {
+    border: none;
+    border-top: 3px solid var(--bg-alt3);
+    margin: 0;
+    width: 100%;
+    display: flex;
+}
+
+iframe {
+    border: none;
+}
