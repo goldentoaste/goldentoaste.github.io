@@ -15,7 +15,6 @@
     import { browser } from "$app/environment";
     import elementVisible from "$lib/scripts/elementVisible";
 
-
     export let pageInput: ExperienceInput[];
 
     let mounted = false;
@@ -31,8 +30,6 @@
 
     let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
     years.fill(undefined);
-
-
 
     // always calc the furthrest point user scroll, to set length of the vert line
     // basically on scroll event here
@@ -52,10 +49,19 @@
     }
     onMount(() => {
         $pageState = PageState.NeedTransition;
-        startingHeight = line.getBoundingClientRect().top;
+       
         setTimeout(() => {
             mounted = true;
             bodyResized();
+            startingHeight = line.getBoundingClientRect().top;
+            console.log(
+                "owo",
+                windowHeight,
+                bottomGap,
+                startingHeight,
+                maxScroll,
+                windowHeight - bottomGap - startingHeight + maxScroll
+            );
         }, 50);
     });
 </script>
@@ -96,7 +102,7 @@
     </div>
 </div>
 
-<div style="margin-left: 2.5rem;">
+<div style="margin-left: 2.5rem; margin-bottom:10rem;">
     {#each pageInput as group, index}
         <div class="group">
             <div
@@ -105,7 +111,7 @@
                         node.classList.add("visible");
                     },
                     windowHeight,
-                    bottomGap/2,
+                    bottomGap / 2,
                 ]}
                 bind:this={years[index]}
                 class="year iniHidden"
@@ -121,7 +127,7 @@
                             node.classList.add("visible");
                         },
                         windowHeight,
-                        bottomGap/2,
+                        bottomGap / 2,
                     ]}
                 >
                     <ExpItem info={item} />
