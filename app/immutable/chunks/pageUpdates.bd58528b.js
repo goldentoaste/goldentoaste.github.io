@@ -1,1 +1,0 @@
-import{w as i}from"./index.b699a85d.js";var r=(n=>(n[n.NoTransition=0]="NoTransition",n[n.NeedTransition=1]="NeedTransition",n[n.Transitioning=2]="Transitioning",n[n.ReadyToNav=3]="ReadyToNav",n))(r||{});const s=i(0),a=i("");let o=1;s.subscribe(n=>{o=n});function t(){o===2&&s.set(3)}export{r as P,t as f,a as n,s as p};
