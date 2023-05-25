@@ -1,22 +1,19 @@
-
 <script lang="ts" context="module">
-    import type ExperienceItemInput from "./expItem.svelte";
-
+    import type { ExperienceItemInput } from "./expItem.svelte";
 
     export interface ExperienceInput {
-        year: number,
-        items: ExperienceItemInput[]
+        year: string;
+        items: ExperienceItemInput[];
     }
-
 </script>
 
 <script lang="ts">
-
     import { PageState, finishOutro, pageState } from "$lib/stores/pageUpdates";
-    import {  onMount } from "svelte";
+    import { onMount } from "svelte";
     import YearIndicator from "./yearIndicator.svelte";
     import ExpItem from "./expItem.svelte";
     import { browser } from "$app/environment";
+    import elementVisible from "$lib/scripts/elementVisible";
 
 
     export let pageInput: ExperienceInput[];
@@ -30,18 +27,17 @@
 
     let line: HTMLDivElement;
     let startingHeight = 0;
-    let bottomGap = 150; // in px
-    let topGap = 80; //5rem on top
+    let bottomGap = 150; // in p
+
+    let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
+    years.fill(undefined);
 
 
-    let years : (HTMLDivElement | undefined)[] = [undefined, undefined];
 
     // always calc the furthrest point user scroll, to set length of the vert line
+    // basically on scroll event here
     $: {
         maxScroll = Math.round(Math.max(scrollY, maxScroll));
-
-        if (years[0])
-        console.log(years[0].getBoundingClientRect().top)
     }
 
     // if height of page changed at run time, reduce max scroll to relfect that
@@ -54,14 +50,13 @@
             pageHeight = document.body.clientHeight;
         }
     }
-
     onMount(() => {
         $pageState = PageState.NeedTransition;
         startingHeight = line.getBoundingClientRect().top;
         setTimeout(() => {
             mounted = true;
             bodyResized();
-        }, 100);
+        }, 50);
     });
 </script>
 
@@ -102,34 +97,56 @@
 </div>
 
 <div style="margin-left: 2.5rem;">
-    <div bind:this={years[0]} class="year" >
-        <YearIndicator year={"2237"} />
-    </div>
-    <ExpItem
-        info={{
-            title: "The Technomancer",
-            duration: "4 Years",
-            details: [
-                "Soul of the machine intelligence",
-                "Reanimating the world engine",
-                "Last organic existance of the home world",
-            ],
-        }}
-    />
+    {#each pageInput as group, index}
+        <div class="group">
+            <div
+                use:elementVisible={[
+                    (node) => {
+                        node.classList.add("visible");
+                    },
+                    windowHeight,
+                    bottomGap/2,
+                ]}
+                bind:this={years[index]}
+                class="year iniHidden"
+            >
+                <YearIndicator year={group.year} />
+            </div>
 
-    <YearIndicator year={"2023"} />
-    {#each [...Array(5).keys()] as i}
-      
+            {#each group.items as item}
+                <div
+                    class="iniHidden"
+                    use:elementVisible={[
+                        (node) => {
+                            node.classList.add("visible");
+                        },
+                        windowHeight,
+                        bottomGap/2,
+                    ]}
+                >
+                    <ExpItem info={item} />
+                </div>
+            {/each}
+        </div>
     {/each}
 </div>
 
 <style>
+    :global(.iniHidden) {
+        filter: opacity(0);
+        transition: filter 0.3s ease-out;
+    }
+
+    :global(.visible) {
+        filter: opacity(1) !important;
+    }
+
     .year {
         position: sticky;
-
-        top: 5rem;
-
+        top: 4.5rem;
         z-index: 10;
+        width: auto;
+        max-width: 600px;
     }
 
     .timelineParent {
@@ -172,7 +189,7 @@
         top: 0;
         left: calc(2.5rem - 1px);
 
-        transition: height 0.2s ease-out;
+        transition: height 0.5s ease;
     }
 
     .scrollDiamond {

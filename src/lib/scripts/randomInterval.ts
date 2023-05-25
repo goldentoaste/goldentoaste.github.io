@@ -5,7 +5,7 @@
 //https://stackoverflow.com/a/60308175/12471420
 
 export const setRandomInterval = (intervalFunction : Function, minDelay:number, maxDelay:number) => {
-    let timeout : NodeJS.Timeout;
+    let timeout :number;
   
     const runInterval = () => {
       const timeoutFunction = () => {

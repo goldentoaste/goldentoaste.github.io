@@ -30,7 +30,7 @@
 </script>
 
 {#if mounted}
-    <yearIndicator transition:fade|local >
+    <yearIndicator transition:fade|local>
         <h1>
             {year}
         </h1>
@@ -44,8 +44,11 @@
                 class="dot x2"
                 style="right:0; top:0; transform:translate(150%, 150%);"
             />
-            <div class="dot x3"  style="left:0; top:0; transform:translate(300%, 150%);"/>
-           
+            <div
+                class="dot x3"
+                style="left:0; top:0; transform:translate(300%, 150%);"
+            />
+
             <div class="diamond" />
         </div>
     </yearIndicator>
@@ -57,6 +60,10 @@
 
         display: flex;
         flex-direction: column;
+        background-color: var(--bg);
+        margin-left: 1px;
+        /* margin-bottom: 0.5rem; */
+        padding-top: 0.5rem;
     }
 
     h1 {
@@ -93,7 +100,7 @@
         left: 0;
         top: 0;
 
-        transform: translate(-50%, calc(-50% + 1px))  rotate(45deg);
+        transform: translate(calc(-50% - 1px), calc(-50% + 1px)) rotate(45deg);
 
         background: var(--fg-alt);
     }
