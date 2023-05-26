@@ -34,12 +34,11 @@
     let startingHeight = 0;
     let bottomGap = 150; // in px
     let vlineHeight = spring(0, {
-        precision:2,
-        stiffness:0.07,
-        damping:0.7
+        precision: 2,
+        stiffness: 0.07,
+        damping: 0.7,
     });
 
-    
     $: $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
 
     let selectedYear = 0;
@@ -179,6 +178,9 @@
                     in:fly={{ y: -30, duration: 500, easing: cubicOut }}
                     class:mobileInfo={isMobile}
                 >
+                    {#if !isMobile}
+                        <Divider vertical={true} />
+                    {/if}
                     <InfoBox
                         style="width:auto;"
                         title={pageInput[selectedYear].items[selectedItem]
@@ -249,9 +251,11 @@
     .boxtop > img {
         width: 100px;
         height: fit-content;
-
+        max-height: 100px;
         border: 2px solid var(--fg-alt);
         object-fit: contain;
+        margin: 0.5rem;
+        padding: 0.25rem;
     }
     p {
         margin-left: 0.25rem;
@@ -268,6 +272,8 @@
         height: min-content;
         position: sticky;
         top: 4.5rem;
+
+        display: flex;
     }
 
     .wrapper {
@@ -280,6 +286,7 @@
         display: flex;
         width: 100%;
         justify-content: center;
+        gap: 1rem;
     }
 
     :global(.iniHidden) {

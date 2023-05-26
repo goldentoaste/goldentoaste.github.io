@@ -2,9 +2,10 @@
     export let usePadding = true;
     export let style: string = "";
     export let useDecoration = true;
+    export let vertical = false;
 </script>
 
-<div class="divider" class:usePadding {style}>
+<div class="divider" class:usePadding {style} class:vertical>
     {#if useDecoration}
         <div class="dot" />
     {/if}
@@ -17,8 +18,12 @@
 </div>
 
 <style>
+    .vertical > .bar {
+        width: 2px;
+        height: 100%;
+    }
+
     .bar {
-        content: "";
         height: 2px;
         width: 100%;
         background: var(--bg-alt3);
@@ -31,6 +36,10 @@
         background-color: var(--bg-alt3);
         border-radius: 50%;
         display: inline-block;
+    }
+
+    .vertical.divider {
+        flex-direction: column;
     }
 
     .divider {
