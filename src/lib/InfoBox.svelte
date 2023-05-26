@@ -66,7 +66,9 @@
     span.titleEnd {
         color: var(--fg-alt);
         margin-right: 0.25rem;
+        margin-left: 1.5rem;
         font-size: medium;
+
     }
 
     .body {

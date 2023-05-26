@@ -265,10 +265,14 @@
         margin-left: 0.25;
     }
 
+    .left {
+        width: 800px;
+    }
+
     .infobox {
         transform: translate(0, 5rem);
 
-        width: 500px;
+        width: 700px;
         height: min-content;
         position: sticky;
         top: 4.5rem;
