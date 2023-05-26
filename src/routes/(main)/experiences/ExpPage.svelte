@@ -128,7 +128,7 @@
                                     node.classList.add("visible");
                                 },
                                 windowHeight,
-                                bottomGap / 2,
+                                bottomGap ,
                             ]}
                             bind:this={years[yearIndex]}
                             class="year iniHidden"
@@ -150,7 +150,7 @@
                                         node.classList.add("visible");
                                     },
                                     windowHeight,
-                                    bottomGap / 2,
+                                    bottomGap ,
                                 ]}
                             >
                                 <ExpItem info={item} />

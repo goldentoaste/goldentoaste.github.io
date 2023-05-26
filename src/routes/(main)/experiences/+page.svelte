@@ -94,75 +94,20 @@
                         "Performing and building image/data anaylsis tool using Numpy, SciPy and OpenCv",
                         "Interacting with database via GraphQl and PhpMyAdmin",
                         "Refactoring and updating legacy database",
-                        "Interviewing end users and customers for feedback and feature requests."
+                        "Interviewing end users and customers for feedback and feature requests.",
                     ],
-                    logoSrc: "experience/gear.svg"
+                    logoSrc: "experience/gear.svg",
+                },
+                {
+                    title: "HackED 2023 - Toneteller",
+                    duration: "Jan 2023",
+                    details: [],
                 },
             ],
         },
         {
-            year: "22222",
+            year: "2022",
             items: [
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-            ],
-        },
-        {
-            year: "2078",
-            items: [
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
-                {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
-                },
                 {
                     title: "Present Day",
                     duration: "Present Time",
