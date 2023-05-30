@@ -73,7 +73,15 @@
                             upper={false}
                             style="width:100%; margin:0;"
                             on:click={() => {
-                                selection = index;
+                                scrollTo({
+                                    top: 0,
+                                    behavior: "smooth",
+                                });
+
+                                setTimeout(() => {
+                                    selection = index;
+                                    expanded = false;
+                                }, 500);
                             }}
                         >
                             {button.text}
@@ -93,8 +101,15 @@
                                 upper={false}
                                 style="width:100%; margin:0;"
                                 on:click={() => {
-                                    selection = index;
-                                    expanded = false;
+                                    scrollTo({
+                                        top: 0,
+                                        behavior: "smooth",
+                                    });
+
+                                    setTimeout(() => {
+                                        selection = index;
+                                        expanded = false;
+                                    }, 500);
                                 }}
                             >
                                 {button.text}

@@ -109,7 +109,7 @@
 <style>
     .top {
         display: flex;
-        flex-grow: wrap;
+        flex-flow: wrap;
         gap: 1rem;
         flex-direction: row;
     }

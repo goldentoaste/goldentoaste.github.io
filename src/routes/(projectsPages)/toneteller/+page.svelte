@@ -51,7 +51,7 @@
 </div>
 <Divider />
 <div class="top">
-    <div style="flex:2; max-width:fit-content">
+   
         <ImageFrame
 
             maxWidth={600}
@@ -76,9 +76,9 @@
                 },
             ]}
         />
-    </div>
+   
 
-    <div style="flex:3; max-width:100%;">
+    
         <TechUsed
             input={[
                 {
@@ -140,7 +140,7 @@
                 },
             ]}
         />
-    </div>
+   
 </div>
 
 <style>
