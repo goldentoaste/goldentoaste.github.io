@@ -40,7 +40,7 @@
     });
 
     $: $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
-
+    $: console.log(windowHeight, startingHeight)
     let selectedYear = 0;
     let selectedItem = 0;
 
@@ -84,7 +84,8 @@
 <svelte:window
     bind:scrollY
     on:resize={bodyResized}
-    bind:innerHeight={windowHeight}
+    bind:outerHeight={windowHeight}
+
     bind:innerWidth={windowWidth}
 />
 
@@ -94,7 +95,7 @@
     scroll : {Math.round(scrollY)}, maxScroll: {maxScroll}
 </h1> -->
 
-<div class="wrapper">
+<div class="wrapper" style="--margin-left:2rem;">
     <div class="root">
         <div class="left">
             <h1>Past Experiences and Achievement</h1>
@@ -116,7 +117,7 @@
                 </div>
             </div>
 
-            <div style="margin-left: 2.5rem; margin-bottom:10rem;">
+            <div style="margin-left: var(--margin-left); margin-bottom:10rem;">
                 {#each pageInput as group, yearIndex}
                     <div class="group">
                         <div
@@ -141,7 +142,7 @@
                                     selectedItem = itemIndex;
                                     showModal = true;
                                 }}
-                                class="iniHidden"
+                                class="iniHidden expItem"
                                 use:elementVisible={[
                                     (node) => {
                                         node.classList.add("visible");
@@ -214,6 +215,13 @@
 </div>
 
 <style>
+
+
+
+    .expItem{
+        margin:1rem;
+    }
+    
     .shadow {
         position: fixed;
         width: 100vw;
@@ -275,6 +283,7 @@
         top: 4.5rem;
 
         display: flex;
+        
     }
 
     .wrapper {
@@ -332,7 +341,7 @@
 
         transform: translate(0, -50%) rotate(45deg);
         top: 0rem;
-        left: 2rem;
+        left: calc(var(--margin-left) - 0.5rem);
     }
 
     /* vertical line, and decoration for it */
@@ -344,7 +353,7 @@
         background-color: var(--fg-alt);
 
         top: 0;
-        left: calc(2.5rem - 1px);
+        left: calc(var(--margin-left) - 1px);
 
         /* transition: height 0.5s ease-in-out; */
     }
@@ -392,5 +401,18 @@
         border-bottom: 0.2rem solid var(--fg);
         border-left: 0.2rem solid transparent;
         border-top: 0.2rem solid transparent;
+    }
+
+
+    @media screen and (max-width: 600px) {
+        .expItem{
+            margin: 0.5rem ;
+            margin-left: 1rem;
+        }
+
+        .wrapper {
+            --margin-left:0.75rem !important;
+        }
+
     }
 </style>

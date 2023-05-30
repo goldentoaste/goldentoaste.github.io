@@ -93,7 +93,7 @@
 
 <NavBar {items} />
 
-<div class="parent">
+<div class="rootLayoutParent">
     {#if $pageState === PageState.NeedTransition || $pageState === PageState.NoTransition}
         <slot />
     {/if}
@@ -103,7 +103,7 @@
 <Shadow />
 
 <style>
-    div.parent {
+    div.rootLayoutParent {
         padding: 2rem;
         padding-top: 5rem;
         padding-bottom: 10rem;
@@ -113,8 +113,16 @@
 
 
     @media only screen and (min-width: 1200px){
-        div.parent {
+        div.rootLayoutParent {
             padding: 5rem;
+        }
+    }
+
+    @media only screen and (max-width: 800px){
+        div.rootLayoutParent {
+        
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
         }
     }
 </style>

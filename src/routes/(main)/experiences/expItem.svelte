@@ -19,7 +19,7 @@
     export let info: ExperienceItemInput;
 </script>
 
-<SpotLightBox style="margin:1rem; margin-left:2rem;">
+<SpotLightBox>
     <div class="item" on:click on:keypress>
         <div class="top">
             <h3>{info.title}</h3>
