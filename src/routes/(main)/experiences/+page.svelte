@@ -101,17 +101,43 @@
                 {
                     title: "HackED 2023 - Toneteller",
                     duration: "Jan 2023",
-                    details: [],
+                    details: [
+                        "2nd Place at HackEd 2023, Edmonton",
+                        "Fullstack & ML webapp and chrome extension"
+                    ],
+                    logoSrc:"experience/toneteller.svg",
+                    description: `
+                    Toneteller is a app for users who(for various reasons) have difficaulties in telling the emotions
+                    underlying a text message. Toneteller uses ML sentiment analysis tools to detect the tone of the message
+                    and display it to the user. The analysis results are injected into the webpage the user is currently viewing
+                    via the accompanying chrome extension.
+                    <br/>
+                    <br/>
+                    Toneteller won second place at HackEd 2023, hosted at the University of Alberta. The hackathon had roughly 300 total 
+                    hackers, with 70 submitted projects. Toneteller was received well amongst the event participants, as we saw over 200 unique visitors
+                    to our website, and over 1500 api calls according to our Google Cloud analytics.
+                    <br/>
+                    <br/>
+                    Devpost: <a href="https://devpost.com/software/toneteller"> here</a> <br/>
+                    Try it now: <a href="https://hackathon-hacked2023.github.io/DivineInspiration/">here</a>
+                    `,
+                    moreDetails:[
+                        "Winning second place out of 70 projects",
+                        "Frontend: React, Chrome Extension Api",
+                        "Backend: Python, Django, Hugging Face",
+                        "Deployment: Google Cloud Run"
+                    ]
                 },
+            
             ],
         },
         {
             year: "2022",
             items: [
                 {
-                    title: "Present Day",
-                    duration: "Present Time",
-                    details: ["*HAHAHAHA*"],
+                    title: "Place holder",
+                    duration: "place holding",
+                    details: ["*To make the page slightly longer*"],
                 },
             ],
         },

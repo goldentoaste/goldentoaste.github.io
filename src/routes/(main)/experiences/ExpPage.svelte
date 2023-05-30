@@ -34,8 +34,8 @@
     let startingHeight = 0;
     let bottomGap = 150; // in px
     let vlineHeight = spring(0, {
-        precision: 2,
-        stiffness: 0.07,
+        precision: 3,
+        stiffness: 0.05,
         damping: 0.7,
     });
 
@@ -72,15 +72,12 @@
             mounted = true;
             bodyResized();
             startingHeight = line.getBoundingClientRect().top;
-            console.log(
-                "owo",
-                windowHeight,
-                bottomGap,
-                startingHeight,
-                maxScroll,
-                windowHeight - bottomGap - startingHeight + maxScroll
-            );
         }, 50);
+
+
+        setTimeout(()=>{
+            line.style.setProperty("transition", "none")
+        }, 1000)
     });
 </script>
 
@@ -249,7 +246,7 @@
     }
 
     .boxtop > img {
-        width: 100px;
+        min-width: 100px;
         height: fit-content;
         max-height: 100px;
         border: 2px solid var(--fg-alt);
