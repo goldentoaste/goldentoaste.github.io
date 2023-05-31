@@ -163,7 +163,7 @@
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
                 class="shadow"
-                transition:fade={{ duration: 500, easing: cubicOut }}
+                transition:fade|global={{ duration: 500, easing: cubicOut }}
                 on:click={() => {
                     showModal = false;
                 }}
@@ -173,7 +173,7 @@
             {#key [selectedItem, selectedYear]}
                 <div
                     class="infobox"
-                    in:fly={{ y: -30, duration: 500, easing: cubicOut }}
+                    in:fly|global={{ y: -30, duration: 500, easing: cubicOut }}
                     class:mobileInfo={isMobile}
                 >
                     {#if !isMobile}

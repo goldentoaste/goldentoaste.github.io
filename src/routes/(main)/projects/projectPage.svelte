@@ -133,7 +133,7 @@
 
             {#key selection}
                 <iframe
-                    in:fade={{ duration: 500 }}
+                    in:fade|global={{ duration: 500 }}
                     bind:this={iframe}
                     on:load={resizeIframe}
                     loading="lazy"

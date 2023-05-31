@@ -8,7 +8,7 @@
 
 
 
-<div transition:fade={{duration:150}} on:outroend={()=>{
+<div transition:fade|global={{duration:150}} on:outroend={()=>{
     $pageState = PageState.ReadyToNav;
 }}>
     <slot/>

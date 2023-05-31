@@ -22,7 +22,7 @@
 </script>
 
 <div id="parent" out:fade|local={{duration:200}} on:outroend {style}>
-    <div id="decor" in:expandVert={{ duration: 500, easing: quartOut }} />
+    <div id="decor" in:expandVert|global={{ duration: 500, easing: quartOut }} />
     <div id="listContainer" >
         <slot></slot>
     </div>

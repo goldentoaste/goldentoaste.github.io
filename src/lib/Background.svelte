@@ -17,7 +17,7 @@
 <div
     class="parent"
     style={flip? "transform: scale(-1, -1);bottom:0;right:0;":""}
-    transition:fade={{
+    transition:fade|global={{
         duration: 300,
     }}
 >

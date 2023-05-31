@@ -4,7 +4,7 @@
 </script>
 
 <div
-    transition:fade={{
+    transition:fade|global={{
         duration: 150,
     }}
 >

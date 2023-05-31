@@ -45,7 +45,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
         id="cover"
-        transition:fade={{
+        transition:fade|global={{
             duration: 200,
         }}
         on:click={() => {
