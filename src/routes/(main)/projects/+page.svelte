@@ -7,6 +7,12 @@
 <div transition:fade|global={{ duration: 150 }} on:outroend={finishOutro}>
     <ProjectPage
         contents={[
+             {
+                text: "🐶 WatchDog",
+                title: "WatchDog - On the lookout for online scams/frauds",
+                path: "",
+                page: "watchdogs",
+            },
             {
                 text: "🔮 Toneteller",
                 title: "Toneteller - Ai tool for emotion detection",
