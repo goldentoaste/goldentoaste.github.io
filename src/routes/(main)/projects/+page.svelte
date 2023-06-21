@@ -14,6 +14,12 @@
                 page: "watchdogs",
             },
             {
+                text:"⏱️ Turn Timer",
+                title: "Turn Timer: for multiplayer table top games",
+                path: "",
+                page:"turntimer"
+            },
+            {
                 text: "🔮 Toneteller",
                 title: "Toneteller - Ai tool for emotion detection",
                 path: "",

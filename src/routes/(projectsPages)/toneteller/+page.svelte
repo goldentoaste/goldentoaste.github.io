@@ -86,7 +86,7 @@
                     items: [
                         {
                             name: "React",
-                            src: "icons/svelte.svg",
+                            src: "icons/react.svg",
                         },
                         {
                             name: "Lots of Custom Css",

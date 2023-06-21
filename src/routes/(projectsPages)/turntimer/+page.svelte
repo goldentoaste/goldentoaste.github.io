@@ -8,40 +8,29 @@
     import "svelte-highlight/styles/gruvbox-dark-medium.css";
 </script>
 
-<h1>WatchDogs</h1>
+<h1>Turn timer</h1>
 <p>
-    With the advancement of Ai technology in the recent years, online scams and
-    fraudulent are now are more intrusive than ever. Watchdogs is a tool that
-    detects and reports scams, misinformantion, and potentially Ai generated
-    content, by using GPT3. The hackathon project was well received in the event, and was 
-    awarded second place overall and best deisgn.
+    This app was (inspired by?) made in response to slow playing in my Magic the Gathering EDH
+    group. The timer app connects any number of players together and tracks remaining time for each player. 
+    Information is shared and kept in sync for each client to simplify communication and speed up games.
 </p>
 
 <Divider />
 <div class="points">
-    <IconListItem path={svgs.star} key="star">
-        Winner of Stormhacks 2023 - 2nd Place
-    </IconListItem>
-    <IconListItem path={svgs.star} key="star">
-        Winner of Stormhacks 2023 - Best Ui/Ux design
-    </IconListItem>
 
 
     <IconListItem path={svgs.github} key="github">
-        <a target="_blank" href="https://github.com/DFriend01/Watchdog"
+        <a target="_blank" href="https://github.com/goldentoaste/turn_timer"
             >Github Repo</a
         ></IconListItem
     >
+  
+    
     <IconListItem path={svgs.link} key="link">
-        <a target="_blank" href="https://devpost.com/software/watchdog-exrdgn"
-            >Devpost Page</a
-        >
-    </IconListItem>
-
-    <IconListItem path={svgs.sadFace} key="sadface">
-        The deployed page current is up, but the Ai analysis feature is disabled
-        for now due to GPT api cost.
-    </IconListItem>
+        <a target="_blank" href="https://github.com/DFriend01/Watchdog"
+            >Try it here!</a
+        ></IconListItem
+    >
 </div>
 <Divider />
 <div class="top">
