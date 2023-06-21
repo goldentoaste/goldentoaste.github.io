@@ -27,7 +27,7 @@
   
     
     <IconListItem path={svgs.link} key="link">
-        <a target="_blank" href="https://github.com/DFriend01/Watchdog"
+        <a target="_blank" href="https://turn-timer.vercel.app/"
             >Try it here!</a
         ></IconListItem
     >
@@ -38,20 +38,13 @@
         containerStyle="flex-basis:500px;"
         maxWidth={500}
         height={300}
-        title="Watchdog demos"
+        title="Timer demos"
         items={[
             {
                 desc: "Promo image of watch dog",
                 src: "watchdog/1.jpg",
             },
-            {
-                desc: "The chrome is extension in action",
-                src: "watchdog/2.jpg",
-            },
-            {
-                desc: "Output of GPT's analysis result being displayed by inject html to page.",
-                src: "watchdog/3.jpg",
-            },
+       
         ]}
     />
 
