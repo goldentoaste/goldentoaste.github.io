@@ -41,8 +41,16 @@
         title="Timer demos"
         items={[
             {
-                desc: "Promo image of watch dog",
-                src: "watchdog/1.jpg",
+                desc: "Ui of the timer when the game has started",
+                src: "timer/timerPage.png",
+            },
+            {
+                desc: "Host's options for setting up lobby",
+                src: "timer/rules.png",
+            },
+            {
+                desc: "A player taking priority on another player's turn",
+                src: "timer/prio.png",
             },
        
         ]}
@@ -57,35 +65,50 @@
                         name: "SvelteKit",
                         src: "icons/svelte.svg",
                     },
-                    {
-                        name: "Chrome Ext Api",
-                        src: "icons/chrome.svg",
-                    },
+                
                 ],
             },
             {
                 name: "Deployment",
                 items: [
                     {
-                        name: "Github pages",
-                        path: svgs.github,
+                        name: "Vercel",
+                        path: svgs.vercel,
                     },
                 ],
             },
             {
-                name: "Machine Learning",
+                name: "Network",
                 items: [
                     {
-                        name: "GPT3.5",
-                        path: svgs.openai,
+                        name: "FireBase",
+                        src: "icons/firebase.png"
                     },
+                    {
+                        name:"WebRtc",
+                        src:"icons/webrtc.svg"
+                    }
             
                 ],
             },
         ]}
     />
 </div>
-
+<p>
+    Current the program uses WebRTC to connect the host to players and eachother, the players sends 
+    message to all the other clients in order to update game state. Firebase is used as the match making server
+    to establish the WebRTC connections, as an intermediary for clients to exchange connection offers, anwsers, and ICE candidates.
+    <br/>
+    This network arrangement is chosen for the following reasons:
+</p>
+<ul>
+    <li>Lower server cost. Since the clients are sending messages to others directly, there's no need to call a server api excessively, or 
+        to keep multiple websocket connections alive for server to proxy messages.
+    </li>
+    <li>Lower latency. This peer to peer arrangement makes it so that data does not need take an extra trip to a server before reaching
+        destination.
+    </li>
+</ul>
 <style>
     .top {
         display: flex;
