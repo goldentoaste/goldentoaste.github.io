@@ -17,7 +17,7 @@ export let stateName = {
 
 export const pageState: Writable<PageState> = writable(PageState.NoTransition);
 export const navDest: Writable<string> = writable('');
-
+export const popStateDelta : Writable<number> = writable(0) // for back/forward button
 
 let state = PageState.NeedTransition;
 pageState.subscribe((val)=>{

@@ -30,7 +30,7 @@
     let scrollY = 0;
     let maxScroll = 0;
 
-    let line: HTMLDivElement;
+    let line: HTMLElement;
     let startingHeight = 0;
     let bottomGap = 150; // in px
     let vlineHeight = spring(0, {
@@ -68,6 +68,9 @@
     onMount(() => {
         $pageState = PageState.NeedTransition;
 
+        if (!line){
+            line = document.getElementById("vline")!;
+        }
         setTimeout(() => {
             mounted = true;
             bodyResized();
@@ -105,6 +108,7 @@
                 </div>
 
                 <div
+                id="vline"
                     bind:this={line}
                     class="vline"
                     style={mounted ? `height:${$vlineHeight}px;` : ""}
