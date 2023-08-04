@@ -59,7 +59,7 @@
             {#each items as item}
                 <IconListItem key={item.key} path={item.icon}>
                     {#if item.dest}
-                        <a href={item.dest}>{item.text}</a>
+                        <a href={item.dest} target="_blank">{item.text}</a>
                     {:else}
                         {item.text}
                     {/if}

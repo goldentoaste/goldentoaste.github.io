@@ -120,8 +120,8 @@
                     to our website, and over 1500 api calls according to our Google Cloud analytics.
                     <br/>
                     <br/>
-                    Devpost: <a href="https://devpost.com/software/toneteller"> here</a> <br/>
-                    Try it now: <a href="https://hackathon-hacked2023.github.io/DivineInspiration/">here</a>
+                    Devpost: <a href="https://devpost.com/software/toneteller" target="_blank"> here</a> <br/>
+                    Try it now: <a href="https://hackathon-hacked2023.github.io/DivineInspiration/" target="_blank">here</a>
                     `,
                     moreDetails: [
                         "Winning second place out of 70 projects",
