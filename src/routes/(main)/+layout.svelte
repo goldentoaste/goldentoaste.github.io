@@ -60,7 +60,7 @@
     });
 
     beforeNavigate((nav: BeforeNavigate) => {
-        console.log(nav);
+        console.log(nav,$popStateDelta);
 
         if (nav.type === "popstate" && $popStateDelta !== 0) {
             // back/forward is not handled by goto, this prevents loops)
@@ -81,6 +81,12 @@
             // if the current page does not request to wait for transition, then dont do anything
             $navDest = "";
             $popStateDelta = 0;
+
+            console.log("not interfeir",    nav.to?.url.origin !== $page.url.origin , // in case linking to external site, no need to interfer
+            $pageState === PageState.NoTransition , // no transition
+            nav.to === null , // invalid navigation
+            nav.to?.route.id === $page.route.id);
+             // in case nav dest is same as current page
             return;
         }
 
@@ -98,6 +104,8 @@
                 );
             }
             nav.cancel();
+            console.log("nav canceled");
+            
         }
     });
 
@@ -105,11 +113,15 @@
         if (browser && state === PageState.ReadyToNav && $navDest) {
             console.log(document.referrer);
             if ($navDest === "popstate") {
+
+                console.log("simulating history.go");
+                
                 pageState.set(PageState.NoTransition);
                 window.history.go(get(popStateDelta));
             } else {
-                
                 goto($navDest).then((val) => {
+                    console.log("transition ends, goto");
+                    
                     pageState.set(PageState.NoTransition);
                 });
             }

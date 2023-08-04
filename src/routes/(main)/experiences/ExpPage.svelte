@@ -74,11 +74,13 @@
         setTimeout(() => {
             mounted = true;
             bodyResized();
+            if (line)
             startingHeight = line.getBoundingClientRect().top;
         }, 50);
 
 
         setTimeout(()=>{
+            if (line)
             line.style.setProperty("transition", "none")
         }, 1000)
     });
