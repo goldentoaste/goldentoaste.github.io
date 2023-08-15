@@ -1,6 +1,8 @@
 <script lang="ts">
+    import { fade } from "svelte/transition";
     import ExpPage from "./ExpPage.svelte";
     import type { ExperienceInput } from "./ExpPage.svelte";
+    import { finishOutro } from "$lib/stores/pageUpdates";
 
     let pageInput: ExperienceInput[] = [
         {
@@ -103,9 +105,9 @@
                     duration: "Jan 2023",
                     details: [
                         "2nd Place at HackEd 2023, Edmonton",
-                        "Fullstack & ML webapp and chrome extension"
+                        "Fullstack & ML webapp and chrome extension",
                     ],
-                    logoSrc:"experience/toneteller.svg",
+                    logoSrc: "experience/toneteller.svg",
                     description: `
                     Toneteller is a app for users who(for various reasons) have difficaulties in telling the emotions
                     underlying a text message. Toneteller uses ML sentiment analysis tools to detect the tone of the message
@@ -118,17 +120,16 @@
                     to our website, and over 1500 api calls according to our Google Cloud analytics.
                     <br/>
                     <br/>
-                    Devpost: <a href="https://devpost.com/software/toneteller"> here</a> <br/>
-                    Try it now: <a href="https://hackathon-hacked2023.github.io/DivineInspiration/">here</a>
+                    Devpost: <a href="https://devpost.com/software/toneteller" target="_blank"> here</a> <br/>
+                    Try it now: <a href="https://hackathon-hacked2023.github.io/DivineInspiration/" target="_blank">here</a>
                     `,
-                    moreDetails:[
+                    moreDetails: [
                         "Winning second place out of 70 projects",
                         "Frontend: React, Chrome Extension Api",
                         "Backend: Python, Django, Hugging Face",
-                        "Deployment: Google Cloud Run"
-                    ]
+                        "Deployment: Google Cloud Run",
+                    ],
                 },
-            
             ],
         },
         {
@@ -144,4 +145,7 @@
     ];
 </script>
 
-<ExpPage {pageInput} />
+<div transition:fade|global={{ duration: 150 }} on:outroend={finishOutro}>
+ 
+    <ExpPage {pageInput} />
+</div>

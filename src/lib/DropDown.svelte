@@ -27,7 +27,7 @@
 {#if expanded}
     <div
         class="backdrop"
-        transition:fade|local={{
+        transition:fade={{
             duration: 200,
             easing: cubicOut,
         }}
@@ -62,7 +62,7 @@
                 <div
                     class:focused
                     class="right"
-                    transition:fly|local={{
+                    transition:fly={{
                         x: -10,
                         duration: 400,
                     }}
@@ -72,7 +72,7 @@
                 <div
                     class:focused
                     class="down"
-                    transition:fly|local={{
+                    transition:fly={{
                         y: -10,
                         duration: 400,
                     }}

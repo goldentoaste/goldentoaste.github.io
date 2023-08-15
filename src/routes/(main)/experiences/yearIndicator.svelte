@@ -30,12 +30,12 @@
 </script>
 
 {#if mounted}
-    <yearIndicator transition:fade|local>
+    <yearIndicator transition:fade>
         <h1>
             {year}
         </h1>
 
-        <div class="lineDecor" in:reveal|local={{}}>
+        <div class="lineDecor" in:reveal={{}}>
             <div
                 class="dot x1"
                 style="right:0; top:0; transform:translate(150%, -150%);"
