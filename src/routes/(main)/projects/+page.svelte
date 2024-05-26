@@ -7,6 +7,11 @@
 <div transition:fade|global={{ duration: 150 }} on:outroend={finishOutro}>
     <ProjectPage
         contents={[
+            {
+                text:"⚪ Webnuki",
+                title: "Webnuki - P2p Web game on a Go board",
+                page:"webnuki"
+            },
              {
                 text: "🐶 WatchDog",
                 title: "WatchDog - On the lookout for online scams/frauds",

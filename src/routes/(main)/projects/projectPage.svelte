@@ -2,7 +2,7 @@
     export interface Content {
         text: string;
         title: string;
-        path: string;
+        path?: string;
         page: string;
     }
 </script>
