@@ -1,5 +1,4 @@
 <script lang="ts" context="module">
-    import { page } from '$app/stores';
     export type ButtonParam = {
         href?: string;
         path?: string;
@@ -10,26 +9,30 @@
 </script>
 
 <script lang="ts">
-    import { goto } from '$app/navigation';
-    import { createEventDispatcher } from 'svelte';
-    export let href: string = '';
-    export let path: string = '';
+    import { page } from "$app/stores";
+    import { goto } from "$app/navigation";
+    import { createEventDispatcher } from "svelte";
+    export let href: string = "";
+    export let path: string = "";
     export let selected: boolean = false;
     export let selectExpands = true;
     export let horizontal: boolean = false;
     export let upper: boolean = true;
-    export let key = 'clip';
-    export let style = '';
+    export let key = "clip";
+    export let style = "";
 
     const dispatch = createEventDispatcher();
 
     function onclick(e: MouseEvent) {
-        if (href && href !== ($page.route?.id?.replace(/\/?\(\w+\)/g, "") || '/')) {
+        if (
+            href &&
+            href !== ($page.route?.id?.replace(/\/?\(\w+\)/g, "") || "/")
+        ) {
             goto(href, {
                 noScroll: true,
             });
         }
-        dispatch('click', e.detail);
+        dispatch("click", e.detail);
     }
 </script>
 
@@ -38,7 +41,7 @@
     class:selected
     class:horizontal
     class:selectExpands
-    style={`${upper ? 'text-transform: uppercase;' : ''}${style}`}
+    style={`${upper ? "text-transform: uppercase;" : ""}${style}`}
 >
     <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -56,7 +59,7 @@
 
 <style>
     button:not(:disabled)::before {
-        content: '';
+        content: "";
         background-color: var(--bg-alt2);
         position: absolute;
         top: 0;
@@ -69,8 +72,9 @@
         transition-timing-function: ease-out;
     }
 
-    button:not(:disabled):hover::before, .selected:not(.selectExpands)::before {
-        content: '';
+    button:not(:disabled):hover::before,
+    .selected:not(.selectExpands)::before {
+        content: "";
         position: absolute;
         top: -0.45rem;
         left: 0;
@@ -81,8 +85,8 @@
         border-bottom: var(--fg-alt) 0.15rem solid;
     }
 
-    button:not(:disabled)::after  {
-        content: '';
+    button:not(:disabled)::after {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
@@ -95,14 +99,15 @@
         background-color: var(--fg);
     }
 
-    button:not(:disabled):hover::after , .selected:not(.selectExpands)::after{
-        content: '';
+    button:not(:disabled):hover::after,
+    .selected:not(.selectExpands)::after {
+        content: "";
         width: 100%;
         height: 100%;
     }
 
     button:not(:disabled):hover:active::after {
-        content: '';
+        content: "";
         background-color: var(--fg-alt);
     }
 
@@ -133,14 +138,14 @@
         z-index: 555 !important;
     }
 
-    button:not(:disabled):hover , .selected:not(.selectExpands) {
+    button:not(:disabled):hover,
+    .selected:not(.selectExpands) {
         color: var(--bg-alt);
     }
 
     .selected.selectExpands::before {
         padding-bottom: 2rem;
         background-color: var(--bg-alt3) !important;
- 
     }
     .selected.selectExpands::after {
         padding-bottom: 2rem;
@@ -151,14 +156,12 @@
         padding-right: 4rem;
         border-top: var(--fg-alt) 0.15rem solid;
         border-bottom: var(--fg-alt) 0.15rem solid;
-      
-
     }
     .selected.horizontal::after {
         padding-bottom: 0;
     }
 
-    .selected.horizontal:hover::after{
+    .selected.horizontal:hover::after {
         padding-right: 4rem;
     }
 

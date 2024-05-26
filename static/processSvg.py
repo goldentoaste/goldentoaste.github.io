@@ -1,5 +1,5 @@
 import sys
-from svg.path import parse_path
+from svg.path import parse_path # pip install svg.path
 
 p = sys.argv[1]
 maxSize = float(sys.argv[2])
