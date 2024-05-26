@@ -99,7 +99,29 @@
     This project was initially started as a quick n dirty interface to play the
     game for my game in the games Ai course. But the game turned out t be really
     fun and so I decided to make the multiplayer work and made it look nice.
+    <br />
+    <br />
+    Pente's rules are sort of similar to Gomoku, where the player can win instantly
+    if they connected 5 pieces in a row. But it also has a capture rule, where if
+    a player "sandwich" 2 opponent pieces, those 2 inner ones are captured. The capture
+    mechanic makes the game significantly more interesting by making the win condition
+    less obvious for casual players, and makes the game more complex for advance
+    players.
+
+    <br /><br />
+    I think I've made one of the better ways to play this game online, with features
+    such as:
 </p>
+<ul>
+    <li>Online peer to peer multiplayer</li>
+    <li>Local single player</li>
+    <li>Spectators</li>
+    <li>History of game players, both players can rewind to any past plays</li>
+    <li>Chat room for both players and spectators</li>
+    <li>Export games and load previous games</li>
+    <li>Resizable board.</li>
+    <li>Maybe ai opponent in the future :?</li>
+</ul>
 
 <style>
     .top {
