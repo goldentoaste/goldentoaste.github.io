@@ -50,6 +50,6 @@
     }
 
     .usePadding {
-        margin: 1rem 1rem;
+        margin: 0.5rem 0.5rem;
     }
 </style>

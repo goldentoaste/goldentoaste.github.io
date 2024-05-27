@@ -4,11 +4,9 @@
         duration: string;
         details: string[];
 
-       
         description?: string;
         moreDetails?: string[];
         logoSrc?: string;
-
     }
 </script>
 

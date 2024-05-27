@@ -32,7 +32,7 @@
 
     let line: HTMLElement;
     let startingHeight = 0;
-    let bottomGap = 150; // in px
+    let bottomGap = 200; // in px
     let vlineHeight = spring(0, {
         precision: 3,
         stiffness: 0.05,
@@ -40,7 +40,6 @@
     });
 
     $: $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
-    $: console.log(windowHeight, startingHeight)
     let selectedYear = 0;
     let selectedItem = 0;
 
@@ -209,7 +208,7 @@
                             <Divider usePadding={false} />
                             <ul>
                                 {#each item.moreDetails as detail}
-                                    <li>{detail}</li>
+                                    <li>{@html detail}</li>
                                 {/each}
                             </ul>
                         {/if}

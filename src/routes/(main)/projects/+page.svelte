@@ -8,21 +8,21 @@
     <ProjectPage
         contents={[
             {
-                text:"⚪ Webnuki",
+                text: "⚪ Webnuki",
                 title: "Webnuki - P2p Web game on a Go board",
-                page:"webnuki"
+                page: "webnuki",
             },
-             {
+            {
                 text: "🐶 WatchDog",
                 title: "WatchDog - On the lookout for online scams/frauds",
                 path: "",
                 page: "watchdogs",
             },
             {
-                text:"⏱️ Turn Timer",
+                text: "⏱️ Turn Timer",
                 title: "Turn Timer: for multiplayer table top games",
                 path: "",
-                page:"turntimer"
+                page: "turntimer",
             },
             {
                 text: "🔮 Toneteller",
@@ -35,6 +35,12 @@
                 title: "MisFortune Cookie: Tasty daily fortune",
                 path: "",
                 page: "fortunecookie",
+            },
+            {
+                text: "🍯 Sticky Markdown",
+                title: "Sticky Markdown",
+                path: "",
+                page: "honeypot",
             },
             {
                 text: "✂️ ScreenCap",

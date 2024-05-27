@@ -4,6 +4,7 @@
 </script>
 
 <div
+style="padding: 0.75rem;"
     transition:fade|global={{
         duration: 150,
     }}

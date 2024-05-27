@@ -6,16 +6,16 @@
 
     let pageInput: ExperienceInput[] = [
         {
-            year: "2024",
+            year: "2025",
             items: [
                 {
                     title: "BSC of CS at University of Alberta",
-                    duration: "May 2024",
+                    duration: "May 2025",
                     details: [
-                        "Expecting to Graduate by May of 2024",
+                        "Expecting to Graduate by May of 2025",
                         "With courses taken focusing on Software Dev and Mathematics",
                     ],
-                    description: `Currently expecting to graduate by May of 2024, or 1 semester
+                    description: `Currently expecting to graduate by May of 2025, or 1 semester
                     later if a internship oppontunity if available for me this year. In my last year of study
                     I would like to focus on software quality, software design, and computer networks. The following is a list of relavent
                     courses.
@@ -33,8 +33,75 @@
             ],
         },
         {
+            year: "2024",
+            items: [
+                {
+                    title: "Workshop/Mentor at Stormhacks 2024",
+                    duration: "May 2024",
+                    details: [
+                        "Hosted Svelte Workshop",
+                        "Provided various NextJs help to various hackers",
+                    ],
+                    description: `I was invited to host a Svelte workshop for 2024, in which I prepared quite a high effort :P
+                    The workshop covered the basics of Svelte, what it is, how its different, and why its a good choice, some common pattern
+                    done in svelte (like conditional rendering, components, lists, etc), and then wrapped it up by using all the points covered 
+                    to make a todo app. 
+                    <br>
+                    <br>
+
+                    The workshop's turn out wasn't great, partly because my marketing could've been better, on the other hand it could be
+                    hard for a hackathon audience to try to pick a new framework during the event, plus Svelte is very much unknown for new
+                    web dev that has just started with React considering its the only one talked about. Maybe I should properly learn some NextJs :?
+
+                    <br>
+                    <br>
+
+
+                    I also provided plenty of React/NextJs help to the attendees. Oh, how I wish they used any other frameworks instead.
+                    `,
+                    moreDetails: [
+                        "<a href='https://svelte101.vercel.app/'>Check out this workshop page here</a>",
+                        "<a href='https://stormhacks-2024.vercel.app/'>The todo app in question is here.</a>"
+                    ],
+                    logoSrc:"/icons/questionsparky.png"
+                },
+                {
+                    title: "Intern at Blackberry",
+                    duration: "Jan 2024",
+                    details: [
+                        "4 months internship at Blackberry",
+                        "Java fullstack development position",
+                    ],
+                    logoSrc: "/icons/blackberry.svg",
+                    description: `During my internship at Blackberry, I was working on a update for one of their legacy webapp
+                    into a more modern Java fullstack webframeworks called Vaadins. It was definitely strange to use java for web development,
+                    but after working with it for a while, it is surprisingly usable. The experience was very similar to desktop development, the
+                    framework maintains a active websocket connection with the page in browser, so that logics can be controlled in backend with Java.
+                    <br> <br>
+                    It was also very fun to work the helpful team and my mentor, and it was also interesting to experience how a dev team in a 
+                    established company operates.
+                    `,
+                },
+            ],
+        },
+        {
             year: "2023",
             items: [
+                {
+                    title: "Cmput 455 - Class Ai tournament 1st place",
+                    duration: "Dec 2023",
+                    details: ["Fist place in class's ai player tourney"],
+                    description: `Cmput 455 is a course on algorithms used for search and planning, mostly in the context of 
+                    computer game solving. In particular, for the final project, we used techniques learnt over the semester to build
+                    the best Ai player for the game of <a href='https://en.wikipedia.org/wiki/Pente'>Pente</a>. I lead the team to implement 
+                    the Monte Carlo tree search for the game, and won first place out of 73 teams, winning the final match with 8 wins to 5 losses.
+                    `,
+                    moreDetails: [
+                        "Machine learning",
+                        "Monte Carlo tree search",
+                    ],
+                    logoSrc: "experience/ualberta.svg",
+                },
                 {
                     title: "Stormhacks 2023 - Watchdog",
                     duration: "May 2023",
@@ -146,6 +213,5 @@
 </script>
 
 <div transition:fade|global={{ duration: 150 }} on:outroend={finishOutro}>
- 
     <ExpPage {pageInput} />
 </div>

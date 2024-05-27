@@ -129,7 +129,7 @@
             hovering={false}
             style="width:auto; height:100%; margin:0;"
         >
-            <Divider usePadding={false} />
+            <Divider usePadding={true} />
 
             {#key selection}
                 <iframe
@@ -142,7 +142,7 @@
                     scrolling="no">Content loading...</iframe
                 >
             {/key}
-            <Divider usePadding={false} />
+            <Divider usePadding={true} />
         </InfoBox>
     </div>
 </div>
