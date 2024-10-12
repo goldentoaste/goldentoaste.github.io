@@ -8,6 +8,16 @@
     <ProjectPage
         contents={[
             {
+                text:"⚙️ Gadget-lang",
+                title:"Gadget-lang - Custom interpreted language",
+                page:"gadget"
+            }, 
+            {
+                text: "➡️ Swiper demo",
+                title: "Swiper demo - a mobile Svelte component",
+                page: "swiperDemo",
+            },
+            {
                 text: "⚪ Webnuki",
                 title: "Webnuki - P2p Web game on a Go board",
                 page: "webnuki",

@@ -10,9 +10,9 @@
             items: [
                 {
                     title: "BSC of CS at University of Alberta",
-                    duration: "May 2025",
+                    duration: "Dec 2025",
                     details: [
-                        "Expecting to Graduate by May of 2025",
+                        "Expecting to Graduate by December of 2025",
                         "With courses taken focusing on Software Dev and Mathematics",
                     ],
                     description: `Currently expecting to graduate by May of 2025, or 1 semester
@@ -35,6 +35,43 @@
         {
             year: "2024",
             items: [
+                {
+                    title: "Workshop/Mentor at Stormhacks 2.0",
+                    duration: "Oct 2024",
+                    details: [
+                        "Hosted Svelte+Firebase fullstack workshop",
+                        "Mentored over the 2 day event",
+                        "15+ attendees",
+                    ],
+
+                    description: `
+                    This workshop aimed was ran before the main event and provides a complete techstack for first time hackers. The workshop covered basics of 
+                    Sveltekit and Firebase, and uses them to make a real time message board web app. 
+                    
+                    Generally participants found the tools introduced useful, and there were at least 3 teams using this techstack which I was quite proud of. 
+
+                    I was also at the event for the entire duration, to provide general technical support. (And to make sure all the Svelte teams does reasonably well.)
+                    `,
+                    moreDetails: [
+                        "<a href='https://svelte-firebase-two.vercel.app/message'>Workshop project demo</a>",
+                        "<a href='https://svelte-firebase-presentation.vercel.app/'>Presentation slides</a>",
+                        "<a href='https://github.com/goldentoaste/svelteFirebase'>Relevant source code</a>",
+                    ],
+                },
+                {
+                    title: "Cloud Operations at SAP",
+                    duration: "Sept 2024",
+                    details: ["8 months internship", "Operations of production system"],
+                    description: `During this internship, I was a part of the SAP vancouver's Cloud Operations team. I was reponsible for performing scheduled
+                    maintnance and updates, realtime monitoring of production systems, hanlding critical outage, processing request, and amongst tasks to ensure
+                    smooth internal operations, and guarantee 99.7% up time for customers. 
+
+                    In this position is completely different to all my previous experiences, as such it was somewhat challenging in the beginning. However it was still
+                    a valuable experience for me to experience how large scale production software infrastructure is operated and maintained in a large organization. 
+
+                    Currently I am only 2 months into the role, so I have a lot to learn still. I am expected to finish this internship by May 2025.
+                    `,
+                },
                 {
                     title: "Workshop/Mentor at Stormhacks 2024",
                     duration: "May 2024",
@@ -61,9 +98,9 @@
                     `,
                     moreDetails: [
                         "<a href='https://svelte101.vercel.app/'>Check out this workshop page here</a>",
-                        "<a href='https://stormhacks-2024.vercel.app/'>The todo app in question is here.</a>"
+                        "<a href='https://stormhacks-2024.vercel.app/'>The todo app in question is here.</a>",
                     ],
-                    logoSrc:"/icons/questionsparky.png"
+                    logoSrc: "/icons/questionsparky.png",
                 },
                 {
                     title: "Intern at Blackberry",
@@ -96,19 +133,13 @@
                     the best Ai player for the game of <a href='https://en.wikipedia.org/wiki/Pente'>Pente</a>. I lead the team to implement 
                     the Monte Carlo tree search for the game, and won first place out of 73 teams, winning the final match with 8 wins to 5 losses.
                     `,
-                    moreDetails: [
-                        "Machine learning",
-                        "Monte Carlo tree search",
-                    ],
+                    moreDetails: ["Machine learning", "Monte Carlo tree search"],
                     logoSrc: "experience/ualberta.svg",
                 },
                 {
                     title: "Stormhacks 2023 - Watchdog",
                     duration: "May 2023",
-                    details: [
-                        "2nd Place + Best UI design award",
-                        "Near 200 attendees",
-                    ],
+                    details: ["2nd Place + Best UI design award", "Near 200 attendees"],
                     description: `An in-person hackathon event host on Sfu burnaby campus, with nearly 200 paticipants.
                     I worked with a team of 4 to create an web app called "Watchdogs", a online scam and fraud detecting tool.
 
