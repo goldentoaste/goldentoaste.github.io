@@ -2,18 +2,18 @@
     import { fly } from 'svelte/transition';
     import { quartOut } from 'svelte/easing';
 
-    export let index = 0;
-    export let style = ""
-    let hover = false;
+    /** @type {{index?: number, style?: string, children?: import('svelte').Snippet}} */
+    let { index = 0, style = "", children } = $props();
+    let hover = $state(false);
 </script>
 
 <div id="listItemRoot">
     <div  {style}
         id="buttonHolder"
-        on:mouseenter={() => {
+        onmouseenter={() => {
             hover = true;
         }}
-        on:mouseleave={() => {
+        onmouseleave={() => {
             hover = false;
         }}
         in:fly={{
@@ -23,7 +23,7 @@
             x: -40,
         }}
     >
-        <slot />
+        {@render children?.()}
     </div>
 
     {#if hover}

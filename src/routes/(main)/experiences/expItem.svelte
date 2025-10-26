@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export interface ExperienceItemInput {
         title: string;
         duration: string;
@@ -11,14 +11,21 @@
 </script>
 
 <script lang="ts">
+    import { createBubbler } from 'svelte/legacy';
+
+    const bubble = createBubbler();
     import Divider from "$lib/Divider.svelte";
     import SpotLightBox from "$lib/SpotLightBox.svelte";
 
-    export let info: ExperienceItemInput;
+    interface Props {
+        info: ExperienceItemInput;
+    }
+
+    let { info }: Props = $props();
 </script>
 
 <SpotLightBox>
-    <div class="item" on:click on:keypress>
+    <div class="item" onclick={bubble('click')} onkeypress={bubble('keypress')}>
         <div class="top">
             <h3>{info.title}</h3>
             <span class="duration">{info.duration}</span>

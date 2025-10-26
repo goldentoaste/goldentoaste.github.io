@@ -1,11 +1,15 @@
 <script>
-    export let title = "";
-    export let titleEnd = "";
-    export let style = "";
 
-    export let hovering = true;
 
-    export let outline = false;
+    /** @type {{title?: string, titleEnd?: string, style?: string, hovering?: boolean, outline?: boolean, children?: import('svelte').Snippet}} */
+    let {
+        title = "",
+        titleEnd = "",
+        style = "",
+        hovering = true,
+        outline = false,
+        children
+    } = $props();
 </script>
 
 <div
@@ -23,7 +27,7 @@
     {/if}
 
     <div class="body">
-        <slot />
+        {@render children?.()}
     </div>
 </div>
 

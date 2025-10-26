@@ -1,13 +1,18 @@
 <script lang="ts">
     import { spring } from "svelte/motion";
     import { fly, fade } from "svelte/transition";
+    interface Props {
+        children?: import('svelte').Snippet;
+    }
+
+    let { children }: Props = $props();
     const xSize = 400;
     const ySize = 400;
 
     const xMax = 132;
     const tMax = 10;
 
-    let targets = { x: 0, y: 0, rot: 0 };
+    let targets = $state({ x: 0, y: 0, rot: 0 });
     let coords = spring(
         { x: 0, y: 0, rot: 0 },
         {
@@ -15,9 +20,9 @@
             damping: 0.7,
         }
     );
-    let dragging = false;
-    let sign: number;
-    $: sign = $coords.rot > 0 ? 1 : -1;
+    let dragging = $state(false);
+    let sign: number = $derived($coords.rot > 0 ? 1 : -1);
+    
 
 
     const drag = (e: MouseEvent) => {
@@ -93,10 +98,10 @@
     id="container"
     style="transform: translate({$coords.x + 250}px,{$coords.y +
         20}px) rotate({$coords.rot}deg) ;"
-    on:mousedown={() => {
+    onmousedown={() => {
         dragging = true;
     }}
-    on:mouseup={() => {
+    onmouseup={() => {
         dragging = false;
     }}
 >
@@ -130,12 +135,12 @@
             {/if}
         </div>
     </div>
-    <slot/>
+    {@render children?.()}
 </div>
 
 <svelte:window
-    on:mousemove={drag}
-    on:mouseup={() => {
+    onmousemove={drag}
+    onmouseup={() => {
         targets.x = 0;
         targets.y = 0;
         coords.set(targets);

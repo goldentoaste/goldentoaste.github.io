@@ -1,7 +1,17 @@
 <script lang='ts'>
-    export let src = "";
-    export let path = "";
-    export let key :string;
+    interface Props {
+        src?: string;
+        path?: string;
+        key: string;
+        children?: import('svelte').Snippet;
+    }
+
+    let {
+        src = "",
+        path = "",
+        key,
+        children
+    }: Props = $props();
 </script>
 
 <div class="parent">
@@ -21,9 +31,9 @@
         </svg>
 
         <!-- the displayed 'icon' is actually a solid div, but using the svg as a clip path. -->
-        <div class="imgDiv" style="clip-path: url('#{key}');" />
+        <div class="imgDiv" style="clip-path: url('#{key}');"></div>
     {/if}
-    <slot />
+    {@render children?.()}
 </div>
 
 <style>

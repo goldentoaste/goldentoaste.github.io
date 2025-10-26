@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export interface Content {
         text: string;
         title: string;
@@ -8,6 +8,8 @@
 </script>
 
 <script lang="ts">
+    import { passive } from 'svelte/legacy';
+
     import { onMount } from "svelte";
     import { pageState, PageState } from "$lib/stores/pageUpdates";
 
@@ -19,21 +21,23 @@
     import DropDown from "$lib/DropDown.svelte";
     import { fade } from "svelte/transition";
 
-    export let contents: Content[] = [];
-
-    let selection = 0;
-    let content: Content;
-    $: {
-        content = contents[selection];
+    interface Props {
+        contents?: Content[];
     }
 
-    let iframe: HTMLIFrameElement;
+    let { contents = [] }: Props = $props();
 
-    let listHolder: HTMLDivElement;
+    let selection = $state(0);
+    let content: Content = $derived(contents[selection]);
+    
 
-    let innerWidth: number;
+    let iframe: HTMLIFrameElement = $state();
 
-    let expanded = false;
+    let listHolder: HTMLDivElement = $state();
+
+    let innerWidth: number = $state();
+
+    let expanded = $state(false);
 
     function resizeIframe() {
         if (
@@ -49,7 +53,7 @@
     });
 </script>
 
-<svelte:window on:resize|passive={resizeIframe} bind:innerWidth />
+<svelte:window use:passive={['resize', () => resizeIframe]} bind:innerWidth />
 
 <h1>My Projects 🔨</h1>
 <p>
@@ -135,7 +139,7 @@
                 <iframe
                     in:fade|global={{ duration: 500 }}
                     bind:this={iframe}
-                    on:load={resizeIframe}
+                    onload={resizeIframe}
                     loading="lazy"
                     title={content.title}
                     src={`./${content.page}`}

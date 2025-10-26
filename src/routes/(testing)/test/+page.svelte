@@ -6,8 +6,8 @@
 	let maxHeight = 100;
 	let minHeight = 50;
 	let offset = 100;
-	let scroll: number = 0;
-	let windowHeight = 100;
+	let scroll: number = $state(0);
+	let windowHeight = $state(100);
 
 	onMount(() => {
 		windowHeight = document.body.clientHeight;
@@ -16,7 +16,7 @@
 
 <svelte:window
 	bind:scrollY={scroll}
-	on:resize={() => {
+	onresize={() => {
 		windowHeight = document.body.clientHeight;
 	}}
 />

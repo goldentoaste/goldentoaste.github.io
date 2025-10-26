@@ -1,19 +1,28 @@
 <script lang="ts">
-    export let usePadding = true;
-    export let style: string = "";
-    export let useDecoration = true;
-    export let vertical = false;
+    interface Props {
+        usePadding?: boolean;
+        style?: string;
+        useDecoration?: boolean;
+        vertical?: boolean;
+    }
+
+    let {
+        usePadding = true,
+        style = "",
+        useDecoration = true,
+        vertical = false
+    }: Props = $props();
 </script>
 
 <div class="divider" class:usePadding {style} class:vertical>
     {#if useDecoration}
-        <div class="dot" />
+        <div class="dot"></div>
     {/if}
 
-    <div class="bar" />
+    <div class="bar"></div>
 
     {#if useDecoration}
-        <div class="dot" />
+        <div class="dot"></div>
     {/if}
 </div>
 

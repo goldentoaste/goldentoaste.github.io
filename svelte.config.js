@@ -15,8 +15,17 @@ const config = {
 				assets: 'build',
 				fallback: null
 			}
-		), appDir: 'app'
+		), appDir: 'app',
 
+
+	},
+	compilerOptions: {
+		warningFilter: w=>{
+			if (w.code.includes("a11y")){
+				return false;
+			}
+			return true;
+		}
 	}
 };
 

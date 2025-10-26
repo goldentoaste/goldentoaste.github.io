@@ -268,7 +268,7 @@
 
 </script>
 
-<div id="outer" transition:fade|global={{duration:150}} on:outroend={finishOutro}>
+<div id="outer" transition:fade|global={{duration:150}} onoutroend={finishOutro}>
     <div id="inner">
         <Intro />
         <Section title="Languages, Technologies and Tools">

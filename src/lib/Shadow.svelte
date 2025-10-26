@@ -1,4 +1,4 @@
-<div id="shadow" />
+<div id="shadow"></div>
 
 <style>
     div#shadow {

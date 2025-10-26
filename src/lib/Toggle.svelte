@@ -1,13 +1,19 @@
 <!-- TODO make this look good later -->
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import { createEventDispatcher } from 'svelte';
 
-    export let toggled = false;
-    let icon: HTMLElement;
+    interface Props {
+        toggled?: boolean;
+    }
+
+    let { toggled = $bindable(false) }: Props = $props();
+    let icon: HTMLElement = $state();
 
     let dispatch = createEventDispatcher();
 
-    $: {
+    run(() => {
         if (icon) {
             if (toggled) {
                 icon.classList.add('toggled');
@@ -15,7 +21,7 @@
                 icon.classList.remove('toggled');
             }
         }
-    }
+    });
 
     function handleClick() {
         toggled = !toggled;
@@ -26,12 +32,12 @@
     }
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="root" on:click={handleClick}>
-    <div bind:this={icon} class="icon" />
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div class="root" onclick={handleClick}>
+    <div bind:this={icon} class="icon"></div>
 </div>
 
-<!-- svelte-ignore css-unused-selector -->
+<!-- svelte-ignore css_unused_selector -->
 <style>
     .icon {
         position:relative;

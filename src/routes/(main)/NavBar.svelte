@@ -1,31 +1,33 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { page } from '$app/stores';
-    import { afterNavigate } from '$app/navigation';
-    import Button from '$lib/Button.svelte';
-    import Toggle from '$lib/Toggle.svelte';
+    import { onMount } from "svelte";
+    import { page } from "$app/stores";
+    import { afterNavigate } from "$app/navigation";
+    import Button from "$lib/Button.svelte";
+    import Toggle from "$lib/Toggle.svelte";
 
-    import Divider from '$lib/Divider.svelte';
-    import List from '$lib/List.svelte';
-    import ListItem from '$lib/ListItem.svelte';
-    import { fade } from 'svelte/transition';
+    import Divider from "$lib/Divider.svelte";
+    import List from "$lib/List.svelte";
+    import ListItem from "$lib/ListItem.svelte";
+    import { fade } from "svelte/transition";
 
     type NavItem = {
         name: string;
         dest: string;
         iconPath: string;
     };
-    export let items: NavItem[] = [];
+    interface Props {
+        items?: NavItem[];
+    }
+
+    let { items = [] }: Props = $props();
 
     // state management for which button is currently selected
-    let selects: boolean[] = [];
+    let selects: boolean[] = $state([]);
 
     // dynamically change navbar format if window width is too small/mobile sized
-    let innerWidth: number;
-    let useMobile = false;
-    let navExtended = false;
-
-    $: useMobile = innerWidth < 1000;
+    let innerWidth: number = $state(1000);
+    let useMobile = $derived(innerWidth < 1000);
+    let navExtended = $state(false);
 
     function updateButtons() {
         items.forEach((item, index) => {
@@ -42,16 +44,16 @@
 <svelte:window bind:innerWidth />
 
 {#if navExtended}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
     <div
         id="cover"
         transition:fade|global={{
             duration: 200,
         }}
-        on:click={() => {
+        onclick={() => {
             navExtended = false;
         }}
-    />
+    ></div>
 {/if}
 
 <div id="root">
@@ -62,10 +64,9 @@
                     {#if !useMobile || selects[i]}
                         <Button
                             on:click={() => {
-                       
                                 window.scrollTo({
                                     top: 0,
-                                    behavior: 'smooth',
+                                    behavior: "smooth",
                                 });
                             }}
                             selected={selects[i] && !navExtended}
@@ -81,10 +82,10 @@
                     <Toggle bind:toggled={navExtended} />
                 {/if}
             {:else}
-                <div style="content:''; height:4rem;" />
+                <div style="content:''; height:4rem;"></div>
             {/if}
         </nav>
-        <div id="optionContianer" style={navExtended ? 'max-height:350px;' : 'max-height:0;'}>
+        <div id="optionContianer" style={navExtended ? "max-height:350px;" : "max-height:0;"}>
             {#if navExtended}
                 <Divider />
 
@@ -121,20 +122,20 @@
                 patternUnits="userSpaceOnUse"
                 patternTransform="scale(0.7)"
             >
-                <rect width="8" height="4" fill="currentColor" />
-                <circle cx="22" cy="8" r="2" fill="currentColor" />
-                <circle cx="34" cy="8" r="2" fill="currentColor" />
-                <circle cx="28" cy="14" r="2" fill="currentColor" />
+                <rect width="8" height="4" fill="currentColor"></rect>
+                <circle cx="22" cy="8" r="2" fill="currentColor"></circle>
+                <circle cx="34" cy="8" r="2" fill="currentColor"></circle>
+                <circle cx="28" cy="14" r="2" fill="currentColor"></circle>
             </pattern>
         </defs>
-        <rect id="rect" x="0" y="0" width="100%" height="11" fill="url(#border)" />
+        <rect id="rect" x="0" y="0" width="100%" height="11" fill="url(#border)"></rect>
     </svg>
 </div>
 
 <div id="botBar">
-    <nav id="botNav" />
+    <nav id="botNav"></nav>
     <svg id="bottom" width="100%">
-        <use xlink:href="#rect" />
+        <use xlink:href="#rect"></use>
     </svg>
 </div>
 
@@ -181,7 +182,6 @@
 
         height: fit-content;
         border-bottom: var(--fg) 0.2rem solid;
-    
     }
 
     nav {
@@ -190,7 +190,6 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-    
     }
 
     nav.mobile {

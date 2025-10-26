@@ -4,9 +4,14 @@
     //  make ::after the highlighted border
     //  the real div should be the normal content.
 
-    export let style : string = ""; // style overwrite
+    interface Props {
+        style?: string;
+        children?: import('svelte').Snippet;
+    }
 
-    let item: HTMLDivElement;
+    let { style = "", children }: Props = $props();
+
+    let item: HTMLDivElement = $state();
 
     function move(e: MouseEvent | Touch) {
         let box = item.getBoundingClientRect();
@@ -15,8 +20,8 @@
     }
 </script>
 
-<div on:mousemove={move} on:touchmove={(e)=>{move(e.touches[0])}} bind:this={item} class="box" {style}>
-    <slot/>
+<div onmousemove={move} ontouchmove={(e)=>{move(e.touches[0])}} bind:this={item} class="box" {style}>
+    {@render children?.()}
 </div>
 
 <style>

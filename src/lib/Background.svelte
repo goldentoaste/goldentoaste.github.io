@@ -2,8 +2,9 @@
     import { fade } from 'svelte/transition';
     import { setRandomInterval } from '$lib/scripts/randomInterval';
     
-    let lineOrigin = 0;
-    export let flip = false;
+    let lineOrigin = $state(0);
+    /** @type {{flip?: boolean}} */
+    let { flip = false } = $props();
 
     setRandomInterval(
         () => {

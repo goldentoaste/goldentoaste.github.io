@@ -1,9 +1,17 @@
 <script lang="ts">
+  import { createBubbler } from 'svelte/legacy';
+
+  const bubble = createBubbler();
     import { quartOut } from "svelte/easing";
     import { fade } from "svelte/transition";
 
   
-    export let style = "";
+  interface Props {
+    style?: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let { style = "", children }: Props = $props();
 
     function expandVert(
         node: HTMLElement,
@@ -21,10 +29,10 @@
 
 </script>
 
-<div id="parent" out:fade={{duration:200}} on:outroend {style}>
-    <div id="decor" in:expandVert|global={{ duration: 500, easing: quartOut }} />
+<div id="parent" out:fade={{duration:200}} onoutroend={bubble('outroend')} {style}>
+    <div id="decor" in:expandVert|global={{ duration: 500, easing: quartOut }}></div>
     <div id="listContainer" >
-        <slot></slot>
+        {@render children?.()}
     </div>
 </div>
 

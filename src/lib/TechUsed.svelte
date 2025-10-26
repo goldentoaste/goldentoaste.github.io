@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export interface TechItem {
         name: string;
         src?: string;
@@ -16,8 +16,12 @@
     import IconListItem from "./IconListItem.svelte";
     import Divider from "./Divider.svelte";
 
-    export let input: TechGroup[] = [];
-    export let style : string = "";
+    interface Props {
+        input?: TechGroup[];
+        style?: string;
+    }
+
+    let { input = [], style = "" }: Props = $props();
 </script>
 
 <InfoBox title="Tech used" outline={true} {style}> 

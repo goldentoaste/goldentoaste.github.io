@@ -1,16 +1,28 @@
 <script lang="ts">
+  import { run } from 'svelte/legacy';
+
     import { fade, fly } from "svelte/transition";
     import { cubicOut } from "svelte/easing";
     import Divider from "./Divider.svelte";
     import DropDownContent from "./_DropDownContent.svelte";
-    export let title: string;
-    export let style: string = "";
-    export let expanded: boolean = false;
+  interface Props {
+    title: string;
+    style?: string;
+    expanded?: boolean;
+    children?: import('svelte').Snippet;
+  }
 
-    let focused = false;
+  let {
+    title,
+    style = "",
+    expanded = $bindable(false),
+    children
+  }: Props = $props();
 
-    let content: HTMLDivElement;
-    let body: HTMLDivElement;
+    let focused = $state(false);
+
+    let content: HTMLDivElement = $state();
+    let body: HTMLDivElement = $state();
 
     function contentLoad() {
         body.style.setProperty(
@@ -19,9 +31,11 @@
         );
     }
 
-    $: if (!expanded && body) {
-        body.style.setProperty("max-height", 0 + "px");
-    }
+    run(() => {
+    if (!expanded && body) {
+          body.style.setProperty("max-height", 0 + "px");
+      }
+  });
 </script>
 
 {#if expanded}
@@ -31,29 +45,29 @@
             duration: 200,
             easing: cubicOut,
         }}
-        on:click={() => {
+        onclick={() => {
             expanded = false;
         }}
-        on:keypress={() => {
+        onkeypress={() => {
             expanded = false;
         }}
-    />
+></div>
 {/if}
 
 <div class="parent">
     <div
         class="dropDownTitle"
         {style}
-        on:click={() => {
+        onclick={() => {
             expanded = !expanded;
         }}
-        on:keypress={() => {
+        onkeypress={() => {
             expanded = !expanded;
         }}
-        on:mouseenter={() => {
+        onmouseenter={() => {
             focused = true;
         }}
-        on:mouseleave={() => {
+        onmouseleave={() => {
             focused = false;
         }}
     >
@@ -66,7 +80,7 @@
                         x: -10,
                         duration: 400,
                     }}
-                />
+></div>
             {/if}
             {#if expanded}
                 <div
@@ -76,7 +90,7 @@
                         y: -10,
                         duration: 400,
                     }}
-                />
+></div>
             {/if}
         </div>
 
@@ -89,7 +103,7 @@
                 <DropDownContent bind:content on:mounted={contentLoad}>
                     <Divider />
 
-                    <div style="padding-left:1rem;"><slot /></div>
+                    <div style="padding-left:1rem;">{@render children?.()}</div>
 
                     <Divider />
                 </DropDownContent>

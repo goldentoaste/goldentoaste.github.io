@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export type ButtonParam = {
         href?: string;
         path?: string;
@@ -12,14 +12,29 @@
     import { page } from "$app/stores";
     import { goto } from "$app/navigation";
     import { createEventDispatcher } from "svelte";
-    export let href: string = "";
-    export let path: string = "";
-    export let selected: boolean = false;
-    export let selectExpands = true;
-    export let horizontal: boolean = false;
-    export let upper: boolean = true;
-    export let key = "clip";
-    export let style = "";
+    interface Props {
+        href?: string;
+        path?: string;
+        selected?: boolean;
+        selectExpands?: boolean;
+        horizontal?: boolean;
+        upper?: boolean;
+        key?: string;
+        style?: string;
+        children?: import('svelte').Snippet;
+    }
+
+    let {
+        href = "",
+        path = "",
+        selected = false,
+        selectExpands = true,
+        horizontal = false,
+        upper = true,
+        key = "clip",
+        style = "",
+        children
+    }: Props = $props();
 
     const dispatch = createEventDispatcher();
 
@@ -37,7 +52,7 @@
 </script>
 
 <button
-    on:click={onclick}
+    {onclick}
     class:selected
     class:horizontal
     class:selectExpands
@@ -51,10 +66,10 @@
         </defs>
     </svg>
     {#if path}
-        <div class="icon" style="clip-path: url('#{key}');" />
+        <div class="icon" style="clip-path: url('#{key}');"></div>
     {/if}
 
-    <div class="inner"><slot /></div>
+    <div class="inner">{@render children?.()}</div>
 </button>
 
 <style>

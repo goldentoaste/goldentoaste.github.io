@@ -1,6 +1,7 @@
 <script>
-    export let content = undefined;
     import { createEventDispatcher, onMount } from "svelte";
+    /** @type {{content?: any, children?: import('svelte').Snippet}} */
+    let { content = $bindable(undefined), children } = $props();
 
     const dispatch = createEventDispatcher();
 
@@ -10,7 +11,7 @@
 </script>
 
 <div class="content" bind:this={content}>
-    <slot />
+    {@render children?.()}
 </div>
 
 <style>

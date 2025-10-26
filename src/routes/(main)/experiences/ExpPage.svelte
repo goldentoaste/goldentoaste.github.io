@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     import type { ExperienceItemInput } from "./expItem.svelte";
 
     export interface ExperienceInput {
@@ -8,6 +8,8 @@
 </script>
 
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import { PageState, pageState } from "$lib/stores/pageUpdates";
     import { onMount } from "svelte";
     import YearIndicator from "./yearIndicator.svelte";
@@ -20,18 +22,22 @@
     import Divider from "$lib/Divider.svelte";
     import { spring } from "svelte/motion";
 
-    export let pageInput: ExperienceInput[];
+    interface Props {
+        pageInput: ExperienceInput[];
+    }
 
-    let mounted = false;
+    let { pageInput }: Props = $props();
 
-    let pageHeight = 0;
-    let windowHeight = 0;
-    let windowWidth = 1000;
-    let scrollY = 0;
-    let maxScroll = 0;
+    let mounted = $state(false);
 
-    let line: HTMLElement;
-    let startingHeight = 0;
+    let pageHeight = $state(0);
+    let windowHeight = $state(0);
+    let windowWidth = $state(1000);
+    let scrollY = $state(0);
+    let maxScroll = $state(0);
+
+    let line: HTMLElement = $state();
+    let startingHeight = $state(0);
     let bottomGap = 200; // in px
     let vlineHeight = spring(0, {
         precision: 3,
@@ -39,24 +45,28 @@
         damping: 0.7,
     });
 
-    $: $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
-    let selectedYear = 0;
-    let selectedItem = 0;
+    run(() => {
+        $vlineHeight = windowHeight - bottomGap - startingHeight + maxScroll;
+    });
+    let selectedYear = $state(0);
+    let selectedItem = $state(0);
 
-    let isMobile = false;
-    let showModal = false;
-    $: {
+    let isMobile = $state(false);
+    let showModal = $state(false);
+    run(() => {
         isMobile = windowWidth < 900;
-    }
+    });
 
-    let years: (HTMLDivElement | undefined)[] = Array(pageInput.length);
+    let years: (HTMLDivElement | undefined)[] = $state(Array(pageInput.length));
     years.fill(undefined);
 
     // if height of page changed at run time, reduce max scroll to relfect that
-    $: {
+    run(() => {
         scrollY = Math.min(pageHeight, scrollY);
-    }
-    $: maxScroll = Math.round(Math.max(scrollY, maxScroll));
+    });
+    run(() => {
+        maxScroll = Math.round(Math.max(scrollY, maxScroll));
+    });
 
     function bodyResized() {
         if (browser) {
@@ -87,7 +97,7 @@
 
 <svelte:window
     bind:scrollY
-    on:resize={bodyResized}
+    onresize={bodyResized}
     bind:outerHeight={windowHeight}
 
     bind:innerWidth={windowWidth}
@@ -105,7 +115,7 @@
             <h1>Past Experiences and Achievement</h1>
             <div class="timelineParent">
                 <div class="hline" style={mounted ? "max-width:800px;" : ""}>
-                    <div class="decor" />
+                    <div class="decor"></div>
                 </div>
 
                 <div
@@ -115,9 +125,9 @@
                     style={mounted ? `height:${$vlineHeight}px;` : ""}
                 >
                     <div class="scrollDiamond">
-                        <div class="innerArrow" />
+                        <div class="innerArrow"></div>
 
-                        <div class="littleArrow" />
+                        <div class="littleArrow"></div>
                     </div>
                 </div>
             </div>
@@ -140,9 +150,9 @@
                         </div>
 
                         {#each group.items as item, itemIndex}
-                            <!-- svelte-ignore a11y-click-events-have-key-events -->
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
                             <div
-                                on:click={() => {
+                                onclick={() => {
                                     selectedYear = yearIndex;
                                     selectedItem = itemIndex;
                                     showModal = true;
@@ -165,14 +175,14 @@
         </div>
 
         {#if isMobile && showModal}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
             <div
                 class="shadow"
                 transition:fade|global={{ duration: 500, easing: cubicOut }}
-                on:click={() => {
+                onclick={() => {
                     showModal = false;
                 }}
-            />
+></div>
         {/if}
         {#if !isMobile || showModal}
             {#key [selectedItem, selectedYear]}

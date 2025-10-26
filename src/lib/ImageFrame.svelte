@@ -1,4 +1,4 @@
-<script lang="ts" context="module">
+<script lang="ts" module>
     export interface ImgItem {
         src: string;
         desc: string;
@@ -6,43 +6,56 @@
 </script>
 
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import { fade } from "svelte/transition";
 
     import Divider from "./Divider.svelte";
     import InfoBox from "./InfoBox.svelte";
     import { spring } from "svelte/motion";
 
-    export let title: string = ""; // a title to describe all this collectin of images
-    export let items: ImgItem[] = [];
-    export let containerStyle: string = "";
 
-    export let width = 200;
-    export let height = 200;
-    export let maxWidth = 200;
-    let clientWidth: number;
-
-    $: {
-        width = Math.min(clientWidth, maxWidth);
+    interface Props {
+        title?: string;
+        items?: ImgItem[];
+        containerStyle?: string;
+        width?: number;
+        height?: number;
+        maxWidth?: number;
     }
+
+    let {
+        title = "",
+        items = [],
+        containerStyle = "",
+        width = $bindable(200),
+        height = 200,
+        maxWidth = 200
+    }: Props = $props();
+    let clientWidth: number = $derived(Math.min(clientWidth, maxWidth));
+
+    
 
     const epsilon = 1;
 
-    let scrollVal = spring(0, {
+    let scrollVal = $state(spring(0, {
         stiffness: 0.2,
         damping: 1,
+    }));
+
+    let abs = $state(0);
+    run(() => {
+        abs = Math.abs($scrollVal);
     });
 
-    let abs = 0;
-    $: abs = Math.abs($scrollVal);
-
-    let box: HTMLElement;
-    let index = 0;
-    let mouseDown = false;
+    let box: HTMLElement = $state();
+    let index = $state(0);
+    let mouseDown = $state(false);
     let iniX = 0;
     let lastPos = 0;
     let iniTime = 0;
 
-    let showArrows = false;
+    let showArrows = $state(false);
 
     function clamp(min: number, val: number, max: number) {
         return Math.min(Math.max(min, val), max);
@@ -90,7 +103,7 @@
     }
 
     // check if scrolling finished
-    $: {
+    run(() => {
         if (!mouseDown && Math.abs(Math.abs($scrollVal) - width) < epsilon) {
             index = clamp(0, index - Math.sign($scrollVal), items.length - 1);
             scrollVal.stiffness = 1;
@@ -98,7 +111,7 @@
             scrollVal.stiffness = 0.2;
             scrollVal.damping = 1;
         }
-    }
+    });
 
     function xp(...obj: Object[]) {
         console.log(...obj);
@@ -122,10 +135,10 @@
             bind:clientWidth
             class="imgHolder"
             style="width:{maxWidth}px; height:{height}px;"
-            on:mouseenter={() => {
+            onmouseenter={() => {
                 showArrows = true;
             }}
-            on:mouseleave={() => {
+            onmouseleave={() => {
                 showArrows = false;
             }}
         >
@@ -159,20 +172,20 @@
             <div
                 class="imagewrapper"
                 bind:this={box}
-                on:mousedown={down}
-                on:mouseup={up}
-                on:mouseleave={up}
-                on:mousemove={move}
-                on:touchstart={(e) => {
+                onmousedown={down}
+                onmouseup={up}
+                onmouseleave={up}
+                onmousemove={move}
+                ontouchstart={(e) => {
                     down(e.touches[0]);
                 }}
-                on:touchend={(e) => {
+                ontouchend={(e) => {
                     up(e.touches[0]);
                 }}
-                on:touchcancel={(e) => {
+                ontouchcancel={(e) => {
                     up(e.touches[0]);
                 }}
-                on:touchmove={(e) => {
+                ontouchmove={(e) => {
                     move(e.touches[0]);
                 }}
             >
@@ -237,16 +250,16 @@
 
                 {#if showArrows}
                     {#if index !== 0}
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y_click_events_have_key_events -->
                         <div
                             transition:fade={{ duration: 200 }}
                             class="arrow"
                             id="left"
-                            on:click={() => {
+                            onclick={() => {
                                 $scrollVal = width;
                             }}
                         >
-                            <!-- svelte-ignore missing-declaration -->
+                            <!-- svelte-ignore missing_declaration -->
 
                             <svg viewBox="0 0 6 6">
                                 <use href="#arrow" />
@@ -255,12 +268,12 @@
                     {/if}
 
                     {#if index !== items.length - 1}
-                        <!-- svelte-ignore a11y-click-events-have-key-events -->
+                        <!-- svelte-ignore a11y_click_events_have_key_events -->
                         <div
                             transition:fade={{ duration: 200 }}
                             class="arrow"
                             id="right"
-                            on:click={() => {
+                            onclick={() => {
                                 $scrollVal = -width;
                             }}
                         >
@@ -280,7 +293,7 @@
             {/if}
 
             <div id="starWrap">
-                <div id="star" />
+                <div id="star"></div>
             </div>
         </div>
         <Divider

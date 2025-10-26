@@ -1,10 +1,14 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    export let year: string;
     import { cubicOut } from "svelte/easing";
     import { fade } from "svelte/transition";
+    interface Props {
+        year: string;
+    }
 
-    let mounted = false;
+    let { year }: Props = $props();
+
+    let mounted = $state(false);
     onMount(() => {
         mounted = true;
     });
@@ -39,17 +43,17 @@
             <div
                 class="dot x1"
                 style="right:0; top:0; transform:translate(150%, -150%);"
-            />
+></div>
             <div
                 class="dot x2"
                 style="right:0; top:0; transform:translate(150%, 150%);"
-            />
+></div>
             <div
                 class="dot x3"
                 style="left:0; top:0; transform:translate(300%, 150%);"
-            />
+></div>
 
-            <div class="diamond" />
+            <div class="diamond"></div>
         </div>
     </yearIndicator>
 {/if}

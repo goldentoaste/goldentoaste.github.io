@@ -1,7 +1,7 @@
 
 
 
-<div id="grid" />
+<div id="grid"></div>
 
 <style> div#grid {
     content: '';

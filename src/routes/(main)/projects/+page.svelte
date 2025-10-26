@@ -4,7 +4,7 @@
     import { finishOutro } from "$lib/stores/pageUpdates";
 </script>
 
-<div transition:fade|global={{ duration: 150 }} on:outroend={finishOutro}>
+<div transition:fade|global={{ duration: 150 }} onoutroend={finishOutro}>
     <ProjectPage
         contents={[
             {
