@@ -6,14 +6,13 @@
 </script>
 
 <script lang="ts">
-    import { run } from 'svelte/legacy';
+    import { run } from "svelte/legacy";
 
     import { fade } from "svelte/transition";
 
     import Divider from "./Divider.svelte";
     import InfoBox from "./InfoBox.svelte";
-    import { spring } from "svelte/motion";
-
+    import { Spring, spring } from "svelte/motion";
 
     interface Props {
         title?: string;
@@ -28,27 +27,24 @@
         title = "",
         items = [],
         containerStyle = "",
-        width = $bindable(200),
+        width = 200,
         height = 200,
-        maxWidth = 200
+        maxWidth = 200,
     }: Props = $props();
-    let clientWidth: number = $derived(Math.min(clientWidth, maxWidth));
 
-    
+    let clientWidth = $state(0);
+    let _width = $derived(Math.min(clientWidth, maxWidth));
 
     const epsilon = 1;
 
-    let scrollVal = $state(spring(0, {
+    let scrollVal = new Spring(0, {
         stiffness: 0.2,
         damping: 1,
-    }));
-
-    let abs = $state(0);
-    run(() => {
-        abs = Math.abs($scrollVal);
     });
 
-    let box: HTMLElement = $state();
+    let abs = $derived(Math.abs(scrollVal.current));
+
+    let box = $state<HTMLElement>();
     let index = $state(0);
     let mouseDown = $state(false);
     let iniX = 0;
@@ -63,7 +59,7 @@
 
     function down(e: MouseEvent | Touch) {
         mouseDown = true;
-        iniX = e.clientX - $scrollVal;
+        iniX = e.clientX - scrollVal.current;
         iniTime = Date.now();
     }
 
@@ -72,30 +68,29 @@
         // condition to check if going to next image to occur
 
         // user swipe far enough within the image
-        let farSwipe = abs > 0.45 * width || abs > 500;
+        let farSwipe = abs > 0.45 * _width || abs > 500;
 
         // user swiped so that cursor leaves image
-        const offset = lastPos - box.getBoundingClientRect().left;
+        const offset = lastPos - (box?.getBoundingClientRect().left ?? 0);
 
-        let exitSwipe = offset > width || offset < 0;
+        let exitSwipe = offset > _width || offset < 0;
 
         // user swiped fast enough
-        let fastSwipe =
-            Math.abs((lastPos - iniX) / (Date.now() - iniTime + 0.1)) > 0.5; // 500 pixels per second speed required
+        let fastSwipe = Math.abs((lastPos - iniX) / (Date.now() - iniTime + 0.1)) > 0.5; // 500 pixels per second speed required
 
         if (farSwipe || exitSwipe || fastSwipe) {
-            scrollVal.set(Math.sign($scrollVal) * width);
+            scrollVal.target = Math.sign(scrollVal.current) * _width;
         } else {
-            $scrollVal = 0;
+            scrollVal.set(0);
         }
     }
 
     function move(e: MouseEvent | Touch) {
         if (mouseDown) {
-            $scrollVal = clamp(
-                index === items.length - 1 ? 0 : -width,
+            scrollVal.target = clamp(
+                index === items.length - 1 ? 0 : -_width,
                 e.clientX - iniX,
-                index === 0 ? 0 : width
+                index === 0 ? 0 : _width,
             );
 
             lastPos = e.clientX;
@@ -103,19 +98,12 @@
     }
 
     // check if scrolling finished
-    run(() => {
-        if (!mouseDown && Math.abs(Math.abs($scrollVal) - width) < epsilon) {
-            index = clamp(0, index - Math.sign($scrollVal), items.length - 1);
-            scrollVal.stiffness = 1;
-            $scrollVal = 0;
-            scrollVal.stiffness = 0.2;
-            scrollVal.damping = 1;
+    $effect(() => {
+        if (!mouseDown && Math.abs(Math.abs(scrollVal.current) - _width) < epsilon) {
+            index = clamp(0, index - Math.sign(scrollVal.current), items.length - 1);
+            scrollVal.set(0);
         }
     });
-
-    function xp(...obj: Object[]) {
-        console.log(...obj);
-    }
 </script>
 
 {#if items.length === 0}
@@ -127,8 +115,7 @@
 {#if items.length > 0}
     <InfoBox
         outline={true}
-        style={containerStyle +
-            "border:solid 2px var(--bg-alt2); width:min-content;"}
+        style={containerStyle + "border:solid 2px var(--bg-alt2); width:min-content;"}
         {title}
     >
         <div
@@ -146,7 +133,7 @@
                 <defs>
                     <symbol fill="none" viewBox="0 0 6 6" id="arrow">
                         <clipPath id="clip0_413_3">
-                            <rect width="6" height="6" fill="white" />
+                            <rect width="6" height="6" fill="white"></rect>
                         </clipPath>
                         <g clip-path="url(#clip0_413_3)">
                             <rect
@@ -157,12 +144,8 @@
                                 transform="rotate(-45 1 3)"
                                 stroke="var(--fg-alt)"
                                 stroke-width="0.5"
-                            />
-                            <path
-                                d="M3 1L5 3L3 5"
-                                stroke="var(--fg-alt)"
-                                stroke-width="0.5"
-                            />
+                            ></rect>
+                            <path d="M3 1L5 3L3 5" stroke="var(--fg-alt)" stroke-width="0.5"></path>
                         </g>
                     </symbol>
                 </defs>
@@ -192,17 +175,12 @@
                 <!-- this goes behind original -->
                 <!-- shrink original if so  && $scrollVal < 0 && $scrollVal > 0-->
                 {#if index !== items.length - 1}
-                    <div
-                        id={index + 1 + ""}
-                        class="imageItem"
-                        style="z-index:1"
-                    >
+                    <div id={index + 1 + ""} class="imageItem" style="z-index:1">
                         <img
-                           
                             src={items[index + 1].src}
                             alt="item"
-                            style="min-width: calc({width}px - 2rem);max-height: calc({height}px - 2rem);"
-                                loading="lazy"
+                            style="min-width: calc({_width}px - 2rem);max-height: calc({height}px - 2rem);"
+                            loading="lazy"
                         />
                     </div>
                 {/if}
@@ -210,18 +188,18 @@
                 <div
                     id={index + ""}
                     class="imageItem"
-                    style={($scrollVal < 0 && index != items.length - 1
+                    style={(scrollVal.current < 0 && index != items.length - 1
                         ? `border-right: 2px solid var(--fg); width:${clamp(
                               0,
-                              width - abs,
-                              width
+                              _width - abs,
+                              _width,
                           )}px; box-shadow:0 0 2rem var(--bg-alt3);`
                         : "") + "z-index:2;"}
                 >
                     <img
                         src={items[index].src}
                         alt="item"
-                        style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem); filter:opacity(1);"
+                        style="min-width: calc({_width}px - 2rem); max-height: calc({height}px - 2rem); filter:opacity(1);"
                     />
                 </div>
 
@@ -230,19 +208,18 @@
                     <div
                         id={index - 1 + ""}
                         class="imageItem"
-                        style={($scrollVal > 0
+                        style={(scrollVal.current > 0
                             ? `border-right: 2px solid var(--fg); width:${clamp(
                                   0,
                                   abs,
-                                  width
+                                  _width,
                               )}px; box-shadow: 1rem 0 2rem var(--bg-alt3);`
                             : "width:0;") + "z-index:3;"}
                     >
                         <img
-                           
                             src={items[index - 1].src}
                             alt="item"
-                            style="min-width: calc({width}px - 2rem); max-height: calc({height}px - 2rem);"
+                            style="min-width: calc({_width}px - 2rem); max-height: calc({height}px - 2rem);"
                             loading="lazy"
                         />
                     </div>
@@ -256,13 +233,13 @@
                             class="arrow"
                             id="left"
                             onclick={() => {
-                                $scrollVal = width;
+                                scrollVal.target = _width;
                             }}
                         >
                             <!-- svelte-ignore missing_declaration -->
 
                             <svg viewBox="0 0 6 6">
-                                <use href="#arrow" />
+                                <use href="#arrow"></use>
                             </svg>
                         </div>
                     {/if}
@@ -274,11 +251,11 @@
                             class="arrow"
                             id="right"
                             onclick={() => {
-                                $scrollVal = -width;
+                                scrollVal.target = -_width;
                             }}
                         >
                             <svg viewBox="0 0 6 6">
-                                <use href="#arrow" />
+                                <use href="#arrow"></use>
                             </svg>
                         </div>
                     {/if}
@@ -296,10 +273,7 @@
                 <div id="star"></div>
             </div>
         </div>
-        <Divider
-            usePadding={false}
-            style="margin-top: 0.7rem; margin-bottom:0.7rem;"
-        />
+        <Divider usePadding={false} style="margin-top: 0.7rem; margin-bottom:0.7rem;" />
 
         <p>
             {items[index].desc}
@@ -366,11 +340,10 @@
         user-select: none;
         padding: 1rem;
 
-
         transition: filter 0.25s ease-out;
     }
 
-    p{
+    p {
         margin: 0.25rem;
     }
 

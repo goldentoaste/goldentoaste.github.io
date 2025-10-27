@@ -8,8 +8,6 @@
 </script>
 
 <script lang="ts">
-    import { passive } from 'svelte/legacy';
-
     import { onMount } from "svelte";
     import { pageState, PageState } from "$lib/stores/pageUpdates";
 
@@ -19,7 +17,7 @@
     import InfoBox from "$lib/InfoBox.svelte";
     import Divider from "$lib/Divider.svelte";
     import DropDown from "$lib/DropDown.svelte";
-    import { fade } from "svelte/transition";
+
 
     interface Props {
         contents?: Content[];
@@ -29,23 +27,20 @@
 
     let selection = $state(0);
     let content: Content = $derived(contents[selection]);
-    
 
-    let iframe: HTMLIFrameElement = $state();
+    let iframe = $state<HTMLIFrameElement>();
 
-    let listHolder: HTMLDivElement = $state();
+    let listHolder = $state<HTMLDivElement>();
 
-    let innerWidth: number = $state();
+    let innerWidth = $state<number>(0);
 
     let expanded = $state(false);
 
     function resizeIframe() {
-        if (
-            iframe.contentWindow?.document.body.scrollHeight + "px" !==
-            iframe.style.height
-        )
-            iframe.style.height =
-                iframe.contentWindow?.document.body.scrollHeight! + 40 + "px";
+        if (!iframe) {
+            return;
+        }
+        iframe.style.height = iframe.contentWindow?.document.body.scrollHeight! + 40 + "px";
     }
 
     onMount(() => {
@@ -53,12 +48,25 @@
     });
 </script>
 
-<svelte:window use:passive={['resize', () => resizeIframe]} bind:innerWidth />
+<svelte:window
+onmessage={(e)=>{
+    if("pageHeight" in e.data) {
+        resizeIframe();
+    }
+    
+}}
+    onresize={() => {
+        console.log("in resize");
+        
+        resizeIframe();
+    }}
+    bind:innerWidth
+/>
 
 <h1>My Projects 🔨</h1>
 <p>
-    A list of notable projects I have worked on. More detailed descriptions and
-    interactive demos coming soon!
+    A list of notable projects I have worked on. More detailed descriptions and interactive demos
+    coming soon!
 </p>
 <div class="root" style={innerWidth < 850 ? "flex-direction:column" : ""}>
     <div
@@ -76,7 +84,7 @@
                             path={button.path}
                             upper={false}
                             style="width:100%; margin:0;"
-                            on:click={() => {
+                            onclick={() => {
                                 scrollTo({
                                     top: 0,
                                     behavior: "smooth",
@@ -104,7 +112,7 @@
                                 path={button.path}
                                 upper={false}
                                 style="width:100%; margin:0;"
-                                on:click={() => {
+                                onclick={() => {
                                     scrollTo({
                                         top: 0,
                                         behavior: "smooth",
@@ -128,24 +136,14 @@
     </div>
 
     <div class="content" style={innerWidth < 850 ? " width:100%;" : ""}>
-        <InfoBox
-            title={content.title}
-            hovering={false}
-            style="width:auto; height:100%; margin:0;"
-        >
+        <InfoBox title={content.title} hovering={false} style="width:auto; height:100%; margin:0;">
             <Divider usePadding={true} />
-
-            {#key selection}
                 <iframe
-                    in:fade|global={{ duration: 500 }}
                     bind:this={iframe}
-                    onload={resizeIframe}
-                    loading="lazy"
                     title={content.title}
                     src={`./${content.page}`}
                     scrolling="no">Content loading...</iframe
                 >
-            {/key}
             <Divider usePadding={true} />
         </InfoBox>
     </div>

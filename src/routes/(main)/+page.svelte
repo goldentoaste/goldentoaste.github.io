@@ -35,15 +35,15 @@
             items: [
                 {
                     name: "Python",
-                    url: "https://user-images.githubusercontent.com/25181517/183423507-c056a6f9-1ba8-4312-a350-19bcbc5a8697.png",
+                    url: "/home/Python.webp",
                 },
                 {
                     name: "Javascript",
-                    url: "https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png",
+                    url: "/home/Javascript.webp",
                 },
                 {
                     name: "TypeScript",
-                    url: "https://user-images.githubusercontent.com/25181517/183890598-19a0ac2d-e88a-4005-a8df-1ee36782fde1.png",
+                    url: "/home/TypeScript.webp",
                 },
                 {
                     name: "Java",
@@ -51,19 +51,19 @@
                 },
                 {
                     name: "C",
-                    url: "https://user-images.githubusercontent.com/25181517/192106070-46255bcf-65e6-4c6b-a296-bf8d0d8fb2a7.png",
+                    url: "/home/C.webp",
                 },
                 {
                     name: "C++",
-                    url: "https://user-images.githubusercontent.com/25181517/192106073-90fffafe-3562-4ff9-a37e-c77a2da0ff58.png",
+                    url: "/home/Cpp.webp",
                 },
                 {
                     name: "C#",
-                    url: "https://user-images.githubusercontent.com/25181517/121405384-444d7300-c95d-11eb-959f-913020d3bf90.png",
+                    url: "/home/CS.webp",
                 },
                 {
                     name: "Lisp",
-                    url: "https://upload.wikimedia.org/wikipedia/commons/4/48/Lisp_logo.svg",
+                    url: "/home/Lisp.svg",
                 },
             ],
         },
@@ -72,27 +72,27 @@
             items: [
                 {
                     name: "Svelte",
-                    url: "https://raw.githubusercontent.com/sveltejs/branding/master/svelte-logo.svg",
+                    url: "/home/Svelte.svg",
                 },
                 {
                     name: "React",
-                    url: "https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png",
+                    url: "/home/React.webp",
                 },
                 {
                     name: "HTML",
-                    url: "https://www.w3.org/html/logo/downloads/HTML5_Badge.svg",
+                    url: "/home/HTML.svg",
                 },
                 {
                     name: "CSS",
-                    url: "https://www.vectorlogo.zone/logos/w3_css/w3_css-icon.svg",
+                    url: "/home/CSS.svg",
                 },
                 {
                     name: "Material UI",
-                    url: "https://user-images.githubusercontent.com/25181517/189716630-fe6c084c-6c66-43af-aa49-64c8aea4a5c2.png",
+                    url: "/home/UI.webp",
                 },
                 {
                     name: "Django",
-                    url: "https://www.svgrepo.com/show/353657/django-icon.svg",
+                    url: "/home/Django.svg",
                 },
             ],
         },
@@ -101,27 +101,27 @@
             items: [
                 {
                     name: "Django REST",
-                    url: "https://www.svgrepo.com/show/353657/django-icon.svg",
+                    url: "/home/Django.svg",
                 },
                 {
                     name: "Flask",
-                    url: "https://github.com/twitter/twemoji/raw/master/assets/svg/2697.svg",
+                    url: "/home/Flask.svg",
                 },
                 {
                     name: "REST API",
-                    url: "https://user-images.githubusercontent.com/25181517/192107858-fe19f043-c502-4009-8c47-476fc89718ad.png",
+                    url: "/home/REST.svg",
                 },
                 {
                     name: "FireBase",
-                    url: "https://user-images.githubusercontent.com/25181517/189716855-2c69ca7a-5149-4647-936d-780610911353.png",
+                    url: "/home/FireBase.webp",
                 },
                 {
                     name: "Swagger",
-                    url: "https://user-images.githubusercontent.com/25181517/186711335-a3729606-5a78-4496-9a36-06efcc74f800.png",
+                    url: "/home/Swagger.webp",
                 },
                 {
                     name: "GraphQL",
-                    url: "https://user-images.githubusercontent.com/25181517/192107856-aa92c8b1-b615-47c3-9141-ed0d29a90239.png",
+                    url: "/home/GraphQL.webp",
                 },
             ],
         },
@@ -130,7 +130,7 @@
             items: [
                 {
                     name: "HTTP",
-                    url: "https://user-images.githubusercontent.com/25181517/192107854-765620d7-f909-4953-a6da-36e1ef69eea6.png",
+                    url: "/home/HTML.svg",
                 },
                 {
                     name: "WebSocket",
@@ -138,15 +138,15 @@
                 },
                 {
                     name: "Nginx",
-                    url: "https://user-images.githubusercontent.com/25181517/183345125-9a7cd2e6-6ad6-436f-8490-44c903bef84c.png",
+                    url: "/home/Nginx.webp",
                 },
                 {
                     name: "PostgresSQL",
-                    url: "https://wiki.postgresql.org/images/a/a4/PostgreSQL_logo.3colors.svg",
+                    url: "/home/PostgresSQL.svg",
                 },
                 {
                     name: "Redis",
-                    url: "https://www.vectorlogo.zone/logos/redis/redis-icon.svg",
+                    url: "/home/Redis.svg",
                 },
             ],
         },
@@ -156,23 +156,23 @@
                 { name: "GitHub", svgPath: GH },
                 {
                     name: "BitBucket",
-                    url: "https://user-images.githubusercontent.com/25181517/192108375-268c35e6-ab26-44b2-88bf-e3121a4e5083.png",
+                    url: "/home/BitBucket.webp",
                 },
                 {
                     name: "Jira",
-                    url: "https://user-images.githubusercontent.com/25181517/183912952-83784e94-629d-4c34-a961-ae2ae795b662.png",
+                    url: "/home/Jira.webp",
                 },
                 {
                     name: "Git",
-                    url: "https://user-images.githubusercontent.com/25181517/192108372-f71d70ac-7ae6-4c0d-8395-51d8870c2ef0.png",
+                    url: "/home/Git.webp",
                 },
                 {
                     name: "Dockers",
-                    url: "https://user-images.githubusercontent.com/25181517/117207330-263ba280-adf4-11eb-9b97-0ac5b40bc3be.png",
+                    url: "/home/Dockers.webp",
                 },
                 {
                     name: "Bash",
-                    url: "https://user-images.githubusercontent.com/25181517/192158606-7c2ef6bd-6e04-47cf-b5bc-da2797cb5bda.png",
+                    url: "/home/Bash.webp",
                 },
             ],
         },
@@ -185,7 +185,7 @@
                 },
                 {
                     name: "Google Cloud",
-                    url: "https://user-images.githubusercontent.com/25181517/183911547-990692bc-8411-4878-99a0-43506cdb69cf.png",
+                    url: "/home/GoogleCloud.webp",
                 },
                 {
                     name: "Heroku",
@@ -198,19 +198,19 @@
             items: [
                 {
                     name: "Android",
-                    url: "https://user-images.githubusercontent.com/25181517/117269608-b7dcfb80-ae58-11eb-8e66-6cc8753553f0.png",
+                    url: "/home/Android.webp",
                 },
                 {
                     name: "Flutter",
-                    url: "https://user-images.githubusercontent.com/25181517/186150365-da1eccce-6201-487c-8649-45e9e99435fd.png",
+                    url: "/home/Flutter.webp",
                 },
                 {
                     name: "Dart",
-                    url: "https://user-images.githubusercontent.com/25181517/186150304-1568ffdf-4c62-4bdc-9cf1-8d8efcea7c5b.png",
+                    url: "/home/Dart.webp",
                 },
                 {
                     name: "Android Studio",
-                    url: "https://upload.wikimedia.org/wikipedia/commons/9/95/Android_Studio_Icon_3.6.svg",
+                    url: "/home/Android.webp",
                 },
             ],
         },
@@ -219,23 +219,23 @@
             items: [
                 {
                     name: "VsCode",
-                    url: "https://user-images.githubusercontent.com/25181517/192108891-d86b6220-e232-423a-bf5f-90903e6887c3.png",
+                    url: "/home/VsCode.webp",
                 },
                 {
                     name: "PostMan",
-                    url: "https://user-images.githubusercontent.com/25181517/192109061-e138ca71-337c-4019-8d42-4792fdaa7128.png",
+                    url: "/home/PostMan.webp",
                 },
                 {
                     name: "npm",
-                    url: "https://user-images.githubusercontent.com/25181517/121401671-49102800-c959-11eb-9f6f-74d49a5e1774.png",
+                    url: "/home/npm.webp",
                 },
                 {
                     name: "Figma",
-                    url: "https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png",
+                    url: "/home/Figma.webp",
                 },
                 {
                     name: "Unity",
-                    url: "https://user-images.githubusercontent.com/25181517/193427941-9437dbbe-376f-40dc-9573-0ef5c02a26a7.png",
+                    url: "/home/Unity.webp",
                 },
             ],
         },
@@ -244,41 +244,38 @@
             items: [
                 {
                     name: "Qt",
-                    url: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Qt_logo_2016.svg",
+                    url: "/home/Qt.svg",
                 },
                 {
                     name: "Electron",
-                    url: "https://upload.wikimedia.org/wikipedia/commons/9/91/Electron_Software_Framework_Logo.svg",
+                    url: "/home/Electron.svg",
                 },
                 {
                     name: "Tkinter",
-                    url: "https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1fab6.svg",
+                    url: "home/Tkinter.svg",
                 },
                 {
                     name: "Win32 API",
-                    url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg",
+                    url: "home/API.webp",
                 },
             ],
         },
     ];
 
-    onMount(()=>{
+    onMount(() => {
         $pageState = PageState.NeedTransition;
-    })
-
+    });
 </script>
 
-<div id="outer" transition:fade|global={{duration:150}} onoutroend={finishOutro}>
+<div id="outer" transition:fade|global={{ duration: 150 }} onoutroend={finishOutro}>
     <div id="inner">
         <Intro />
         <Section title="Languages, Technologies and Tools">
             {#each groups as group}
                 <InfoBox title={group.title}>
                     {#each group.items as item}
-                        <IconListItem
-                            src={item.url}
-                            path={item.svgPath}
-                            key={item.name}>{item.name}</IconListItem
+                        <IconListItem src={item.url} path={item.svgPath} key={item.name}
+                            >{item.name}</IconListItem
                         >
                     {/each}
                 </InfoBox>
@@ -286,7 +283,6 @@
         </Section>
     </div>
 </div>
-
 
 <style>
     div#outer {

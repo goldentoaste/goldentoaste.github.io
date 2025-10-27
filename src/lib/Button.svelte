@@ -9,9 +9,6 @@
 </script>
 
 <script lang="ts">
-    import { page } from "$app/stores";
-    import { goto } from "$app/navigation";
-    import { createEventDispatcher } from "svelte";
     interface Props {
         href?: string;
         path?: string;
@@ -21,7 +18,8 @@
         upper?: boolean;
         key?: string;
         style?: string;
-        children?: import('svelte').Snippet;
+        onclick?: () => void;
+        children?: import("svelte").Snippet;
     }
 
     let {
@@ -33,22 +31,9 @@
         upper = true,
         key = "clip",
         style = "",
-        children
+        onclick,
+        children,
     }: Props = $props();
-
-    const dispatch = createEventDispatcher();
-
-    function onclick(e: MouseEvent) {
-        if (
-            href &&
-            href !== ($page.route?.id?.replace(/\/?\(\w+\)/g, "") || "/")
-        ) {
-            goto(href, {
-                noScroll: true,
-            });
-        }
-        dispatch("click", e.detail);
-    }
 </script>
 
 <button
@@ -58,18 +43,22 @@
     class:selectExpands
     style={`${upper ? "text-transform: uppercase;" : ""}${style}`}
 >
-    <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <clipPath id={key} clipPathUnits="objectBoundingBox">
-                <path d={path} fill="black" />
-            </clipPath>
-        </defs>
-    </svg>
     {#if path}
+        <svg width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id={key} clipPathUnits="objectBoundingBox">
+                    <path d={path} fill="black"></path>
+                </clipPath>
+            </defs>
+        </svg>
         <div class="icon" style="clip-path: url('#{key}');"></div>
     {/if}
 
-    <div class="inner">{@render children?.()}</div>
+    {#if href}
+        <a class="text inner " {href}>{@render children?.()}</a>
+    {:else}
+        <div class="inner">{@render children?.()}</div>
+    {/if}
 </button>
 
 <style>
@@ -153,7 +142,7 @@
         z-index: 555 !important;
     }
 
-    button:not(:disabled):hover,
+    button:not(:disabled):hover > .inner,
     .selected:not(.selectExpands) {
         color: var(--bg-alt);
     }
