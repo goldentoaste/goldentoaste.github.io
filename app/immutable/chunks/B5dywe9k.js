@@ -1,0 +1,1 @@
+import{a6 as s}from"./B2JorG6n.js";function e(a,t){var r=a.$$events?.[t.type],n=s(r)?r.slice():r==null?[]:[r];for(var c of n)c.call(this,t)}function o(a){const t=a-1;return t*t*t+1}function i(a){return Math.pow(a-1,3)*(1-a)+1}export{e as b,o as c,i as q};

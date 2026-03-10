@@ -1,0 +1,1 @@
+import"../chunks/DsnmJJEf.js";import"../chunks/DtLJvBvA.js";import{a as t,f as a}from"../chunks/B2JorG6n.js";var i=a("<h1>This page is not finished yet.</h1>");function n(o){var r=i();t(o,r)}export{n as component};
