@@ -17,6 +17,15 @@ const config = {
 			}
 		), appDir: 'app'
 
+	},
+
+	compilerOptions: {
+		warningFilter: (e) => {
+			if (e.code.includes("a11y")) {
+				return false;
+			}
+			return true;
+		}
 	}
 };
 

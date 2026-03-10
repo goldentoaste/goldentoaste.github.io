@@ -62,7 +62,6 @@
                     {#if !useMobile || selects[i]}
                         <Button
                             on:click={() => {
-                       
                                 window.scrollTo({
                                     top: 0,
                                     behavior: 'smooth',
@@ -181,7 +180,7 @@
 
         height: fit-content;
         border-bottom: var(--fg) 0.2rem solid;
-    
+
     }
 
     nav {
@@ -190,7 +189,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-    
+
     }
 
     nav.mobile {
