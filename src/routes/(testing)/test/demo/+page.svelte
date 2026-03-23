@@ -9,6 +9,7 @@
         x: number;
         y: number;
         size: number;
+        debug?: any;
     }
 
     const gap = 20; // 20px gap between items
@@ -46,6 +47,8 @@
     const distributeScale = hoverScale - 1;
 
     function _focusHelper(
+        originRow: number,
+        originCol: number,
         row: number,
         col: number,
         rowOffset: number,
@@ -61,8 +64,16 @@
             if (_row < 0 || _col < 0 || _row >= rows || _col >= cols) {
                 return;
             }
+            const dist =
+                1 /
+                Math.sqrt(
+                    Math.pow(Math.abs(_row - originRow) + 1, 2) +
+                        Math.pow(Math.abs(_col - originCol) + 1, 2),
+                );
+
             const offset = offsets[_row][_col];
-            offset.size = distributeScale * itemSize * ((1 / (i + 1)) * (1 / (i + 1)));
+            offset.size = distributeScale * itemSize * dist;
+            offset.debug = [(i + 1) * rowOffset, (i + 1) * colOffset];
 
             if (colRef != 0) {
                 const prev = offsets[_row][_col + colRef];
@@ -85,34 +96,34 @@
         center.size = itemSize * (hoverScale - 1);
 
         // right
-        _focusHelper(row, col, 0, +1, 0, -1, 10);
+        _focusHelper(row, col, row, col, 0, +1, 0, -1, 10);
         // down
-        _focusHelper(row, col, +1, 0, -1, 0, 10);
+        _focusHelper(row, col, row, col, +1, 0, -1, 0, 10);
 
         // // up
-        _focusHelper(row, col, -1, 0, +1, 0, 10);
+        _focusHelper(row, col, row, col, -1, 0, +1, 0, 10);
 
         // // left
-        _focusHelper(row, col, 0, -1, 0, +1, 10);
+        _focusHelper(row, col, row, col, 0, -1, 0, +1, 10);
 
         // bot right quad
         for (let r = row + 1; r < row + 10; r++) {
-            _focusHelper(r, col, 0, +1, -1, -1, 10);
+            _focusHelper(row, col, r, col, 0, +1, -1, -1, 10);
         }
 
         // bot left quad
         for (let r = row + 1; r < row + 10; r++) {
-            _focusHelper(r, col, 0, -1, -1, +1, 10);
+            _focusHelper(row, col, r, col, 0, -1, -1, +1, 10);
         }
 
         // top right quad
         for (let r = row - 1; r > row - 10; r--) {
-            _focusHelper(r, col, 0, +1, +1, -1, 10);
+            _focusHelper(row, col, r, col, 0, +1, +1, -1, 10);
         }
 
         // top left quad
         for (let r = row - 1; r > row - 10; r--) {
-            _focusHelper(r, col, 0, -1, +1, +1, 10);
+            _focusHelper(row, col, r, col, 0, -1, +1, +1, 10);
         }
     }
 
